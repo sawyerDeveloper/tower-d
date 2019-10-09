@@ -1,4 +1,4 @@
-import Model from './TowerDModel'
+import Model from './TowerDefenseModel'
 
 class TowerDController{
     constructor(view){

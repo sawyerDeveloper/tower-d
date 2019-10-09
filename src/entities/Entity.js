@@ -1,0 +1,9 @@
+class Entity{
+    constructor(){
+
+    }
+
+    render = () => {
+        
+    }
+}

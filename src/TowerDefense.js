@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Board from './Board'
-import TowerDController from './TowerDController'
+import Controller from './TowerDefenseController'
 
 const states = {
   INIT: 'init',
@@ -16,15 +16,33 @@ class TowerDefense extends Component {
     this.state = {
       currentState: states.INIT
     }
-    this.controller = new TowerDController(this)
+
+    this.controller = new Controller(this, states)
   }
 
+  /**
+   * Initialize the game engine.
+   */
   componentDidMount(){
     this.controller.init()
   }
 
+  /**
+   * Controller tells this class what state the overall game should be in
+   * @param newState Derived from states const 
+   */
+  updateCurrentState = (newState) => {
+    this.setState({
+      currentState: newState
+    })
+  }
+
+  /**
+   * Controller calls this on every frame/data update
+   * @param data Updated data regarding score, logic, entity placement
+   */
   update = (data) => {
-    console.log(data)
+    //console.log(data)
 
     this.setState({
         score: data.score
@@ -33,9 +51,6 @@ class TowerDefense extends Component {
 
   play = () => {
     this.controller.play()
-    this.setState({
-      currentState: states.PLAY
-    })
   }
 
   render(){
@@ -43,7 +58,7 @@ class TowerDefense extends Component {
       <div style={{width: '100%'}}>
         Tower-D {this.state.currentState}
         <button onClick={this.play}>Play</button>
-        <Board />
+        <Board score={this.state.score}/>
       </div>
     )
   }
