@@ -6,5 +6,6 @@ class Bat extends Enemy{
 
     render(){
         super.render()
+        
     }
 }
