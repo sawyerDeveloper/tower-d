@@ -39,7 +39,16 @@ class TowerDController {
     }
 
     checkCollisions = () => {
-        
+        const yOffset = 50
+        const userX = this.model.userInput.x - 150
+        const userY = this.model.userInput.y + yOffset
+        this.model.data.enemies.forEach(enemy =>{
+            if(enemy.position.x < userX && enemy.position.x + enemy.body.width > userX && enemy.position.y < userY && enemy.position.y + enemy.body.height < userY){
+                enemy.style.color = 'white'
+                console.log('hit')
+            }
+            
+        })
     }
 
     updateVectors = () => {

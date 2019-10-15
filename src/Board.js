@@ -15,7 +15,6 @@ class Board extends Component {
             this.canvas.getContext('2d').beginPath()
             this.canvas.getContext('2d').strokeStyle = enemy.style.color
             this.canvas.getContext('2d').lineWidth = enemy.body.height
-
             this.canvas.getContext('2d').moveTo(enemy.position.x, enemy.position.y)
             this.canvas.getContext('2d').lineTo(enemy.position.x + enemy.body.width, enemy.position.y)
             this.canvas.getContext('2d').stroke()
@@ -25,18 +24,11 @@ class Board extends Component {
 
     render() {
 
-        const styles = {
-            container: {
-                width: 600,
-                height: 600
-            }
-        }
-
         return (
             <canvas onMouseDown={this.props.applyUserInput} 
                     onMouseUp={this.props.removeUserInput} 
-                    width={styles.container.width} 
-                    height={styles.container.height} 
+                    width={600} 
+                    height={600} 
                     ref={canvas => this.canvas = canvas} />
         )
     }

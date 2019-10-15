@@ -6,7 +6,7 @@ class TowerDefenseModel {
         this.loop = false
 
         // The X and Y of a user's pointer/finger
-        this.userInput = null
+        this.userInput = {x: 0, y: 0}
 
         this.data = data ? data : {
             score: 0,
@@ -14,7 +14,7 @@ class TowerDefenseModel {
             level: 0,
             enemies: [
                 {   body: {shape: 'rectangle', width: 100, height: 40}, 
-                    style: {color: 'white'}, 
+                    style: {color: 'brown'}, 
                     vector: { velocity: 1, x: 0, y: 1 }, 
                     position: {x: 0, y: 50} },
                 {   body: {shape: 'rectangle', width: 100, height: 40}, 
