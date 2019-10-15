@@ -1,9 +1,9 @@
 import Model from './TowerDefenseModel'
 import states from './TowerDefense'
 
-class TowerDController{
+class TowerDController {
 
-    constructor(view){
+    constructor(view) {
         this.view = view
         this.model = new Model()
     }
@@ -16,7 +16,7 @@ class TowerDController{
 
     update = () => {
 
-        if(this.model.loop){
+        if (this.model.loop) {
 
             //  Move Stuff
             this.updateVectors()
@@ -30,16 +30,25 @@ class TowerDController{
         requestAnimationFrame(this.update)
     }
 
-    updateUserInput = (data) => {
-        this.model.userInput(data)
+    applyUserInput = (event) => {
+        this.model.userInput = { x: event.pageX, y: event.pageY }
+    }
+
+    removeUserInput = () => {
+        this.model.userInput = null
     }
 
     checkCollisions = () => {
-        //  Stub
+        
     }
 
     updateVectors = () => {
-        //  Stub
+        this.model.data.enemies.forEach(enemy => {
+            enemy.position.y += (enemy.vector.y * enemy.vector.velocity)
+            if (enemy.position.y > 600) {
+                enemy.position.y = -40
+            }
+        })
     }
 
     stop = () => {

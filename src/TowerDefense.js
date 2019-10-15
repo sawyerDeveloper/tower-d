@@ -29,14 +29,13 @@ class TowerDefense extends Component {
    * Initialize the game engine.
    */
   componentDidMount(){
-    this.controller.init()
-    
     document.body.appendChild( this.stats.dom )
+    this.controller.init()
   }
 
   /**
    * Controller tells this class what state the overall game should be in
-   * @param newState Derived from states const 
+   * @param {string} newState Derived from states const 
    */
   updateCurrentState = (newState) => {
     this.setState({
@@ -46,7 +45,8 @@ class TowerDefense extends Component {
 
   /**
    * Controller calls this on every frame/data update
-   * @param data Updated data regarding score, logic, entity placement
+   * @param {object} data Updated data regarding score, logic, entity placement
+   * @param {boolean} stateDataChanged If something changed that should be reflected in React
    */
   update = (data, stateDataChanged = false) => {
     this.stats.begin();
@@ -68,19 +68,29 @@ class TowerDefense extends Component {
   /**
    * Accept and pass user input to controller for interpretation
    */
-  updateUserInput = (data) => {
-    this.controller.updateUserInput(data)
+  applyUserInput = (event) => {
+    this.controller.applyUserInput(event)
   }
+
+  /**
+   * Remove human interaction from controller
+   */
+  removeUserInput = () => {
+    this.controller.removeUserInput()
+  }
+
+  
 
   render(){
 
     return  (
       <VBox>
-        <HBox marginLeft={100}>
+        <HBox marginLeft={100} height={50}>
           <button onClick={this.controller.play}>Play</button>
           <button onClick={this.controller.pause}>Pause</button>
+          <div>{this.state.currentState}</div>
         </HBox>
-        <Board updateUserInput={this.updateUserInput} ref={board => this.board = board} score={this.state.score}/>
+        <Board applyUserInput={this.applyUserInput} ref={board => this.board = board} score={this.state.score}/>
       </VBox>
 
     )

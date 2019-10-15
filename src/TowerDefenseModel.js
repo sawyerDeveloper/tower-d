@@ -4,17 +4,39 @@ class TowerDefenseModel {
 
         // Boolean if the game loop is running
         this.loop = false
+
+        // The X and Y of a user's pointer/finger
+        this.userInput = null
+
         this.data = data ? data : {
             score: 0,
             wave: 0,
             level: 0,
             enemies: [
-                { x: 0, y: 0, width: 100, height: 4, color: 'white' },
-                { x: 100, y: 0, width: 100, height: 4, color: 'red' },
-                { x: 200, y: 0, width: 100, height: 4, color: 'grey' },
-                { x: 300, y: 0, width: 100, height: 4, color: 'green' },
-                { x: 400, y: 0, width: 100, height: 4, color: 'yellow' },
-                { x: 500, y: 0, width: 100, height: 4, color: 'pink' }
+                {   body: {shape: 'rectangle', width: 100, height: 40}, 
+                    style: {color: 'white'}, 
+                    vector: { velocity: 1, x: 0, y: 1 }, 
+                    position: {x: 0, y: 50} },
+                {   body: {shape: 'rectangle', width: 100, height: 40}, 
+                    style: {color: 'red'}, 
+                    vector: { velocity: 1, x: 0, y: 1 }, 
+                    position: {x: 100, y: 150} },
+                {   body: {shape: 'rectangle', width: 100, height: 40}, 
+                    style: {color: 'grey'}, 
+                    vector: { velocity: 1, x: 0, y: 1 }, 
+                    position: {x: 200, y: 250} },
+                {   body: {shape: 'rectangle', width: 100, height: 40}, 
+                    style: {color: 'green'}, 
+                    vector: { velocity: 1, x: 0, y: 1 }, 
+                    position: {x: 300, y: 350} },
+                {   body: {shape: 'rectangle', width: 100, height: 40}, 
+                    style: {color: 'yellow'}, 
+                    vector: { velocity: 1, x: 0, y: 1 }, 
+                    position: {x: 400, y: 450} },
+                {   body: {shape: 'rectangle', width: 100, height: 40}, 
+                    style: {color: 'pink'}, 
+                    vector: { velocity: 1, x: 0, y: 1 }, 
+                    position: {x: 500, y: 550} }
             ],
             towers: [],
             grid: []
