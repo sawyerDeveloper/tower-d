@@ -10,6 +10,8 @@ class TowerDController {
 
     init = () => {
         console.log('init')
+
+        //temp for testing
         this.model.loop = true
         requestAnimationFrame(this.update)
     }
@@ -27,6 +29,7 @@ class TowerDController {
             //  Render the results
             this.view.update(this.model.data)
         }
+
         requestAnimationFrame(this.update)
     }
 
@@ -39,21 +42,24 @@ class TowerDController {
     }
 
     checkCollisions = () => {
-        const yOffset = 50
-        const userX = this.model.userInput.x - 150
-        const userY = this.model.userInput.y + yOffset
-        this.model.data.enemies.forEach(enemy =>{
-            if(enemy.position.x < userX && enemy.position.x + enemy.body.width > userX && enemy.position.y < userY && enemy.position.y + enemy.body.height < userY){
+
+        const userX = this.model.userInput.x
+        const userY = this.model.userInput.y
+        console.log('check', userX, userY)
+        this.model.data.enemies.forEach(enemy => {
+            if (enemy.state.hit == false && enemy.position.x < userX && enemy.position.x + enemy.body.width > userX && enemy.position.y < userY && enemy.position.y + enemy.body.height < userY) {
                 enemy.style.color = 'white'
-                console.log('hit')
+                enemy.state.hit = true
+                console.log('hit', enemy.position.x < userX ,  enemy.position.x + enemy.body.width > userX, enemy.position.y < userY, enemy.position.y + enemy.body.height < userY)
+
+                console.log('hit', userX, userY, enemy.position.x, enemy.position.y)
             }
-            
         })
     }
 
     updateVectors = () => {
         this.model.data.enemies.forEach(enemy => {
-            enemy.position.y += (enemy.vector.y * enemy.vector.velocity)
+            //enemy.position.y += (enemy.vector.y * enemy.vector.velocity)
             if (enemy.position.y > 600) {
                 enemy.position.y = -40
             }

@@ -27,6 +27,7 @@ class Board extends Component {
         return (
             <canvas onMouseDown={this.props.applyUserInput} 
                     onMouseUp={this.props.removeUserInput} 
+                    onMouseOut={this.props.removeUserInput} 
                     width={600} 
                     height={600} 
                     ref={canvas => this.canvas = canvas} />
