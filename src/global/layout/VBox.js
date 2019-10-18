@@ -4,7 +4,9 @@ const VBox = (props) => {
 
     const style = {
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        width: props.width,
+        height: props.height
     }
     return (
         <div style={style}>{props.children}</div>

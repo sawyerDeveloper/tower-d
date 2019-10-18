@@ -84,7 +84,7 @@ class TowerDefense extends Component {
   render(){
 
     return  (
-      <VBox>
+      <VBox width={600} height={650}>
         <HBox marginLeft={100} height={50}>
           <button onClick={this.controller.play}>Play</button>
           <button onClick={this.controller.pause}>Pause</button>
