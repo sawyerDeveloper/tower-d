@@ -49,6 +49,7 @@ class TowerDController {
             if (enemy.state.hit == false && enemy.position.x < userX && enemy.position.x + enemy.body.width > userX && enemy.position.y < userY && enemy.position.y + enemy.body.height < userY) {
                 enemy.style.color = 'white'
                 enemy.state.hit = true
+                enemy.vector.velocity = 0
                 console.log('hit', enemy.position.x < userX ,  enemy.position.x + enemy.body.width > userX, enemy.position.y < userY, enemy.position.y + enemy.body.height < userY)
 
                 console.log('hit', userX, userY, enemy.position.x, enemy.position.y)
@@ -58,7 +59,7 @@ class TowerDController {
 
     updateVectors = () => {
         this.model.data.enemies.forEach(enemy => {
-            //enemy.position.y += (enemy.vector.y * enemy.vector.velocity)
+            enemy.position.y += (enemy.vector.y * enemy.vector.velocity)
             if (enemy.position.y > 600) {
                 enemy.position.y = -40
             }
