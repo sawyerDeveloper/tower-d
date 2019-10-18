@@ -45,7 +45,6 @@ class TowerDController {
 
         const userX = this.model.userInput.x
         const userY = this.model.userInput.y
-        console.log('check', userX, userY)
         this.model.data.enemies.forEach(enemy => {
             if (enemy.state.hit == false && enemy.position.x < userX && enemy.position.x + enemy.body.width > userX && enemy.position.y < userY && enemy.position.y + enemy.body.height < userY) {
                 enemy.style.color = 'white'

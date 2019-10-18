@@ -79,8 +79,6 @@ class TowerDefense extends Component {
     this.controller.removeUserInput()
   }
 
-  
-
   render(){
 
     return  (
