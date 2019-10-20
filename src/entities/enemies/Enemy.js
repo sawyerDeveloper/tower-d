@@ -16,7 +16,12 @@ class Enemy {
     }
 
     update = () => {
-        
+        this.position.y += (this.vector.y * this.vector.velocity)
+            if (this.position.y > 615) {
+                this.position.y = -30
+            }
 
     }
 }
+
+export default Enemy

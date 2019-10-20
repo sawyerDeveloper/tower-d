@@ -1,5 +1,8 @@
 import Model from './TowerDefenseModel'
 import states from './TowerDefense'
+import Enemy from './entities/enemies/Enemy'
+
+import { level1 } from './constants/levels/level1' 
 
 class TowerDController {
 
@@ -9,7 +12,18 @@ class TowerDController {
     }
 
     init = () => {
-        console.log('init')
+        
+        console.log('init', level1)
+
+        // Get level data into memory
+        this.model.data.enemies = level1.waves[0].map(enemyData => {
+            return enemyData
+        })
+
+        // Convert that data into classes and store that list outside of the data object in the model
+        this.model.enemies = this.model.data.enemies.map(enemyData => {
+            return new Enemy(enemyData)
+        })
 
         //temp for testing
         this.model.loop = true
@@ -42,7 +56,6 @@ class TowerDController {
     }
 
     checkCollisions = () => {
-        
         if(this.model.userInput){
             const userX = this.model.userInput.x
             const userY = this.model.userInput.y
@@ -65,11 +78,9 @@ class TowerDController {
     }
 
     updateVectors = () => {
-        this.model.data.enemies.forEach(enemy => {
-            enemy.position.y += (enemy.vector.y * enemy.vector.velocity)
-            if (enemy.position.y > 600) {
-                enemy.position.y = -40
-            }
+
+        this.model.enemies.forEach(enemy => {
+            enemy.update()
         })
     }
 
