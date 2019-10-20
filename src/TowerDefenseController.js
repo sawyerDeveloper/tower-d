@@ -42,19 +42,26 @@ class TowerDController {
     }
 
     checkCollisions = () => {
+        
+        if(this.model.userInput){
+            const userX = this.model.userInput.x
+            const userY = this.model.userInput.y
+            this.model.data.enemies.forEach(enemy => {
 
-        const userX = this.model.userInput.x
-        const userY = this.model.userInput.y
-        this.model.data.enemies.forEach(enemy => {
-            if (enemy.state.hit == false && enemy.position.x < userX && enemy.position.x + enemy.body.width > userX && enemy.position.y < userY && enemy.position.y + enemy.body.height < userY) {
-                enemy.style.color = 'white'
-                enemy.state.hit = true
-                enemy.vector.velocity = 0
-                console.log('hit', enemy.position.x < userX ,  enemy.position.x + enemy.body.width > userX, enemy.position.y < userY, enemy.position.y + enemy.body.height < userY)
-
-                console.log('hit', userX, userY, enemy.position.x, enemy.position.y)
-            }
-        })
+                if (    enemy.state.hit === false && 
+                        enemy.position.x < userX && 
+                        enemy.position.y < userY && 
+                        enemy.position.x + enemy.body.width > userX && 
+                        enemy.position.y + enemy.body.height < userY    ) 
+                {
+                            enemy.style.color = 'white'
+                            enemy.state.hit = true
+                            enemy.vector.velocity = 0
+                            console.log('hit', enemy.position.x < userX ,  enemy.position.x + enemy.body.width > userX, enemy.position.y < userY, enemy.position.y + enemy.body.height < userY)
+                            console.log('hit', userX, userY, enemy.position.x, enemy.position.y)
+                }
+            })
+        }
     }
 
     updateVectors = () => {
