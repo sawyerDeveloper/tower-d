@@ -59,19 +59,13 @@ class TowerDController {
         if(this.model.userInput){
             const userX = this.model.userInput.x
             const userY = this.model.userInput.y
-            this.model.data.enemies.forEach(enemy => {
+            this.model.enemies.forEach(enemy => {
 
-                if (    enemy.state.hit === false && 
-                        enemy.position.x < userX && 
-                        enemy.position.y < userY && 
-                        enemy.position.x + enemy.body.width > userX && 
-                        enemy.position.y + enemy.body.height < userY    ) 
+                if ( enemy.hitTest(userX, userY)    ) 
                 {
-                            enemy.style.color = 'white'
-                            enemy.state.hit = true
-                            enemy.vector.velocity = 0
-                            console.log('hit', enemy.position.x < userX ,  enemy.position.x + enemy.body.width > userX, enemy.position.y < userY, enemy.position.y + enemy.body.height < userY)
-                            console.log('hit', userX, userY, enemy.position.x, enemy.position.y)
+                    enemy.hit()
+                    console.log('hit', enemy.position.x < userX ,  enemy.position.x + enemy.body.width > userX, enemy.position.y < userY, enemy.position.y + enemy.body.height < userY)
+                    console.log('hit', userX, userY, enemy.position.x, enemy.position.y)
                 }
             })
         }

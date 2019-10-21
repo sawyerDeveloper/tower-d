@@ -1,7 +1,7 @@
 
 
 class Enemy {
-    constructor(data, stage){
+    constructor(data, stage) {
         /** {shape: 'rectangle', width: 100, height: 40} */
         this.body = data.body
         /** {color: 'brown'} */
@@ -15,13 +15,13 @@ class Enemy {
         /** 'random' or [[1,0],[1,1],[2,1]] */
         this.path = data.path
 
-        this.vectorTimer = ( Math.random() * 60) + 10
+        this.vectorTimer = (Math.random() * 60) + 10
     }
 
     update = () => {
         this.position.y += (this.vector.y * this.vector.velocity)
         this.position.x += (this.vector.x * this.vector.velocity)
-        
+
         if (this.position.y > 615) {
             this.position.y = -30
         }
@@ -44,19 +44,30 @@ class Enemy {
         this.vector.velocity = 0
     }
 
+    /**
+     * @returns {boolean} If the point is over this object, return true, otherwise false
+     */
+    hitTest = (x, y) => {
+        return  this.state.hit === false && 
+                this.position.x < x && 
+                this.position.y < y && 
+                this.position.x + this.body.width > x && 
+                this.position.y + this.body.height < y
+    }
+
     /** 
      * Dynamically change the vectors based on the path configuration 
      */
     updatePath = () => {
+        if (this.path === 'random') {
+            this.vectorTimer--
+            if (this.vectorTimer <= 1) {
+                this.vectorTimer = (Math.random() * 60) + 10
 
-        this.vectorTimer--
-        if(this.vectorTimer <= 1){
-            this.vectorTimer = ( Math.random() * 60) + 10
-            if(this.path === 'random'){
                 this.vector.velocity = Math.random() * 6
                 this.vector.x = (Math.random() * 2) - 1
                 this.vector.y = (Math.random() * 2) - 1
-                
+
             }
         }
     }
