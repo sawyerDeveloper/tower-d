@@ -17,12 +17,11 @@ class TowerDefenseModel {
             grid: []
         }
 
+        //  For tracking views we have arrays in here directly but outside of the this.data object.
         this.enemies = []
     }
 
-    update = () => {
 
-    }
 
 }
 export default TowerDefenseModel
