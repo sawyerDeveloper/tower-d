@@ -38,6 +38,12 @@ class Enemy {
         this.updatePath()
     }
 
+    hit = () => {
+        this.style.color = 'white'
+        this.state.hit = true
+        this.vector.velocity = 0
+    }
+
     /** 
      * Dynamically change the vectors based on the path configuration 
      */
