@@ -5,7 +5,7 @@ export const level1 = {
           
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'grey' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -5, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -13,7 +13,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'green' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -2, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -21,7 +21,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'yellow' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 0, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -29,7 +29,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'pink' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 5, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -37,7 +37,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'brown' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 10, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -45,7 +45,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'red' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 1, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -54,7 +54,7 @@ export const level1 = {
             /*
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'grey' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -5, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -62,7 +62,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'green' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -2, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -70,7 +70,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'yellow' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 0, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -78,7 +78,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'pink' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 5, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -87,7 +87,7 @@ export const level1 = {
 
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'brown' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 10, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -95,7 +95,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'red' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 1, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -103,7 +103,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'grey' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -5, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -111,7 +111,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'green' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -2, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -119,7 +119,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'yellow' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 0, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -127,7 +127,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'pink' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 5, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -135,7 +135,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'brown' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 10, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -143,7 +143,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'red' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 1, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -151,7 +151,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'grey' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -5, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -159,7 +159,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'green' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -2, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -167,7 +167,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'yellow' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 0, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -175,7 +175,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'pink' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 5, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -183,7 +183,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'brown' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 10, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -191,7 +191,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'red' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 1, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -199,7 +199,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'grey' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -5, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -207,7 +207,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'green' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -2, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -215,7 +215,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'yellow' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 0, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -223,7 +223,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'pink' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 5, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -231,7 +231,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'brown' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 10, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -239,7 +239,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'red' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 1, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -247,7 +247,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'grey' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -5, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -255,7 +255,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'green' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -2, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -263,7 +263,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'yellow' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 0, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -271,7 +271,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'pink' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 5, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -279,7 +279,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'brown' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 10, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -287,7 +287,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'red' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 1, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -295,7 +295,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'grey' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -5, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -303,7 +303,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'green' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -2, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -311,7 +311,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'yellow' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 0, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -319,7 +319,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'pink' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 5, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -327,7 +327,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'brown' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 10, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -335,7 +335,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'red' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 1, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -343,7 +343,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'grey' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -5, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -351,7 +351,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'green' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -2, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -359,7 +359,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'yellow' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 0, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -367,7 +367,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'pink' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 5, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -375,7 +375,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'brown' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 10, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -383,7 +383,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'red' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 1, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -391,7 +391,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'grey' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -5, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -399,7 +399,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'green' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -2, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -407,7 +407,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'yellow' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 0, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -415,7 +415,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'pink' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 5, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -424,7 +424,7 @@ export const level1 = {
 
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'brown' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 10, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -432,7 +432,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'red' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 1, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -440,7 +440,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'grey' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -5, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -448,7 +448,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'green' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -2, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -456,7 +456,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'yellow' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 0, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -464,7 +464,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'pink' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 5, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -472,7 +472,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'brown' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 10, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -480,7 +480,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'red' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 1, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -488,7 +488,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'grey' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -5, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -496,7 +496,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'green' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -2, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -504,7 +504,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'yellow' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 0, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -512,7 +512,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'pink' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 5, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -520,7 +520,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'brown' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 10, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -528,7 +528,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'red' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 1, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -536,7 +536,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'grey' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -5, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -544,7 +544,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'green' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -2, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -552,7 +552,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'yellow' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 0, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -560,7 +560,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'pink' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 5, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -568,7 +568,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'brown' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 10, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -576,7 +576,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'red' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 1, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -584,7 +584,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'grey' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -5, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -592,7 +592,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'green' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: -2, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -600,7 +600,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'yellow' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 0, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -608,7 +608,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'pink' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 5, y: -1 },
                 path: 'random',
                 state: { hit: false },
@@ -616,7 +616,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'brown' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 10, y: 1 },
                 path: 'random',
                 state: { hit: false },
@@ -624,7 +624,7 @@ export const level1 = {
             },
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'red' },
+                style: { color: 'red', lineWidth: 1 },
                 vector: { velocity: 1, x: 1, y: -1 },
                 path: 'random',
                 state: { hit: false },

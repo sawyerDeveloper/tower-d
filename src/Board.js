@@ -25,14 +25,14 @@ class Board extends Component {
             case 'rectangle' :
                 ctx.beginPath()
                 ctx.strokeStyle = entity.style.color
-                ctx.lineWidth = 1
+                ctx.lineWidth = entity.style.lineWidth
                 ctx.strokeRect(entity.position.x, entity.position.y, entity.body.width, entity.body.height)
                 ctx.stroke()
             break
             case 'circle' :
                 ctx.beginPath();
                 ctx.strokeStyle = entity.style.color
-                ctx.lineWidth = 1
+                ctx.lineWidth = entity.style.lineWidth
                 ctx.arc(entity.position.x, entity.position.y, entity.body.radius, 0, Math.PI * 2, true)
                 ctx.stroke();
             break

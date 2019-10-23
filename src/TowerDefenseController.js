@@ -29,7 +29,7 @@ class TowerDController {
         this.model.data.towers.push(
             {
                 body: { shape: 'circle', radius: 25 },
-                style: { color: 'red' },
+                style: { color: 'white', lineWidth: 1 },
                 state: { hit: false },
                 position: { x: 300, y: 350, rotation: 0 }
             }
