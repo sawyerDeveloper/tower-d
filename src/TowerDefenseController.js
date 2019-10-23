@@ -77,7 +77,7 @@ class TowerDController {
             const userX = this.model.userInput.x
             const userY = this.model.userInput.y
             this.model.towers.forEach(tower => {
-                if ( tower.hitTest(userX, userY) ) 
+                if ( tower.hitTest(userX, userY)) 
                 {
                     tower.hit()
                     console.log('hit', tower.position.x < userX ,  tower.position.x + tower.body.width > userX, tower.position.y < userY, tower.position.y + tower.body.height < userY)

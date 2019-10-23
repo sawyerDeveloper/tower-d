@@ -36,7 +36,6 @@ class Tower{
 
     upgrade = () => {
         //Override
-
         this.closeMenu()
     }
 
@@ -45,11 +44,13 @@ class Tower{
     }
 
     hit = () => {
+        this.state.hit = true
         this.openMenu()
     }
 
     closeMenu = () => {
-
+        this.state.hit = false
+        console.log('close menu')
     }
 
     openMenu = () => {

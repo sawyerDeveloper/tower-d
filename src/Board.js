@@ -11,14 +11,28 @@ class Board extends Component {
         this.canvas.getContext('2d').clearRect(0, 0, 600, 600)
 
         data.forEach(entity => {
-            this.canvas.getContext('2d').beginPath()
-            this.canvas.getContext('2d').strokeStyle = entity.style.color
-            this.canvas.getContext('2d').lineWidth = entity.body.height
-            this.canvas.getContext('2d').moveTo(entity.position.x, entity.position.y)
-            this.canvas.getContext('2d').lineTo(entity.position.x + entity.body.width, entity.position.y)
-            this.canvas.getContext('2d').stroke()
+            this.drawEntity(entity)
         })
         
+    }
+
+    /**
+     * Draws each object on the screen from data
+     */
+    drawEntity = (entity) => {
+        switch(entity.body.shape){
+            case 'rectangle' :
+                this.canvas.getContext('2d').beginPath()
+                this.canvas.getContext('2d').strokeStyle = entity.style.color
+                this.canvas.getContext('2d').lineWidth = entity.body.height
+                this.canvas.getContext('2d').moveTo(entity.position.x, entity.position.y)
+                this.canvas.getContext('2d').lineTo(entity.position.x + entity.body.width, entity.position.y)
+                this.canvas.getContext('2d').stroke()
+            break
+            case 'circle' :
+
+            break
+        }
     }
 
     render() {
