@@ -8,15 +8,14 @@ class Board extends Component {
     }
 
     update = (data) => {
-
         this.canvas.getContext('2d').clearRect(0, 0, 600, 600)
 
-        data.enemies.forEach(enemy => {
+        data.forEach(entity => {
             this.canvas.getContext('2d').beginPath()
-            this.canvas.getContext('2d').strokeStyle = enemy.style.color
-            this.canvas.getContext('2d').lineWidth = enemy.body.height
-            this.canvas.getContext('2d').moveTo(enemy.position.x, enemy.position.y)
-            this.canvas.getContext('2d').lineTo(enemy.position.x + enemy.body.width, enemy.position.y)
+            this.canvas.getContext('2d').strokeStyle = entity.style.color
+            this.canvas.getContext('2d').lineWidth = entity.body.height
+            this.canvas.getContext('2d').moveTo(entity.position.x, entity.position.y)
+            this.canvas.getContext('2d').lineTo(entity.position.x + entity.body.width, entity.position.y)
             this.canvas.getContext('2d').stroke()
         })
         

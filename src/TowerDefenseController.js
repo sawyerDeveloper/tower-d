@@ -3,6 +3,7 @@ import states from './TowerDefense'
 import Enemy from './entities/enemies/Enemy'
 
 import { level1 } from './constants/levels/level1' 
+import Tower from './entities/towers/Tower'
 
 class TowerDController {
 
@@ -25,6 +26,22 @@ class TowerDController {
             return new Enemy(enemyData)
         })
 
+        this.model.data.towers.push(
+            {
+                body: { shape: 'circle', width: 40, height: 40 },
+                style: { color: 'red' },
+                state: { hit: false },
+                position: { x: 300, y: 350, rotation: 0 }
+            }
+        )
+
+        this.model.towers = this.model.data.towers.map(towerData => {
+            return new Tower(towerData)
+        })
+
+        this.model.entities = this.model.enemies.concat(this.model.towers)
+        this.model.dataEntities = this.model.data.enemies.concat(this.model.data.towers)
+
         //temp for testing
         this.model.loop = true
         requestAnimationFrame(this.update)
@@ -41,7 +58,7 @@ class TowerDController {
             this.checkCollisions()
 
             //  Render the results
-            this.view.update(this.model.data)
+            this.view.update(this.model.dataEntities)
         }
 
         requestAnimationFrame(this.update)
@@ -59,13 +76,12 @@ class TowerDController {
         if(this.model.userInput){
             const userX = this.model.userInput.x
             const userY = this.model.userInput.y
-            this.model.enemies.forEach(enemy => {
-
-                if ( enemy.hitTest(userX, userY)    ) 
+            this.model.towers.forEach(tower => {
+                if ( tower.hitTest(userX, userY) ) 
                 {
-                    enemy.hit()
-                    console.log('hit', enemy.position.x < userX ,  enemy.position.x + enemy.body.width > userX, enemy.position.y < userY, enemy.position.y + enemy.body.height < userY)
-                    console.log('hit', userX, userY, enemy.position.x, enemy.position.y)
+                    tower.hit()
+                    console.log('hit', tower.position.x < userX ,  tower.position.x + tower.body.width > userX, tower.position.y < userY, tower.position.y + tower.body.height < userY)
+                    console.log('hit', userX, userY, tower.position.x, tower.position.y)
                 }
             })
         }
@@ -73,8 +89,8 @@ class TowerDController {
 
     updateVectors = () => {
 
-        this.model.enemies.forEach(enemy => {
-            enemy.update()
+        this.model.entities.forEach(entity => {
+            entity.update()
         })
     }
 

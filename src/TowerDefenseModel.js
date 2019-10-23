@@ -17,8 +17,13 @@ class TowerDefenseModel {
             grid: []
         }
 
+        // This lets the game loop go really fast on all data from all entities
+        this.dataEntities = []
+
         //  For tracking views we have arrays in here directly but outside of the this.data object.
         this.enemies = []
+        this.towers =[]
+        
     }
 
 
