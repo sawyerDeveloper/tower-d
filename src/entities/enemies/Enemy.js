@@ -71,6 +71,14 @@ class Enemy {
             }
         }
     }
+
+    render = (ctx) => {
+        ctx.beginPath()
+        ctx.strokeStyle = this.style.color
+        ctx.lineWidth = this.style.lineWidth
+        ctx.strokeRect(this.position.x, this.position.y, this.body.width, this.body.height)
+        ctx.stroke()
+    }
 }
 
 export default Enemy

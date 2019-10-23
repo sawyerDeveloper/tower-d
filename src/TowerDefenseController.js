@@ -40,7 +40,6 @@ class TowerDController {
         })
 
         this.model.entities = this.model.enemies.concat(this.model.towers)
-        this.model.dataEntities = this.model.data.enemies.concat(this.model.data.towers)
 
         //temp for testing
         this.model.loop = true
@@ -58,7 +57,7 @@ class TowerDController {
             this.checkCollisions()
 
             //  Render the results
-            this.view.update(this.model.dataEntities)
+            this.view.update(this.model.entities)
         }
 
         requestAnimationFrame(this.update)
@@ -80,7 +79,6 @@ class TowerDController {
                 if ( tower.hitTest(userX, userY)) 
                 {
                     tower.hit()
-                    console.log('hit', tower.position.x < userX ,  tower.position.x + tower.body.width > userX, tower.position.y < userY, tower.position.y + tower.body.height < userY)
                     console.log('hit', userX, userY, tower.position.x, tower.position.y)
                 }
             })
@@ -88,7 +86,6 @@ class TowerDController {
     }
 
     updateVectors = () => {
-
         this.model.entities.forEach(entity => {
             entity.update()
         })

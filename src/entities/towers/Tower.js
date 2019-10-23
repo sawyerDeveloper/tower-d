@@ -68,6 +68,14 @@ class Tower{
                 this.position.y + this.body.height < y
     }
 
+    render = (ctx) => {
+        ctx.beginPath();
+        ctx.strokeStyle = this.style.color
+        ctx.lineWidth = this.style.lineWidth
+        ctx.arc(this.position.x, this.position.y, this.body.radius, 0, Math.PI * 2, true)
+        ctx.stroke()
+    }
+
 }
 
 export default Tower
