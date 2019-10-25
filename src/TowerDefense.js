@@ -32,6 +32,7 @@ class TowerDefense extends Component {
    */
   componentDidMount(){
     window.addEventListener('resize', this.updateDimensions)
+    window.dispatchEvent(new Event('resize'))
     document.body.appendChild( this.stats.dom )
     this.controller.init()
     this.controller.setStage(window.innerWidth, window.innerHeight)
