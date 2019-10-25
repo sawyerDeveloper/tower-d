@@ -13,9 +13,7 @@ class Board extends Component {
         data.forEach(entity => {
             entity.render(this.canvas.getContext('2d'))
         })
-        
     }
-
 
     render() {
 
@@ -23,8 +21,8 @@ class Board extends Component {
             <canvas onMouseDown={this.props.applyUserInput} 
                     onMouseUp={this.props.removeUserInput} 
                     onMouseOut={this.props.removeUserInput} 
-                    width={600} 
-                    height={600} 
+                    width={this.props.width} 
+                    height={this.props.height} 
                     ref={canvas => this.canvas = canvas} />
         )
     }

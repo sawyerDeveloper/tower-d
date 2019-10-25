@@ -1,7 +1,7 @@
 
 
 class Enemy {
-    constructor(data, stage) {
+    constructor(data) {
         /** {shape: 'rectangle', width: 100, height: 40} */
         this.body = data.body
         /** {color: 'brown'} */
@@ -18,21 +18,22 @@ class Enemy {
         this.vectorTimer = (Math.random() * 60) + 10
     }
 
-    update = () => {
+    update = (stage) => {
         this.position.y += (this.vector.y * this.vector.velocity)
         this.position.x += (this.vector.x * this.vector.velocity)
 
-        if (this.position.y > 615) {
+        console.log(stage.height)
+        if (this.position.y > stage.height) {
             this.position.y = -30
         }
         if (this.position.y < -30) {
-            this.position.y = 615
+            this.position.y = stage.height
         }
-        if (this.position.x > 615) {
+        if (this.position.x > stage.width) {
             this.position.x = -30
         }
         if (this.position.x < -30) {
-            this.position.x = 615
+            this.position.x = stage.width
         }
 
         this.updatePath()

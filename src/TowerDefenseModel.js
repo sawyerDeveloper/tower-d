@@ -17,6 +17,8 @@ class TowerDefenseModel {
             grid: []
         }
 
+        this.stage = {width: 600, height: 650}
+
         // This lets the game loop go really fast on all data from all entities
         this.entities = []
 

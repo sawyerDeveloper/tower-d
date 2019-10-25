@@ -1,6 +1,6 @@
 class Tower{
 
-    constructor(data, stage) {
+    constructor(data) {
         /** {shape: 'rectangle', width: 100, height: 40} */
         this.body = data.body
         /** {color: 'brown'} */

@@ -51,7 +51,7 @@ export const level1 = {
                 state: { hit: false },
                 position: { x: 20, y: 150, rotation: 0 }
             },
-            
+            /*
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
                 style: { color: 'red', lineWidth: 1 },
@@ -631,7 +631,7 @@ export const level1 = {
                 position: { x: 20, y: 150, rotation: 0 }
             }
             
-
+*/
         ]
     ]
 }

@@ -85,9 +85,15 @@ class TowerDController {
         }
     }
 
+    setStage = (width, height) => {
+        console.log('set stage', width)
+        this.model.stage = {width: width, height: height}
+        console.log('set stage', this.model.stage.width)
+    }
+
     updateVectors = () => {
         this.model.entities.forEach(entity => {
-            entity.update()
+            entity.update(this.model.stage)
         })
     }
 

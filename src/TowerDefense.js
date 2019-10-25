@@ -18,7 +18,9 @@ class TowerDefense extends Component {
   constructor(props){
     super(props)
     this.state = {
-      currentState: states.INIT
+      currentState: states.INIT,
+      width: 600,
+      height: 650
     }
     this.stats = new Stats()
     this.stats.showPanel( 0 )
@@ -29,8 +31,22 @@ class TowerDefense extends Component {
    * Initialize the game engine.
    */
   componentDidMount(){
+    window.addEventListener('resize', this.updateDimensions)
     document.body.appendChild( this.stats.dom )
     this.controller.init()
+    this.controller.setStage(window.innerWidth, window.innerHeight)
+  }
+
+  /**
+   * Listen for changes in the window size.
+   */
+  updateDimensions = (event) => {
+    this.setState({
+      width: event.target.innerWidth,
+      height: event.target.innerHeight
+    }, () => {
+      this.controller.setStage(this.state.width, this.state.height)
+    })
   }
 
   /**
@@ -82,13 +98,17 @@ class TowerDefense extends Component {
   render(){
 
     return  (
-      <VBox width={600} height={650}>
+      <VBox width={this.state.width} height={this.state.height}>
         <HBox marginLeft={100} height={50}>
           <button onClick={this.controller.play}>Play</button>
           <button onClick={this.controller.pause}>Pause</button>
           <div>{this.state.currentState}</div>
         </HBox>
-        <Board applyUserInput={this.applyUserInput} ref={board => this.board = board} score={this.state.score}/>
+        <Board 
+          applyUserInput={this.applyUserInput} 
+          width={this.state.width}
+          height={this.state.height}
+          ref={board => this.board = board} />
       </VBox>
 
     )
