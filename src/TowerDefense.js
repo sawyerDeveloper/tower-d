@@ -13,29 +13,38 @@ const states = {
   LOSE: 'lose'
 }
 
+/**
+ * View in MVC for game wrapper.
+ */
 class TowerDefense extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
       currentState: states.INIT,
-      width: 600,
-      height: 650
+      width: 0,
+      height: 0
     }
+    //  Temp for testing
     this.stats = new Stats()
     this.stats.showPanel(0)
-    this.controller = new Controller(this, states)
+
+    //  Instantiate the class that runs the loop and controls the model
+    this.controller = new Controller(this)
   }
 
   /**
-   * Initialize the game engine.
+   * Initialize the game engine when the dom is laoded.
    */
   componentDidMount() {
     window.addEventListener('resize', this.updateDimensions)
     window.dispatchEvent(new Event('resize'))
+
+    //  Temp for testing.
     document.body.appendChild(this.stats.dom)
+
+    //  Initialize the data.
     this.controller.init()
-    this.controller.setStage(window.innerWidth, window.innerHeight)
   }
 
   /**
@@ -63,23 +72,14 @@ class TowerDefense extends Component {
   /**
    * Controller calls this on every frame/data update
    * @param {object} data Updated data regarding score, logic, entity placement
-   * @param {boolean} stateDataChanged If something changed that should be reflected in React
    */
-  update = (data, stateDataChanged = false) => {
-    this.stats.begin();
-    //console.log(data, stateDataChanged)
+  update = (data) => {
+    this.stats.begin()
 
     //  Render the results of the game loop
     this.board.update(data)
 
-    //  Only update React if a major change occurs that updates a react view
-    if (stateDataChanged) {
-      this.setState({
-        score: data.score
-      })
-    }
-
-    this.stats.end();
+    this.stats.end()
   }
 
   /**

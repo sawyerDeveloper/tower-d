@@ -5,13 +5,26 @@ import Enemy from './entities/enemies/Enemy'
 import { level1 } from './constants/levels/level1' 
 import Tower from './entities/towers/Tower'
 
+
+/**
+ * Acts as the Controller in an MVC for the game wrapper.
+ * This controls the game loop and coordinating between the view and model.
+ */
 class TowerDController {
 
+    /**
+     * Takes view as a param and sets up the data model.
+     * @param {*} view TowerDefense in this case
+     */
     constructor(view) {
         this.view = view
         this.model = new Model()
     }
 
+    /**
+     * Initializes the game by telling the model to get data and 
+     * prepare for more data in memory.
+     */
     init = () => {
         
         console.log('init', level1)
@@ -26,6 +39,7 @@ class TowerDController {
             return new Enemy(enemyData)
         })
 
+        //  Temp for one tower.
         this.model.data.towers.push(
             {
                 body: { shape: 'circle', radius: 25 },
@@ -35,17 +49,24 @@ class TowerDController {
             }
         )
 
+        // Get tower data into memory
         this.model.towers = this.model.data.towers.map(towerData => {
             return new Tower(towerData)
         })
 
+        //  Combine both lists of entities into 1 for allowing a better loop :)
         this.model.entities = this.model.enemies.concat(this.model.towers)
 
         //temp for testing
         this.model.loop = true
+
+        //  Start the loop by asking for this.update to be called every frame.
         requestAnimationFrame(this.update)
     }
 
+    /**
+     * This is the lifeblood of the game. 
+     */
     update = () => {
 
         if (this.model.loop) {
