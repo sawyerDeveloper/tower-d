@@ -1,4 +1,4 @@
-
+import RenderUtils from '../../utils/RenderUtils'
 
 class Enemy {
     constructor(data) {
@@ -6,7 +6,7 @@ class Enemy {
         this.body = data.body
         /** {color: 'brown'} */
         this.style = data.style
-        /** { velocity: 1, x: 0, y: 1, path: 'random' } */
+        /** { velocity: 1, x: 0, y: 1} */
         this.vector = data.vector
         /** {hit: false} */
         this.state = data.state
@@ -15,14 +15,15 @@ class Enemy {
         /** 'random' or [[1,0],[1,1],[2,1]] */
         this.path = data.path
 
-        this.vectorTimer = (Math.random() * 60) + 10
+        if(this.path === 'random'){
+            this.vectorTimer = (Math.random() * 60) + 10
+        }
     }
 
     update = (stage) => {
         this.position.y += (this.vector.y * this.vector.velocity)
         this.position.x += (this.vector.x * this.vector.velocity)
 
-        console.log(stage.height)
         if (this.position.y > stage.height) {
             this.position.y = -30
         }
@@ -64,21 +65,15 @@ class Enemy {
             this.vectorTimer--
             if (this.vectorTimer <= 1) {
                 this.vectorTimer = (Math.random() * 60) + 10
-
                 this.vector.velocity = Math.random() * 6
                 this.vector.x = (Math.random() * 2) - 1
                 this.vector.y = (Math.random() * 2) - 1
-
             }
         }
     }
 
     render = (ctx) => {
-        ctx.beginPath()
-        ctx.strokeStyle = this.style.color
-        ctx.lineWidth = this.style.lineWidth
-        ctx.strokeRect(this.position.x, this.position.y, this.body.width, this.body.height)
-        ctx.stroke()
+        RenderUtils.drawShape(ctx, this.style, this.position, this.body)
     }
 }
 

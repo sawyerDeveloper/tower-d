@@ -1,3 +1,5 @@
+import RenderUtils from '../../utils/RenderUtils'
+
 class Tower{
 
     constructor(data) {
@@ -14,7 +16,6 @@ class Tower{
     update = () => {
         this.position.rotation = 0
         //console.log(this.position)
-
     }
 
     rateOfFire = () => {
@@ -30,7 +31,7 @@ class Tower{
     }
 
     fire = () => {
-        console.log(this)
+        console.log(this, 'fire')
         //Override
     }
 
@@ -41,6 +42,7 @@ class Tower{
 
     sell = () => {
         //Override
+        this.closeMenu()
     }
 
     hit = () => {
@@ -69,11 +71,7 @@ class Tower{
     }
 
     render = (ctx) => {
-        ctx.beginPath();
-        ctx.strokeStyle = this.style.color
-        ctx.lineWidth = this.style.lineWidth
-        ctx.arc(this.position.x, this.position.y, this.body.radius, 0, Math.PI * 2, true)
-        ctx.stroke()
+        RenderUtils.drawShape(ctx, this.style, this.position, this.body)
     }
 
 }

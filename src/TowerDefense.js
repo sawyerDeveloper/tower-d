@@ -15,7 +15,7 @@ const states = {
 
 class TowerDefense extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       currentState: states.INIT,
@@ -23,17 +23,17 @@ class TowerDefense extends Component {
       height: 650
     }
     this.stats = new Stats()
-    this.stats.showPanel( 0 )
+    this.stats.showPanel(0)
     this.controller = new Controller(this, states)
   }
 
   /**
    * Initialize the game engine.
    */
-  componentDidMount(){
+  componentDidMount() {
     window.addEventListener('resize', this.updateDimensions)
     window.dispatchEvent(new Event('resize'))
-    document.body.appendChild( this.stats.dom )
+    document.body.appendChild(this.stats.dom)
     this.controller.init()
     this.controller.setStage(window.innerWidth, window.innerHeight)
   }
@@ -71,14 +71,14 @@ class TowerDefense extends Component {
 
     //  Render the results of the game loop
     this.board.update(data)
-  
+
     //  Only update React if a major change occurs that updates a react view
-    if(stateDataChanged){
+    if (stateDataChanged) {
       this.setState({
         score: data.score
       })
     }
-    
+
     this.stats.end();
   }
 
@@ -96,17 +96,17 @@ class TowerDefense extends Component {
     this.controller.removeUserInput()
   }
 
-  render(){
+  render() {
 
-    return  (
+    return (
       <VBox width={this.state.width} height={this.state.height}>
         <HBox marginLeft={100} height={50}>
           <button onClick={this.controller.play}>Play</button>
           <button onClick={this.controller.pause}>Pause</button>
           <div>{this.state.currentState}</div>
         </HBox>
-        <Board 
-          applyUserInput={this.applyUserInput} 
+        <Board
+          applyUserInput={this.applyUserInput}
           width={this.state.width}
           height={this.state.height}
           ref={board => this.board = board} />
