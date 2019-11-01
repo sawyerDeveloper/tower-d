@@ -82,20 +82,6 @@ class TowerDefense extends Component {
     this.stats.end()
   }
 
-  /**
-   * Accept and pass user input to controller for interpretation
-   */
-  applyUserInput = (event) => {
-    this.controller.applyUserInput(event)
-  }
-
-  /**
-   * Remove human interaction from controller
-   */
-  removeUserInput = () => {
-    this.controller.removeUserInput()
-  }
-
   render() {
 
     return (
@@ -106,7 +92,8 @@ class TowerDefense extends Component {
           <div>{this.state.currentState}</div>
         </HBox>
         <Board
-          applyUserInput={this.applyUserInput}
+          applyUserInput={this.controller.applyUserInput}
+          removeUserInput={this.controller.removeUserInput}
           width={this.state.width}
           height={this.state.height}
           ref={board => this.board = board} />
