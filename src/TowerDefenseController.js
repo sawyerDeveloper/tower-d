@@ -42,8 +42,8 @@ class TowerDController {
         //  Temp for one tower.
         this.model.data.towers.push(
             {
-                body: { shape: 'circle', radius: 25 },
-                style: { color: 'white', lineWidth: 1 },
+                body: { shape: 'circle', width: 25, height:25 },
+                style: { type: 'image', src: 'bb.jpeg'},
                 state: { hit: false },
                 position: { x: 300, y: 350, rotation: 0 }
             }

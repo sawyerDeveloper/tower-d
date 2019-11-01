@@ -28,7 +28,5 @@ class TowerDefenseModel {
         
     }
 
-
-
 }
 export default TowerDefenseModel

@@ -11,6 +11,9 @@ class Tower{
         this.state = data.state
         /** {x: 0, y: 20, rotation: 180}  */
         this.position = data.position
+
+        this.loaded = false
+
     }
 
     update = () => {
@@ -71,7 +74,15 @@ class Tower{
     }
 
     render = (ctx) => {
-        RenderUtils.drawShape(ctx, this.style, this.position, this.body)
+
+        if(!this.loaded){
+            this.img = RenderUtils.loadImage(this.style.src)
+            this.loaded = true
+        }else{
+            if(this.img){
+                RenderUtils.drawImage(ctx, this.img, this.position, this.body)
+            }
+        }
     }
 
 }

@@ -4,6 +4,16 @@ const shapes = {
 }
 class RenderUtils {
    
+    static loadImage = (src) => {
+        let img = new Image()
+        img.src = src
+        return img
+    }
+
+    static drawImage = (ctx, img, position, body) => {
+        ctx.drawImage(img, position.x, position.y, body.width, body.height)
+    }
+
     static drawShape = (ctx, style, position, body) => {
         switch (body.shape) {
             case shapes.CIRCLE :
