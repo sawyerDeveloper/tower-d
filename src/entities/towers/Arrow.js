@@ -6,6 +6,6 @@ class Arrow extends Tower{
 
     fire = () => {
         super.fire()
-        console.log(this)
+        //console.log(this)
     }
 }

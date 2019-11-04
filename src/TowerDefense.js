@@ -73,11 +73,11 @@ class TowerDefense extends Component {
    * Controller calls this on every frame/data update
    * @param {object} data Updated data regarding score, logic, entity placement
    */
-  update = (data) => {
+  renderUpdate = (data) => {
     this.stats.begin()
 
     //  Render the results of the game loop
-    this.board.update(data)
+    this.board.renderUpdate(data)
 
     this.stats.end()
   }

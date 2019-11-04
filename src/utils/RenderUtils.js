@@ -11,7 +11,14 @@ class RenderUtils {
     }
 
     static drawImage = (ctx, img, position, body) => {
-        ctx.drawImage(img, position.x, position.y, body.width, body.height)
+            ctx.save()
+            ctx.translate( position.x, position.y );
+            ctx.rotate( position.rotation );
+            ctx.drawImage( img, position.x, position.y, body.width, body.height );
+            ctx.rotate( -position.rotation );
+            ctx.translate( -position.x, -position.y );
+            ctx.restore()
+          
     }
 
     static drawShape = (ctx, style, position, body) => {

@@ -7,7 +7,7 @@ class Board extends Component {
         this.canvas = null
     }
 
-    update = (data) => {
+    renderUpdate = (data) => {
         this.canvas.getContext('2d').clearRect(0, 0, this.props.width, this.props.height)
         data.forEach(entity => {
             entity.render(this.canvas.getContext('2d'))

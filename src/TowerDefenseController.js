@@ -4,6 +4,7 @@ import Enemy from './entities/enemies/Enemy'
 
 import { level1 } from './constants/levels/level1' 
 import Tower from './entities/towers/Tower'
+import Entity from './entities/Entity'
 
 
 /**
@@ -45,7 +46,8 @@ class TowerDController {
                 body: { shape: 'circle', width: 25, height:25 },
                 style: { type: 'image', src: 'bb.jpeg'},
                 state: { hit: false },
-                position: { x: 300, y: 350, rotation: 0 }
+                position: { x: 300, y: 350, rotation: 0 },
+                currentTarget: {entity: this.model.enemies[0]}
             }
         )
 
@@ -78,7 +80,7 @@ class TowerDController {
             this.checkCollisions()
 
             //  Render the results
-            this.view.update(this.model.entities)
+            this.view.renderUpdate(this.model.entities)
         }
 
         requestAnimationFrame(this.update)
