@@ -1,20 +1,19 @@
-import RenderUtils from '../../utils/RenderUtils'
+import Entity from '../Entity'
 
-class Tower{
+class Tower extends Entity{
 
     constructor(data) {
+        super(data)
         /** {shape: 'rectangle', width: 100, height: 40} */
         this.body = data.body
-        /** {color: 'brown'} */
+        /** {color: 'brown', type: 'image', src: 'bb.jpeg'} */
         this.style = data.style
         /** {hit: false, open: true} */
         this.state = data.state
         /** {x: 0, y: 20, rotation: 180}  */
         this.position = data.position
-
-        this.loaded = false
-
     }
+
 
     update = () => {
         this.position.rotation = 0
@@ -65,24 +64,12 @@ class Tower{
     /**
      * @returns {boolean} If the point is over this object, return true, otherwise false
      */
-    hitTest = (x, y) => {
-        return  this.state.hit === false && 
-                this.position.x < x && 
-                this.position.y < y && 
-                this.position.x + this.body.width > x && 
-                this.position.y + this.body.height < y
+    hitTest(x, y){
+        return super.hitTest(x, y);
     }
 
-    render = (ctx) => {
-
-        if(!this.loaded){
-            this.img = RenderUtils.loadImage(this.style.src)
-            this.loaded = true
-        }else{
-            if(this.img){
-                RenderUtils.drawImage(ctx, this.img, this.position, this.body)
-            }
-        }
+    render(ctx){
+        super.render(ctx)
     }
 
 }

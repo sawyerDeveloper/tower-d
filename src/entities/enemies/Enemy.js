@@ -1,7 +1,8 @@
-import RenderUtils from '../../utils/RenderUtils'
+import Entity from '../Entity'
 
-class Enemy {
+class Enemy extends Entity{
     constructor(data) {
+        super(data)
         /** {shape: 'rectangle', width: 100, height: 40} */
         this.body = data.body
         /** {color: 'brown'} */
@@ -21,6 +22,7 @@ class Enemy {
     }
 
     update = (stage) => {
+
         this.position.y += (this.vector.y * this.vector.velocity)
         this.position.x += (this.vector.x * this.vector.velocity)
 
@@ -49,12 +51,8 @@ class Enemy {
     /**
      * @returns {boolean} If the point is over this object, return true, otherwise false
      */
-    hitTest = (x, y) => {
-        return  this.state.hit === false && 
-                this.position.x < x && 
-                this.position.y < y && 
-                this.position.x + this.body.width > x && 
-                this.position.y + this.body.height < y
+    hitTest(x, y){
+        return super.hitTest(x, y)
     }
 
     /** 
@@ -72,8 +70,8 @@ class Enemy {
         }
     }
 
-    render = (ctx) => {
-        RenderUtils.drawShape(ctx, this.style, this.position, this.body)
+    render(ctx){
+        super.render(ctx)
     }
 }
 
