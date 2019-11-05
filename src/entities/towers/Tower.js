@@ -23,7 +23,7 @@ class Tower{
         //console.log(this.position.y-this.body.height/2)
         
         
-        var center = [this.position.x+this.body.width/2, this.position.y+this.body.height/2]
+        var center = [this.position.x+this.body.width/2, this.position.y-this.body.height/2]
         
         var angle = Math.atan2(this.currentTarget.entity.position.x - center[0], - (this.currentTarget.entity.position.y - center[1]) )*(180/Math.PI);      
         
