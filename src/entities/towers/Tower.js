@@ -1,11 +1,12 @@
 import RenderUtils from '../../utils/RenderUtils'
 import Entity from '../Entity'
 import Vector from '../../utils/Vector'
+import { whileStatement } from '@babel/types'
 
-class Tower{
+class Tower extends Entity{
 
     constructor(data) {
-        //super(data)
+        super(data)
         /** {shape: 'rectangle', width: 100, height: 40} */
         this.body = data.body
         /** {color: 'brown', type: 'image', src: 'bb.jpeg'} */
@@ -75,11 +76,7 @@ class Tower{
      * @returns {boolean} If the point is over this object, return true, otherwise false
      */
     hitTest(x, y){
-        return  this.state.hit === false && 
-                this.position.x < x && 
-                this.position.y < y && 
-                this.position.x + this.body.width > x && 
-                this.position.y + this.body.height < y
+        return super.hitTest(x, y)
     }
 
     /**
@@ -87,9 +84,7 @@ class Tower{
      * @param {*} ctx Canvas context of the view
      */
     render(ctx){
-        if(this.img){
-            RenderUtils.drawImage(ctx, this.img, this.position, this.body)
-        }
+        super.render(ctx)
     }
 
 }

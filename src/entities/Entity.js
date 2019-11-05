@@ -3,10 +3,6 @@ import RenderUtils from '../utils/RenderUtils'
 class Entity{
     constructor(data){
         this.data = data
-        this.init()
-    }
-
-    init = () => {
         if(this.data.style.type === 'image'){
             this.loaded = false
             this.img = RenderUtils.loadImage(this.data.style.src)
