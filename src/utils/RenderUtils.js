@@ -1,6 +1,7 @@
 const shapes = {
     RECTANGLE: 'rectangle',
-    CIRCLE: 'circle'
+    CIRCLE: 'circle',
+    LINE: 'line'
 }
 class RenderUtils {
 
@@ -19,7 +20,7 @@ class RenderUtils {
         ctx.restore()
     }
 
-    static drawShape = (ctx, style, position, body) => {
+    static drawShape = (ctx, style, position, body, toPosition) => {
         switch (body.shape) {
             case shapes.CIRCLE:
                 ctx.beginPath()
@@ -33,6 +34,13 @@ class RenderUtils {
                 ctx.strokeStyle = style.color
                 ctx.lineWidth = style.lineWidth
                 ctx.strokeRect(position.x, position.y, body.width, body.height)
+                ctx.stroke()
+                break
+            case shapes.LINE:
+                ctx.strokeStyle = style.color
+                ctx.lineWidth = style.lineWidth
+                ctx.moveTo(position.x, position.y)
+                ctx.lineTo(toPosition.x, toPosition.y)
                 ctx.stroke()
                 break
             default:

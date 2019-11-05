@@ -9,7 +9,7 @@ class Entity{
         }
     }
 
-    render = (ctx) => {
+    render(ctx) {
 
         switch(this.style.type){
             case 'image' :
@@ -19,14 +19,12 @@ class Entity{
             break
             default:
                 RenderUtils.drawShape(ctx, this.style, this.position, this.body)
-
-            
         }
 
         
     }
 
-    hitTest = (x, y) => {
+    hitTest(x, y){
         return  this.state.hit === false && 
                 this.position.x < x && 
                 this.position.y < y && 

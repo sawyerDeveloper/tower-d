@@ -1,7 +1,6 @@
 import RenderUtils from '../../utils/RenderUtils'
 import Entity from '../Entity'
 import Vector from '../../utils/Vector'
-import { whileStatement } from '@babel/types'
 
 class Tower extends Entity{
 
@@ -85,6 +84,7 @@ class Tower extends Entity{
      */
     render(ctx){
         super.render(ctx)
+        RenderUtils.drawShape(ctx, {color: 'white', lineWidth: 3}, this.position, {shape: 'line'}, this.currentTarget.entity.position)
     }
 
 }
