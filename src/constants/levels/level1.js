@@ -5,7 +5,7 @@ export const level1 = {
           
             {
                 body: { shape: 'rectangle', width: 20, height: 20 },
-                style: { color: 'red', lineWidth: 1 },
+                style: { color: 'white', lineWidth: 2 },
                 vector: { velocity: 1, x: -5, y: 1 },
                 path: 'random',
                 state: { hit: false },
