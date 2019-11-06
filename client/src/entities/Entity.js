@@ -1,4 +1,5 @@
 import RenderUtils from '../utils/RenderUtils'
+import Vector from '../utils/Vector'
 
 class Entity{
     constructor(data){
@@ -7,6 +8,8 @@ class Entity{
             this.loaded = false
             this.img = RenderUtils.loadImage(this.data.style.src)
         }
+        this.centerVector = new Vector(0,0)
+
     }
 
     render(ctx) {
@@ -22,6 +25,12 @@ class Entity{
         }
 
         
+    }
+
+    center(){
+        this.centerVector.x = this.position.x + (this.body.width / 2)
+        this.centerVector.y = this.position.y + (this.body.height / 2)
+        return this.center
     }
 
     hitTest(x, y){
