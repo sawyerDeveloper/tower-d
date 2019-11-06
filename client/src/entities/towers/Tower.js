@@ -1,6 +1,5 @@
 import RenderUtils from '../../utils/RenderUtils'
 import Entity from '../Entity'
-import Vector from '../../utils/Vector'
 
 class Tower extends Entity{
 
@@ -20,14 +19,16 @@ class Tower extends Entity{
         this.img = RenderUtils.loadImage(this.style.src)
 
         this.lastRotation = 0
+        this.angle = 0
+        this.newAngle = 0
+        
     }
 
     update(){
-        const center = new Vector(this.position.x+this.body.width/2, this.position.y-this.body.height/2)
-        const angle = Math.atan2(this.currentTarget.entity.position.y - center.y, this.currentTarget.entity.position.x - center.x )
-        const newAngle = this.lastRotation - angle
-        this.position.rotation = -newAngle *(180/Math.PI) + 90
-        this.lastRotation = angle
+        this.angle = Math.atan2(this.currentTarget.entity.position.y - super.center().y, this.currentTarget.entity.position.x - super.center().x )
+        this.newAngle = this.lastRotation - this.angle
+        this.position.rotation = -this.newAngle *(180/Math.PI) + 90
+        this.lastRotation = this.angle
     }
 
     rateOfFire = () => {
@@ -84,6 +85,8 @@ class Tower extends Entity{
      */
     render(ctx){
         super.render(ctx)
+
+        //Debug line
         RenderUtils.drawShape(ctx, {color: 'white', lineWidth: 3}, this.position, {shape: 'line'}, this.currentTarget.entity.position)
     }
 
