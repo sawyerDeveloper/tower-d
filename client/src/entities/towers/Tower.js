@@ -22,11 +22,11 @@ class Tower extends Entity{
         this.lastRotation = 0
     }
 
-    update = () => {
+    update(){
         const center = new Vector(this.position.x+this.body.width/2, this.position.y-this.body.height/2)
         const angle = Math.atan2(this.currentTarget.entity.position.y - center.y, this.currentTarget.entity.position.x - center.x )
         const newAngle = this.lastRotation - angle
-        this.position.rotation = -newAngle *(180/Math.PI)
+        this.position.rotation = -newAngle *(180/Math.PI) + 90
         this.lastRotation = angle
     }
 

@@ -4,7 +4,6 @@ import Enemy from './entities/enemies/Enemy'
 
 import { level1 } from './constants/levels/level1' 
 import Tower from './entities/towers/Tower'
-import Entity from './entities/Entity'
 
 
 /**

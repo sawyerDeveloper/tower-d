@@ -39,8 +39,8 @@ class RenderUtils {
             case shapes.LINE:
                 ctx.strokeStyle = style.color
                 ctx.lineWidth = style.lineWidth
-                ctx.moveTo(position.x, position.y)
-                ctx.lineTo(toPosition.x, toPosition.y)
+                ctx.moveTo(position.x - 12, position.y - 12)
+                ctx.lineTo(toPosition.x + 10, toPosition.y + 10)
                 ctx.stroke()
                 break
             default:

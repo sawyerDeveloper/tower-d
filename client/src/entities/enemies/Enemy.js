@@ -21,7 +21,7 @@ class Enemy extends Entity{
         }
     }
 
-    update = (stage) => {
+    update(stage){
 
         this.position.y += (this.vector.y * this.vector.velocity)
         this.position.x += (this.vector.x * this.vector.velocity)
@@ -58,7 +58,7 @@ class Enemy extends Entity{
     /** 
      * Dynamically change the vectors based on the path configuration 
      */
-    updatePath = () => {
+    updatePath(){
         if (this.path === 'random') {
             this.vectorTimer--
             if (this.vectorTimer <= 1) {
