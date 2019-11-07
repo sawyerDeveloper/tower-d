@@ -1,18 +1,10 @@
-import Entity from "../../Entity"
+import UI from "../UI"
+import { shapes } from '../../../utils/RenderUtils'
 
-class Box extends Entity{
-    constructor(x, y, width, height, data = null){
-
-        if(data){
-            super(data)
-            this.data = data
-        }else{
-            super({})
-        }
-        this.x = x
-        this.y = y
-        this.width = width
-        this.height = height
+class Box extends UI{
+    constructor(x, y, width, height, color = 'white', rotation = 0){
+        super(x, y, width, height, shapes.RECTANGLE, color, rotation)
+        
     }
 
     render(ctx){

@@ -1,4 +1,4 @@
-const shapes = {
+export const shapes = {
     RECTANGLE: 'rectangle',
     CIRCLE: 'circle',
     LINE: 'line'
