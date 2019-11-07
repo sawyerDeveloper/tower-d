@@ -14,21 +14,16 @@ class Tower extends Entity{
         /** {x: 0, y: 20, rotation: 180}  */
         this.position = data.position
 
+        /** An entity most likely */
         this.currentTarget = data.currentTarget
 
+        /** Yes, load in the constructor.  The engine doesn't init until the dom is loaded. */
         this.img = RenderUtils.loadImage(this.style.src)
 
-        this.lastRotation = 0
-        this.angle = 0
-        this.newAngle = 0
-        
     }
 
     update(){
-        this.angle = Math.atan2(this.currentTarget.entity.position.y - super.center().y, this.currentTarget.entity.position.x - super.center().x )
-        this.newAngle = this.lastRotation - this.angle
-        this.position.rotation = -this.newAngle *(180/Math.PI) + 90
-        this.lastRotation = this.angle
+        this.position.rotation = Math.atan2(this.currentTarget.entity.position.y - super.center().y, this.currentTarget.entity.position.x - super.center().x )
     }
 
     rateOfFire = () => {

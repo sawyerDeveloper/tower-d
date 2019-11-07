@@ -30,7 +30,7 @@ class Entity{
     center(){
         this.centerVector.x = this.position.x + (this.body.width / 2)
         this.centerVector.y = this.position.y + (this.body.height / 2)
-        return this.center
+        return this.centerVector
     }
 
     hitTest(x, y){
