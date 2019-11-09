@@ -92,15 +92,13 @@ class TowerDefenseView extends Component {
         <HBox marginLeft={100} height={50}>
           <button onClick={this.controller.play}>Play</button>
           <button onClick={this.controller.pause}>Pause</button>
-          <div>{this.state.currentState}</div>
         </HBox>
         <canvas onMouseDown={this.applyUserInput} 
-                    onMouseUp={this.removeUserInput} 
-                    onMouseOut={this.removeUserInput} 
-                    width={this.state.width} 
-                    height={this.state.height} 
-                    ref={canvas => this.canvas = canvas} />
-
+                onMouseUp={this.removeUserInput} 
+                onMouseOut={this.removeUserInput} 
+                width={this.state.width} 
+                height={this.state.height} 
+                ref={canvas => this.canvas = canvas} />
       </VBox>
 
     )
