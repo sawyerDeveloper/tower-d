@@ -1,11 +1,12 @@
 import Entity from "../Entity"
 
 class UI extends Entity {
-    constructor(x, y, width, height, shape, color, rotation){
+    constructor(x, y, width, height, shape, color, rotation, children){
         super({
             body: {shape: shape, width: width, height: height},
-            style: {color: color},
-            position: {x: x, y: y, rotation: rotation}
+            style: {color: color, type: 'shape'},
+            position: {x: x, y: y, rotation: rotation},
+            children: children
         })
     }
 

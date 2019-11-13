@@ -46,7 +46,8 @@ class TowerDController {
                 style: { type: 'image', src: 'bb.png' },
                 state: { hit: false },
                 position: { x: 300, y: 350, rotation: 0 },
-                currentTarget: { entity: this.model.enemies[0] }
+                currentTarget: { entity: this.model.enemies[0] },
+                children: []
             }
         )
 
@@ -98,8 +99,10 @@ class TowerDController {
             const userX = this.model.userInput.x
             const userY = this.model.userInput.y
             this.model.towers.forEach(tower => {
+                console.log(tower.hitTest(userX, userY))
                 if ( tower.hitTest(userX, userY)) 
                 {
+
                     tower.hit()
                     console.log('hit', userX, userY, tower.position.x, tower.position.y)
                 }

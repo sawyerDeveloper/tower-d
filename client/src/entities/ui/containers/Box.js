@@ -2,8 +2,8 @@ import UI from "../UI"
 import { shapes } from '../../../utils/RenderUtils'
 
 class Box extends UI{
-    constructor(x, y, width, height, color = 'white', rotation = 0){
-        super(x, y, width, height, shapes.RECTANGLE, color, rotation)
+    constructor(x, y, width, height, color = 'white', rotation = 0, children = []){
+        super(x, y, width, height, shapes.RECTANGLE, color, rotation, children = children)
         
     }
 
