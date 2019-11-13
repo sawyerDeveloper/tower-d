@@ -7,6 +7,12 @@ class Box extends UI{
         
     }
 
+
+
+    hitTest(x, y){
+        return super.hitTest(x, y)
+    }
+
     render(ctx){
         super.render(ctx)
     }

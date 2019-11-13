@@ -43,10 +43,10 @@ class TowerDController {
         this.model.data.towers.push(
             {
                 body: { shape: 'circle', width: 25, height:25 },
-                style: { type: 'image', src: 'bb.png'},
+                style: { type: 'image', src: 'bb.png' },
                 state: { hit: false },
                 position: { x: 300, y: 350, rotation: 0 },
-                currentTarget: {entity: this.model.enemies[0]}
+                currentTarget: { entity: this.model.enemies[0] }
             }
         )
 

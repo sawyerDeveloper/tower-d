@@ -1,5 +1,6 @@
 import RenderUtils from '../../utils/RenderUtils'
 import Entity from '../Entity'
+import Box from '../ui/containers/Box'
 
 class Tower extends Entity{
 
@@ -13,6 +14,9 @@ class Tower extends Entity{
         this.state = data.state
         /** {x: 0, y: 20, rotation: 180}  */
         this.position = data.position
+
+        /** Array of Entities */
+        this.children = data.children
 
         /** An entity most likely */
         this.currentTarget = data.currentTarget
@@ -64,6 +68,9 @@ class Tower extends Entity{
     }
 
     openMenu = () => {
+        let box = new Box(this.position.x, this.position.y, 100, 100)
+        
+        this.children.push(box)
         console.log('open menu')
     }
 

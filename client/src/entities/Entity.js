@@ -9,7 +9,8 @@ class Entity{
             this.img = RenderUtils.loadImage(this.data.style.src)
         }
         this.centerVector = new Vector(0,0)
-
+        console.log(this)
+        this.children = []
     }
 
     render(ctx) {
@@ -22,6 +23,13 @@ class Entity{
             break
             default:
                 RenderUtils.drawShape(ctx, this.style, this.position, this.body)
+        }
+        console.log(this.children)
+        if(this.children.length > 0){
+
+            this.children.forEach(entity => {
+                entity.render(ctx)
+            });
         }
 
         
