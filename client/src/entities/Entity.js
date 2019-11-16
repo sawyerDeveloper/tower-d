@@ -26,7 +26,6 @@ class Entity{
             this.img = RenderUtils.loadImage(this.data.style.src)
         }
         this.centerVector = new Vector(0,0)
-        console.log(this)
     }
 
     render(ctx) {
@@ -55,7 +54,6 @@ class Entity{
 
     hitTest(x, y){
         console.log('hittest entity',this.position.x, x)
-
         return  this.state.hit === false 
     }
 }
