@@ -1,7 +1,8 @@
-const shapes = {
+export const shapes = {
     RECTANGLE: 'rectangle',
     CIRCLE: 'circle',
-    LINE: 'line'
+    LINE: 'line',
+    TEXT: 'text'
 }
 class RenderUtils {
 
@@ -20,31 +21,37 @@ class RenderUtils {
         ctx.restore()
     }
 
-    static drawShape = (ctx, style, position, body, toPosition) => {
-        switch (body.shape) {
+    static drawShape = (ctx, data) => {
+        switch (data.body.shape) {
             case shapes.CIRCLE:
                 ctx.beginPath()
-                ctx.strokeStyle = style.color
-                ctx.lineWidth = style.lineWidth
-                ctx.arc(position.x, position.y, body.radius, 0, Math.PI * 2, true)
+                ctx.strokeStyle = data.style.color
+                ctx.lineWidth = data.style.lineWidth
+                ctx.arc(data.position.x, data.position.y, data.body.radius, 0, Math.PI * 2, true)
                 ctx.stroke()
                 break
             case shapes.RECTANGLE:
                 ctx.beginPath()
-                ctx.strokeStyle = style.color
-                ctx.lineWidth = style.lineWidth
-                ctx.strokeRect(position.x, position.y, body.width, body.height)
+                ctx.strokeStyle = data.style.color
+                ctx.lineWidth = data.style.lineWidth
+                ctx.strokeRect(data.position.x, data.position.y, data.body.width, data.body.height)
                 ctx.stroke()
                 break
             case shapes.LINE:
-                ctx.strokeStyle = style.color
-                ctx.lineWidth = style.lineWidth
-                ctx.moveTo(position.x - 12, position.y - 12)
-                ctx.lineTo(toPosition.x + 10, toPosition.y + 10)
+                ctx.strokeStyle = data.style.color
+                ctx.lineWidth = data.style.lineWidth
+                ctx.moveTo(data.position.x - 12, data.position.y - 12)
+                ctx.lineTo(data.toPosition.x + 10, data.toPosition.y + 10)
                 ctx.stroke()
                 break
+            case shapes.TEXT:
+                ctx.font = data.size+" "+data.font
+                ctx.fillStyle = data.color
+                ctx.textAlign = data.textAlign
+                ctx.fillText(data.text, data.position.x, data.position.y)
+                break
             default:
-                console.error(this, 'drawShape', body.shape)
+                console.error(this, 'drawShape', data.body.shape)
         }
     }
 }

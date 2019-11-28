@@ -16,6 +16,8 @@ class Enemy extends Entity{
         /** 'random' or [[1,0],[1,1],[2,1]] */
         this.path = data.path
 
+        this.children = data.children
+
         if(this.path === 'random'){
             this.vectorTimer = (Math.random() * 60) + 10
         }

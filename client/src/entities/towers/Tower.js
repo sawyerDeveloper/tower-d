@@ -1,21 +1,13 @@
 import RenderUtils from '../../utils/RenderUtils'
 import Entity from '../Entity'
+import Box from '../ui/containers/Box'
+import Panel from '../ui/Panel'
 
 class Tower extends Entity{
 
     constructor(data) {
         super(data)
-        /** {shape: 'rectangle', width: 100, height: 40} */
-        this.body = data.body
-        /** {color: 'brown', type: 'image', src: 'bb.jpeg'} */
-        this.style = data.style
-        /** {hit: false, open: true} */
-        this.state = data.state
-        /** {x: 0, y: 20, rotation: 180}  */
-        this.position = data.position
-
-        /** An entity most likely */
-        this.currentTarget = data.currentTarget
+        
 
         /** Yes, load in the constructor.  The engine doesn't init until the dom is loaded. */
         this.img = RenderUtils.loadImage(this.style.src)
@@ -53,7 +45,8 @@ class Tower extends Entity{
         this.closeMenu()
     }
 
-    hit = () => {
+    hit(){
+        console.log('hit',this)
         this.state.hit = true
         this.openMenu()
     }
@@ -64,7 +57,10 @@ class Tower extends Entity{
     }
 
     openMenu = () => {
-        console.log('open menu')
+        let panel = new Panel(this.position.x, this.position.y, 100, 100)
+
+        this.children.push(panel)
+        console.log('open menu', this.children)
     }
 
     /**
@@ -80,9 +76,6 @@ class Tower extends Entity{
      */
     render(ctx){
         super.render(ctx)
-
-        //Debug line
-        RenderUtils.drawShape(ctx, {color: 'white', lineWidth: 3}, this.position, {shape: 'line'}, this.currentTarget.entity.position)
     }
 
 }
