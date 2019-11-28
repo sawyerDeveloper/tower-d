@@ -37,7 +37,7 @@ class Entity{
                 }
             break
             default:
-                RenderUtils.drawShape(ctx, this.style, this.position, this.body)
+                RenderUtils.drawShape(ctx, this.data)
         }
         if(this.data.children.length > 0){
             this.data.children.forEach(entity => {

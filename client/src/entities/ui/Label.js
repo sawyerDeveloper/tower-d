@@ -3,10 +3,7 @@ class Label extends UI{
 
     constructor(x, y, width, height, color, text, font, size, textAlign, children){
         super(x, y, width, height, color, rotation, children = children)
-        ctx.font = size+" "+font
-        ctx.fillStyle = color
-        ctx.textAlign = textAlign
-        ctx.fillText(text, canvas.width/2, canvas.height/2);
+
     }
 }
 

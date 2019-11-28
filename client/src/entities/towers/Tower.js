@@ -76,9 +76,6 @@ class Tower extends Entity{
      */
     render(ctx){
         super.render(ctx)
-
-        //Debug line
-        RenderUtils.drawShape(ctx, {color: 'white', lineWidth: 3}, this.position, {shape: 'line'}, this.currentTarget.entity.position)
     }
 
 }
