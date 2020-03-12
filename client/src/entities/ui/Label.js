@@ -1,19 +1,16 @@
-import UI from '../UI'
+import UI from "./UI"
+import { shapes } from '../../utils/RenderUtils'
+
 class Label extends UI{
 
-    constructor(x, y, width, height, color, text, font, size, textAlign, children){
-        super(x, y, width, height, color, rotation, children = children)
-
+    constructor(x, y, width, height, rotation, color, text, font, size, textAlign, children){
+        super(x, y, width, height, shapes.TEXT, color, rotation, children)
+        this.data.text = text
+        this.data.color = color
+        this.data.font = font
+        this.data.size = size
+        this.data.textAlign = textAlign
     }
-}
-
-class Box extends UI{
-    constructor(x, y, width, height, color = 'white', rotation = 0, children = []){
-        super(x, y, width, height, shapes.RECTANGLE, color, rotation, children = children)
-        
-    }
-
-
 
     hitTest(x, y){
         return super.hitTest(x, y)

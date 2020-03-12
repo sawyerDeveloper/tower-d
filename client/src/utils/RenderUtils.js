@@ -45,7 +45,7 @@ class RenderUtils {
                 ctx.stroke()
                 break
             case shapes.TEXT:
-                ctx.font = data.size+" "+data.font
+                ctx.font = data.size+"px "+data.font
                 ctx.fillStyle = data.color
                 ctx.textAlign = data.textAlign
                 ctx.fillText(data.text, data.position.x, data.position.y)
