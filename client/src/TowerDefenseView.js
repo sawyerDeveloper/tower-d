@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Board from './Board'
 import Controller from './TowerDefenseController'
 import Stats from 'stats.js'
 import VBox from './global/layout/VBox'
@@ -16,7 +15,7 @@ const states = {
 /**
  * View in MVC for game wrapper.
  */
-class TowerDefense extends Component {
+class TowerDefenseView extends Component {
 
   constructor(props) {
     super(props)
@@ -25,6 +24,7 @@ class TowerDefense extends Component {
       width: 0,
       height: 0
     }
+    this.canvas = null
     //  Temp for testing
     this.stats = new Stats()
     this.stats.showPanel(0)
@@ -77,7 +77,10 @@ class TowerDefense extends Component {
     this.stats.begin()
 
     //  Render the results of the game loop
-    this.board.renderUpdate(data)
+    this.canvas.getContext('2d').clearRect(0, 0, this.state.width, this.state.height)
+    data.forEach(entity => {
+        entity.render(this.canvas.getContext('2d'))
+    })
 
     this.stats.end()
   }
@@ -89,18 +92,17 @@ class TowerDefense extends Component {
         <HBox marginLeft={100} height={50}>
           <button onClick={this.controller.play}>Play</button>
           <button onClick={this.controller.pause}>Pause</button>
-          <div>{this.state.currentState}</div>
         </HBox>
-        <Board
-          applyUserInput={this.controller.applyUserInput}
-          removeUserInput={this.controller.removeUserInput}
-          width={this.state.width}
-          height={this.state.height}
-          ref={board => this.board = board} />
+        <canvas onMouseDown={this.applyUserInput} 
+                onMouseUp={this.removeUserInput} 
+                onMouseOut={this.removeUserInput} 
+                width={this.state.width} 
+                height={this.state.height} 
+                ref={canvas => this.canvas = canvas} />
       </VBox>
 
     )
   }
 }
 
-export default TowerDefense
+export default TowerDefenseView

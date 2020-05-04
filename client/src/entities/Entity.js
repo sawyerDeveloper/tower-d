@@ -4,12 +4,28 @@ import Vector from '../utils/Vector'
 class Entity{
     constructor(data){
         this.data = data
+        /** {shape: 'rectangle', width: 100, height: 40} */
+        this.body = data.body
+        /** {color: 'brown', type: 'image', src: 'bb.jpeg'} */
+        this.style = data.style
+        /** {hit: false, open: true} */
+        this.state = data.state
+        /** {x: 0, y: 20, rotation: 180}  */
+        this.position = data.position
+
+        /** Array of Entities */
+        this.children = data.children
+
+         /** 'random' or [[1,0],[1,1],[2,1]] */
+         this.path = data.path
+
+        /** An entity most likely */
+        this.currentTarget = data.currentTarget
         if(this.data.style.type === 'image'){
             this.loaded = false
             this.img = RenderUtils.loadImage(this.data.style.src)
         }
         this.centerVector = new Vector(0,0)
-
     }
 
     render(ctx) {
@@ -21,10 +37,13 @@ class Entity{
                 }
             break
             default:
-                RenderUtils.drawShape(ctx, this.style, this.position, this.body)
+                RenderUtils.drawShape(ctx, this.data)
         }
-
-        
+        if(this.data.children.length > 0){
+            this.data.children.forEach(entity => {
+                entity.render(ctx)
+            });
+        }
     }
 
     center(){
@@ -34,11 +53,8 @@ class Entity{
     }
 
     hitTest(x, y){
-        return  this.state.hit === false && 
-                this.position.x < x && 
-                this.position.y < y && 
-                this.position.x + this.body.width > x && 
-                this.position.y + this.body.height < y
+        console.log('hittest entity',this.position.x, x)
+        return  this.state.hit === false 
     }
 }
 

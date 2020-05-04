@@ -1,5 +1,5 @@
 import Model from './TowerDefenseModel'
-import states from './TowerDefense'
+import states from './TowerDefenseView'
 import Enemy from './entities/enemies/Enemy'
 
 import { level1 } from './constants/levels/level1' 
@@ -10,7 +10,7 @@ import Tower from './entities/towers/Tower'
  * Acts as the Controller in an MVC for the game wrapper.
  * This controls the game loop and coordinating between the view and model.
  */
-class TowerDController {
+class TowerDefenseController {
 
     /**
      * Takes view as a param and sets up the data model.
@@ -43,10 +43,11 @@ class TowerDController {
         this.model.data.towers.push(
             {
                 body: { shape: 'circle', width: 25, height:25 },
-                style: { type: 'image', src: 'bb.png'},
+                style: { type: 'image', src: 'bb.png' },
                 state: { hit: false },
                 position: { x: 300, y: 350, rotation: 0 },
-                currentTarget: {entity: this.model.enemies[0]}
+                currentTarget: { entity: this.model.enemies[0] },
+                children: []
             }
         )
 
@@ -135,4 +136,4 @@ class TowerDController {
     }
 }
 
-export default TowerDController
+export default TowerDefenseController

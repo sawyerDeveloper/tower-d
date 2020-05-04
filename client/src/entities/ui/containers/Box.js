@@ -1,11 +1,18 @@
+import UI from "../UI"
+import { shapes } from '../../../utils/RenderUtils'
 
-class Box {
-    constructor(x, y, width, height){
-        this.x = x
-        this.y = y
-        this.width = width
-        this.height = height
+class Box extends UI{
+    constructor(x, y, width, height, color = 'white', rotation = 0, children = []){
+        super(x, y, width, height, shapes.RECTANGLE, color, rotation, children)
     }
 
-    
+    hitTest(x, y){
+        return super.hitTest(x, y)
+    }
+
+    render(ctx){
+        super.render(ctx)
+    }
 }
+
+export default Box
