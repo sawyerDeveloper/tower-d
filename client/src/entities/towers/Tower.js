@@ -2,6 +2,7 @@ import RenderUtils from '../../utils/RenderUtils'
 import Entity from '../Entity'
 import Box from '../ui/containers/Box'
 import Panel from '../ui/Panel'
+import Button from '../ui/Button'
 
 class Tower extends Entity{
 
@@ -57,10 +58,10 @@ class Tower extends Entity{
     }
 
     openMenu = () => {
-        let panel = new Panel(this.position.x, this.position.y, 100, 100)
-
+        const button = new Button(this.position.x, this.position.y, 100, 100, 'white', 0, "X")
+        const panel = new Panel(this.position.x, this.position.y, 100, 100, 'white', 0, [button], "test")
         this.children.push(panel)
-        console.log('open menu', this.children)
+        console.log('open menu')
     }
 
     /**
