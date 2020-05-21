@@ -4,7 +4,7 @@ This game is a project I decided to do to keep up my engineering chops.  And to 
 The engine needs to:
 - Run at 60 fps
 - Have only 1 Dependency: React
-- No external graphics files - all art from code
+- Minimal Graphics or math drawn graphics
 - Use Canvas to render the game board within the React app
 - Work on Desktop and Mobile ( platorm agnostic rendering )
 
