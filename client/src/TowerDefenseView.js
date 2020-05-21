@@ -93,9 +93,9 @@ class TowerDefenseView extends Component {
           <button onClick={this.controller.play}>Play</button>
           <button onClick={this.controller.pause}>Pause</button>
         </HBox>
-        <canvas onMouseDown={this.applyUserInput} 
-                onMouseUp={this.removeUserInput} 
-                onMouseOut={this.removeUserInput} 
+        <canvas onMouseDown={this.controller.applyUserInput} 
+                onMouseUp={this.controller.removeUserInput} 
+                onMouseOut={this.controller.removeUserInput} 
                 width={this.state.width} 
                 height={this.state.height} 
                 ref={canvas => this.canvas = canvas} />
