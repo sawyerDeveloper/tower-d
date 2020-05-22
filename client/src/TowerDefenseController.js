@@ -2,7 +2,7 @@ import Model from './TowerDefenseModel'
 import states from './TowerDefenseView'
 import Enemy from './entities/enemies/Enemy'
 
-import { level1 } from './constants/levels/level1' 
+import { level1 } from './constants/levels/level1'
 import Tower from './entities/towers/Tower'
 
 
@@ -26,7 +26,7 @@ class TowerDefenseController {
      * prepare for more data in memory.
      */
     init = () => {
-        
+
         console.log('init', level1)
 
         // Get level data into memory
@@ -42,7 +42,7 @@ class TowerDefenseController {
         //  Temp for one tower.
         this.model.data.towers.push(
             {
-                body: { shape: 'circle', width: 25, height:25 },
+                body: { shape: 'circle', width: 25, height: 25 },
                 style: { type: 'image', src: 'bb.png' },
                 state: { hit: false },
                 position: { x: 300, y: 350, rotation: 0 },
@@ -73,11 +73,21 @@ class TowerDefenseController {
 
         if (this.model.loop) {
 
-            //  Move Stuff
-            this.updateVectors()
+            this.model.entities.forEach(entity => {
 
-            //  See if stuff got hit, including a human finger against a tower
-            this.checkCollisions()
+                //  Move Stuff
+                entity.update(this.model.stage)
+
+                //  See if stuff got hit, including a human finger against a tower
+                if (this.model.userInput) {
+                    const userX = this.model.userInput.x
+                    const userY = this.model.userInput.y
+                    if (!entity.state.open && entity.hitTest(userX, userY)) {
+                        entity.hit()
+                        console.log('hit', entity.state.hit, userX, userY, entity.position.x, entity.position.y)
+                    }
+                }
+            })
 
             //  Render the results
             this.view.renderUpdate(this.model.entities)
@@ -94,30 +104,10 @@ class TowerDefenseController {
         this.model.userInput = null
     }
 
-    checkCollisions = () => {
-        if(this.model.userInput){
-            const userX = this.model.userInput.x
-            const userY = this.model.userInput.y
-            this.model.towers.forEach(tower => {
-                if ( tower.hitTest(userX, userY))
-                {
-                    tower.hit()
-                    console.log('hit', tower.state.hit, userX, userY, tower.position.x, tower.position.y)
-                }
-            })
-        }
-    }
-    
-    updateVectors = () => {
-        this.model.entities.forEach(entity => {
-            entity.update(this.model.stage)
-        })
-    }
-    
     setStage = (width, height) => {
-        this.model.stage = {width: width, height: height}
+        this.model.stage = { width: width, height: height }
     }
-    
+
     stop = () => {
         console.log('stop')
         this.model.loop = false

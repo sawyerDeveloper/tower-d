@@ -4,6 +4,7 @@ import Vector from '../utils/Vector'
 class Entity{
     constructor(data){
         this.data = data
+
         /** {shape: 'rectangle', width: 100, height: 40} */
         this.body = data.body
         /** {color: 'brown', type: 'image', src: 'bb.jpeg'} */
@@ -57,7 +58,6 @@ class Entity{
     }
 
     hitTest(x, y){
-        console.log('hittest entity',x, this.position.x, y, this.position.y)
         if( x > this.position.x - (this.body.width / 2) &&
             x < this.position.x + this.body.width &&
             y > this.position.y && 

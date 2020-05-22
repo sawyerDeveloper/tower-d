@@ -1,6 +1,5 @@
 import RenderUtils from '../../utils/RenderUtils'
 import Entity from '../Entity'
-import Box from '../ui/containers/Box'
 import Panel from '../ui/Panel'
 import Button from '../ui/Button'
 
@@ -8,9 +7,8 @@ class Tower extends Entity{
 
     constructor(data) {
         super(data)
-        
 
-        /** Yes, load in the constructor.  The engine doesn't init until the dom is loaded. */
+        /** Load image in the constructor.  The engine doesn't init until the dom is loaded. */
         this.img = RenderUtils.loadImage(this.style.src)
 
     }
@@ -48,12 +46,11 @@ class Tower extends Entity{
 
     hit(){
         super.hit()
-        console.log('hit')
         this.openMenu()
     }
 
     closeMenu = () => {
-        //this.state.hit = false
+        this.state.open = false
         console.log('close menu')
     }
 
@@ -62,6 +59,7 @@ class Tower extends Entity{
         const panel = new Panel(this.position.x, this.position.y, 100, 100, 'white', 0, [button], "test")
         this.children.push(panel)
         console.log('open menu')
+        this.state.open = true
     }
 
     /**
