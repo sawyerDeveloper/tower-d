@@ -58,7 +58,6 @@ class Tower extends Entity{
         const button = new Button(this.position.x, this.position.y, 100, 100, 'white', 0, "X")
         const panel = new Panel(this.position.x, this.position.y, 100, 100, 'white', 0, [button], "test")
         this.children.push(panel)
-        console.log('open menu')
         this.state.open = true
     }
 

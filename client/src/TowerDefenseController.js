@@ -109,18 +109,15 @@ class TowerDefenseController {
     }
 
     stop = () => {
-        console.log('stop')
         this.model.loop = false
     }
 
     play = () => {
-        console.log('play')
         this.model.loop = true
         this.view.updateCurrentState(states.PLAY)
     }
 
     pause = () => {
-        console.log('pause')
         this.model.loop = false
         this.view.updateCurrentState(states.PAUSE)
     }
