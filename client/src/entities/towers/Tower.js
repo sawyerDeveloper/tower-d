@@ -47,13 +47,13 @@ class Tower extends Entity{
     }
 
     hit(){
-        console.log('hit',this)
-        this.state.hit = true
+        super.hit()
+        console.log('hit')
         this.openMenu()
     }
 
     closeMenu = () => {
-        this.state.hit = false
+        //this.state.hit = false
         console.log('close menu')
     }
 
@@ -68,6 +68,7 @@ class Tower extends Entity{
      * @returns {boolean} If the point is over this object, return true, otherwise false
      */
     hitTest(x, y){
+        //console.log(x, y, this.position.x)
         return super.hitTest(x, y)
     }
 

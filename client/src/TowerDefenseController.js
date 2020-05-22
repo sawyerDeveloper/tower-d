@@ -99,10 +99,10 @@ class TowerDefenseController {
             const userX = this.model.userInput.x
             const userY = this.model.userInput.y
             this.model.towers.forEach(tower => {
-                if ( tower.hitTest(userX, userY)) 
+                if ( tower.hitTest(userX, userY))
                 {
                     tower.hit()
-                    console.log('hit', userX, userY, tower.position.x, tower.position.y)
+                    console.log('hit', tower.state.hit, userX, userY, tower.position.x, tower.position.y)
                 }
             })
         }
