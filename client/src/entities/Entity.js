@@ -52,9 +52,19 @@ class Entity{
         return this.centerVector
     }
 
+    hit(){
+        //this.state.hit = true
+    }
+
     hitTest(x, y){
-        console.log('hittest entity',this.position.x, x)
-        return  this.state.hit === false 
+        console.log('hittest entity',x, this.position.x, y, this.position.y)
+        if( x > this.position.x - (this.body.width / 2) &&
+            x < this.position.x + this.body.width &&
+            y > this.position.y && 
+            y < this.position.y + this.body.height){
+                return true
+        }
+        return false 
     }
 }
 
