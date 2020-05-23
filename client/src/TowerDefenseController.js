@@ -27,8 +27,6 @@ class TowerDefenseController {
      */
     init = () => {
 
-        console.log('init', level1)
-
         // Get level data into memory
         this.model.data.enemies = level1.waves[0].map(enemyData => {
             return enemyData
@@ -47,7 +45,8 @@ class TowerDefenseController {
                 state: { hit: false },
                 position: { x: 300, y: 350, rotation: 0 },
                 currentTarget: { entity: this.model.enemies[0] },
-                children: []
+                children: [],
+                ui: true
             }
         )
 
@@ -82,9 +81,8 @@ class TowerDefenseController {
                 if (this.model.userInput) {
                     const userX = this.model.userInput.x
                     const userY = this.model.userInput.y
-                    if (!entity.state.open && entity.hitTest(userX, userY)) {
+                    if (entity.ui && !entity.state.hit && entity.hitTest(userX, userY)) {
                         entity.hit()
-                        console.log('hit', entity.state.hit, userX, userY, entity.position.x, entity.position.y)
                     }
                 }
             })

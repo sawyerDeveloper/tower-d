@@ -30,7 +30,6 @@ class Tower extends Entity{
     }
 
     fire = () => {
-        console.log(this, 'fire')
         //Override
     }
 
@@ -50,8 +49,8 @@ class Tower extends Entity{
     }
 
     closeMenu = () => {
+        super.unHit()
         this.state.open = false
-        console.log('close menu')
     }
 
     openMenu = () => {
@@ -65,7 +64,6 @@ class Tower extends Entity{
      * @returns {boolean} If the point is over this object, return true, otherwise false
      */
     hitTest(x, y){
-        //console.log(x, y, this.position.x)
         return super.hitTest(x, y)
     }
 

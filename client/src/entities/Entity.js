@@ -13,7 +13,8 @@ class Entity{
         this.state = data.state
         /** {x: 0, y: 20, rotation: 180}  */
         this.position = data.position
-
+        /** Boolean */
+        this.ui = data.ui
         /** Array of Entities */
         this.children = data.children
 
@@ -40,6 +41,8 @@ class Entity{
             default:
                 RenderUtils.drawShape(ctx, this.data)
         }
+
+        //  TODO is this needed?
         if(this.data.children.length > 0){
             this.data.children.forEach(entity => {
                 entity.render(ctx)
@@ -54,13 +57,17 @@ class Entity{
     }
 
     hit(){
-        //this.state.hit = true
+        this.state.hit = true
+    }
+
+    unHit() {
+        this.state.hit = false
     }
 
     hitTest(x, y){
-        if( x > this.position.x - (this.body.width / 2) &&
-            x < this.position.x + this.body.width &&
-            y > this.position.y && 
+        if( x > this.position.x - this.body.width &&
+            x < this.position.x &&
+            y > this.position.y - this.body.height&& 
             y < this.position.y + this.body.height){
                 return true
         }
