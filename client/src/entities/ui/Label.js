@@ -5,7 +5,6 @@ class Label extends UI{
 
     constructor(x, y, width, height, rotation, color, text, font, size, textAlign, children){
         super(x, y, width, height, shapes.TEXT, color, rotation, children)
-        //console.log(text)
         this.data.text = text
         this.data.color = color
         this.data.font = font
