@@ -6,7 +6,8 @@ class UI extends Entity {
             body: {shape: shape, width: width, height: height},
             style: {color: color, type: 'shape'},
             position: {x: x, y: y, rotation: rotation},
-            children: children
+            children: children,
+            ui: true
         })
     }
 
