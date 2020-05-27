@@ -1,7 +1,6 @@
 import RenderUtils from '../../utils/RenderUtils'
 import Entity from '../Entity'
 import Panel from '../ui/Panel'
-import Button from '../ui/Button'
 
 class Tower extends Entity{
 
@@ -11,6 +10,14 @@ class Tower extends Entity{
         /** Load image in the constructor.  The engine doesn't init until the dom is loaded. */
         this.img = RenderUtils.loadImage(this.style.src)
 
+        this.panel = new Panel(this.position.x, this.position.y, 100, 100, 'white', 0, [], "test", false)
+        this.children.push(this.panel)
+
+    }
+
+    init(addEntity){
+        addEntity(this.panel)
+        this.panel.init(addEntity)
     }
 
     update(){
@@ -50,13 +57,12 @@ class Tower extends Entity{
 
     closeMenu = () => {
         super.unHit()
+        this.panel.hide()
         this.state.open = false
     }
 
     openMenu = () => {
-        const button = new Button(this.position.x, this.position.y, 100, 100, 'white', 0, "X")
-        const panel = new Panel(this.position.x, this.position.y, 100, 100, 'white', 0, [button], "test")
-        this.children.push(panel)
+        this.panel.show()
         this.state.open = true
     }
 
