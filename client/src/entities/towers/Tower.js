@@ -10,7 +10,7 @@ class Tower extends Entity{
         /** Load image in the constructor.  The engine doesn't init until the dom is loaded. */
         this.img = RenderUtils.loadImage(this.style.src)
 
-        this.panel = new Panel(this.position.x, this.position.y, 100, 100, 'white', 0, [], "test", false)
+        this.panel = new Panel(this.position.x, this.position.y, 100, 100, 'white', 0, [], "test", false, this.menuInput)
         this.children.push(this.panel)
 
     }
@@ -22,6 +22,10 @@ class Tower extends Entity{
 
     update(){
         this.position.rotation = Math.atan2(this.currentTarget.entity.position.y - super.center().y, this.currentTarget.entity.position.x - super.center().x )
+    }
+
+    menuInput(input){
+
     }
 
     rateOfFire = () => {
