@@ -16,10 +16,13 @@ class Button extends Box{
 
     show(){
         super.show()
+        this.state.hittable = true
     }
 
     hide(){
         super.hide()
+        super.unHit()
+        this.state.hittable = false
     }
 
     hit(){

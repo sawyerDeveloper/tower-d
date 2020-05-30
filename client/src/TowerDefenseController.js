@@ -42,7 +42,7 @@ class TowerDefenseController {
             {
                 body: { shape: 'circle', width: 25, height: 25 },
                 style: { type: 'image', src: 'bb.png' },
-                state: { hit: false, visible: true },
+                state: { hit: false, visible: true, hittable: false },
                 position: { x: 300, y: 350, rotation: 0 },
                 currentTarget: { entity: this.model.enemies[0] },
                 children: [],
@@ -88,7 +88,7 @@ class TowerDefenseController {
                 if (this.model.userInput) {
                     const userX = this.model.userInput.x
                     const userY = this.model.userInput.y
-                    if (entity.ui && !entity.state.hit && entity.hitTest(userX, userY)) {
+                    if (entity.ui && entity.state.visible && entity.state.hittable && !entity.state.hit && entity.hitTest(userX, userY)) {
                         entity.hit()
                     }
                 }

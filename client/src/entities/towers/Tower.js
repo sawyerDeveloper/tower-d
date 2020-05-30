@@ -18,6 +18,7 @@ class Tower extends Entity{
     init(addEntity){
         addEntity(this.panel)
         this.panel.init(addEntity)
+        this.state.hittable = true
     }
 
     update(){
@@ -63,11 +64,13 @@ class Tower extends Entity{
         super.unHit()
         this.panel.hide()
         this.state.open = false
+        this.state.hittable = true
     }
 
     openMenu = () => {
         this.panel.show()
         this.state.open = true
+        this.state.hittable = false
     }
 
     /**
