@@ -1,5 +1,4 @@
 import Box from '../ui/containers/Box'
-import { shapes } from "../../utils/RenderUtils"
 import Label from './Label'
 
 class Button extends Box{

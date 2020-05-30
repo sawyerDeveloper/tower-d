@@ -57,12 +57,12 @@ class TowerDefenseController {
 
         //  Combine both lists of entities into 1 for allowing a better loop :)
         this.model.entities = this.model.enemies.concat(this.model.towers)
-        this.model.entities.map((entity) => {
+        this.model.entities.forEach((entity) => {
             if(entity.children.length > 0){
                 entity.init((entity) => {
                     this.model.entities.push(entity)
                 })
-            } 
+            }
         })
 
         //temp for testing
