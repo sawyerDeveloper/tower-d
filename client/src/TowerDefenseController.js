@@ -86,9 +86,13 @@ class TowerDefenseController {
 
                 //  See if stuff got hit, including a human finger against a tower
                 if (this.model.userInput) {
-                    const userX = this.model.userInput.x
-                    const userY = this.model.userInput.y
-                    if (entity.ui && entity.state.visible && entity.state.hittable && !entity.state.hit && entity.hitTest(userX, userY)) {
+
+                    if (entity.ui 
+                        && entity.state.visible 
+                        && entity.state.hittable 
+                        && !entity.state.hit 
+                        && entity.hitTest(this.model.userInput.x, this.model.userInput.y)) {
+
                         entity.hit()
                     }
                 }
