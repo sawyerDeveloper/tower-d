@@ -1,6 +1,6 @@
 import RenderUtils from '../utils/RenderUtils'
 import Vector from '../utils/Vector'
-
+import VectorCenterComponent from '../components/vector/VectorCenterComponent'
 class Entity{
     constructor(data){
         this.data = data
@@ -27,6 +27,8 @@ class Entity{
             this.loaded = false
             this.img = RenderUtils.loadImage(this.data.style.src)
         }
+
+        //  Inititalize all objects here
         this.centerVector = new Vector(0,0)
     }
 
@@ -62,9 +64,7 @@ class Entity{
     }
 
     center(){
-        this.centerVector.x = this.position.x + (this.body.width / 2)
-        this.centerVector.y = this.position.y + (this.body.height / 2)
-        return this.centerVector
+        return VectorCenterComponent(this.position.x, this.position.y, this.body.width, this.body.height, this.centerVector)
     }
 
     hit(){
