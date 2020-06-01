@@ -4,14 +4,6 @@ import Stats from 'stats.js'
 import VBox from './global/layout/VBox'
 import HBox from './global/layout/HBox'
 
-const states = {
-  INIT: 'init',
-  PLAY: 'play',
-  PAUSE: 'pause',
-  WIN: 'win',
-  LOSE: 'lose'
-}
-
 /**
  * View in MVC for game wrapper.
  */
@@ -20,7 +12,6 @@ class TowerDefenseView extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      currentState: states.INIT,
       width: 0,
       height: 0
     }
@@ -56,16 +47,6 @@ class TowerDefenseView extends Component {
       height: event.target.innerHeight
     }, () => {
       this.controller.setStage(this.state.width, this.state.height)
-    })
-  }
-
-  /**
-   * Controller tells this class what state the overall game should be in
-   * @param {string} newState Derived from states const 
-   */
-  updateCurrentState = (newState) => {
-    this.setState({
-      currentState: states[newState]
     })
   }
 

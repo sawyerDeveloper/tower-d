@@ -9,7 +9,7 @@ class Entity{
         this.body = data.body
         /** {color: 'brown', type: 'image', src: 'bb.jpeg'} */
         this.style = data.style
-        /** {hit: false, open: true} */
+        /** {hit: false, open: true, visible: true} */
         this.state = data.state
         /** {x: 0, y: 20, rotation: 180}  */
         this.position = data.position
@@ -19,7 +19,7 @@ class Entity{
         this.children = data.children
 
          /** 'random' or [[1,0],[1,1],[2,1]] */
-         this.path = data.path
+        this.path = data.path
 
         /** An entity most likely */
         this.currentTarget = data.currentTarget
@@ -30,24 +30,35 @@ class Entity{
         this.centerVector = new Vector(0,0)
     }
 
+    init(){
+
+    }
+
+    update(){
+
+    }
+
     render(ctx) {
 
-        switch(this.style.type){
-            case 'image' :
-                if(this.img){
-                    RenderUtils.drawImage(ctx, this.img, this.position, this.body)
-                }
-            break
-            default:
-                RenderUtils.drawShape(ctx, this.data)
-        }
+        if(this.state.visible){
 
-        //  TODO is this needed?
-        if(this.data.children.length > 0){
-            this.data.children.forEach(entity => {
-                entity.render(ctx)
-            });
-        }
+            switch(this.style.type){
+                case 'image' :
+                    if(this.img){
+                        RenderUtils.drawImage(ctx, this.img, this.position, this.body)
+                    }
+                    break
+                    default:
+                        RenderUtils.drawShape(ctx, this.data)
+                    }
+                    
+                    //  TODO is this needed?
+                    if(this.data.children.length > 0){
+                        this.data.children.forEach(entity => {
+                            entity.render(ctx)
+                        });
+                    }
+                }
     }
 
     center(){
@@ -62,6 +73,14 @@ class Entity{
 
     unHit() {
         this.state.hit = false
+    }
+
+    show(){
+        this.state.visible = true
+    }
+
+    hide(){
+        this.state.visible = false
     }
 
     hitTest(x, y){
