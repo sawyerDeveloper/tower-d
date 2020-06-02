@@ -41,7 +41,7 @@ class Entity {
      * Placeholder/Override
      */
     init() {
-
+        
     }
 
     /**
@@ -74,6 +74,9 @@ class Entity {
         }
     }
 
+    /**
+     * This is derived so we make a method to calculate it.
+     */
     center() {
         return VectorCenterComponent(this.position.x, this.position.y, this.body.width, this.body.height, this.centerVector)
     }
