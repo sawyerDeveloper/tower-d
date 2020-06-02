@@ -1,7 +1,7 @@
 import RenderUtils from '../utils/RenderUtils'
 import Vector from '../utils/Vector'
 import VectorCenterComponent from '../components/vector/VectorCenterComponent'
-import PhysicsHitTestComponent from '../components/physics/PhysicsHitTestComponent'
+import BodyHitTestComponent from '../components/body/BodyHitTestComponent'
 
 /**
  * Super class for every object on the screen.
@@ -98,7 +98,7 @@ class Entity {
     }
 
     hitTest(x, y) {
-        return PhysicsHitTestComponent(this.position.x, this.position.y, this.body.width, this.body.height, x, y)
+        return BodyHitTestComponent(this.position.x, this.position.y, this.body.width, this.body.height, x, y)
     }
 }
 

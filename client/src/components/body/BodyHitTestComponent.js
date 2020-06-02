@@ -1,4 +1,4 @@
-const PhysicsHitTestComponent = (x, y, width, height, hitX, hitY) => {
+const BodyHitTestComponent = (x, y, width, height, hitX, hitY) => {
     if( hitX > x - width &&
         hitX < x &&
         hitY > y - height&& 
@@ -8,4 +8,4 @@ const PhysicsHitTestComponent = (x, y, width, height, hitX, hitY) => {
     return false 
 }
 
-export default PhysicsHitTestComponent
+export default BodyHitTestComponent

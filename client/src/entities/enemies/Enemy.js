@@ -1,4 +1,5 @@
 import Entity from '../Entity'
+import Label from '../ui/Label'
 
 class Enemy extends Entity{
     constructor(data) {
@@ -18,9 +19,17 @@ class Enemy extends Entity{
 
         this.children = data.children
 
+
+        this.label = new Label(this.position.x , this.position.y + 15, 30, 30, 0, 'white', this.state.health, null, 18)
+        this.children.push(this.label)
         if(this.path === 'random'){
             this.vectorTimer = (Math.random() * 60) + 10
         }
+    }
+
+    init(addEntity){
+        addEntity(this.label)
+        this.label.init(addEntity)
     }
 
     update(stage){
@@ -41,7 +50,15 @@ class Enemy extends Entity{
             this.position.x = stage.width
         }
 
+        this.label.position.x = this.position.x
+        this.label.position.y = this.position.y + 15
+
         this.updatePath()
+        
+    }
+
+    damage(data){
+        this.state.health -= 1
     }
 
     hit = () => {
