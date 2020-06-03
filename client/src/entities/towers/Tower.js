@@ -2,6 +2,8 @@ import RenderUtils from '../../utils/RenderUtils'
 import Entity from '../Entity'
 import Panel from '../ui/Panel'
 
+const FIRE_TIMER = 60
+
 class Tower extends Entity{
 
     constructor(data) {
@@ -13,6 +15,8 @@ class Tower extends Entity{
         this.panel = new Panel(this.position.x, this.position.y, 100, 100, 'white', 0, [], "test", false, this.menuInput)
         this.children.push(this.panel)
 
+        this.fireTimer = FIRE_TIMER
+
     }
 
     init(addEntity){
@@ -23,6 +27,11 @@ class Tower extends Entity{
 
     update(){
         this.position.rotation = Math.atan2(this.currentTarget.entity.position.y - super.center().y, this.currentTarget.entity.position.x - super.center().x )
+        this.fireTimer--
+        if(this.fireTimer <= 1){
+            this.fireTimer = FIRE_TIMER
+            this.fire()
+        }
     }
 
     menuInput(input){
@@ -42,16 +51,15 @@ class Tower extends Entity{
     }
 
     fire = () => {
-        //Override
+        //Temp until moved to a system
+        this.currentTarget.entity.state.health--
     }
 
     upgrade = () => {
-        //Override
         this.closeMenu()
     }
 
     sell = () => {
-        //Override
         this.closeMenu()
     }
 
