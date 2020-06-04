@@ -95,6 +95,9 @@ class Entity {
 
     hide() {
         this.state.visible = false
+        
+        //Temp until moved to a system
+        this.children.forEach((entity) => {entity.hide()})
     }
 
     hitTest(x, y) {

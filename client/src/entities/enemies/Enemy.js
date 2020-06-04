@@ -34,26 +34,34 @@ class Enemy extends Entity{
 
     update(stage){
 
-        this.position.y += (this.vector.y * this.vector.velocity)
-        this.position.x += (this.vector.x * this.vector.velocity)
+        if(this.state.health > 0){
 
-        if (this.position.y > stage.height) {
-            this.position.y = -30
+            
+            this.position.y += (this.vector.y * this.vector.velocity)
+            this.position.x += (this.vector.x * this.vector.velocity)
+            
+            if (this.position.y > stage.height) {
+                this.position.y = -30
+            }
+            if (this.position.y < -30) {
+                this.position.y = stage.height
+            }
+            if (this.position.x > stage.width) {
+                this.position.x = -30
+            }
+            if (this.position.x < -30) {
+                this.position.x = stage.width
+            }
+            
+            this.label.position.x = this.position.x
+            this.label.position.y = this.position.y + 15
+            //console.log(this.label.text)
+            this.label.text = this.state.health
+            
+            this.updatePath()
+        }else{
+            this.hide()
         }
-        if (this.position.y < -30) {
-            this.position.y = stage.height
-        }
-        if (this.position.x > stage.width) {
-            this.position.x = -30
-        }
-        if (this.position.x < -30) {
-            this.position.x = stage.width
-        }
-
-        this.label.position.x = this.position.x
-        this.label.position.y = this.position.y + 15
-
-        this.updatePath()
         
     }
 
@@ -82,7 +90,7 @@ class Enemy extends Entity{
             this.vectorTimer--
             if (this.vectorTimer <= 1) {
                 this.vectorTimer = (Math.random() * 60) + 10
-                this.vector.velocity = Math.random() * 6
+                this.vector.velocity = Math.random() * 3
                 this.vector.x = (Math.random() * 2) - 1
                 this.vector.y = (Math.random() * 2) - 1
             }
