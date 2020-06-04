@@ -77,9 +77,11 @@ class TowerDefenseController {
 
     /**
      * This is the pulse of the game. 
+     * The main loop runs here and runs through every entity calling update, render etc.
+     * 
      */
     update = () => {
-
+        this.view.startPerf()
         if (this.model.loop) {
 
             this.model.entities.forEach(entity => {
@@ -106,6 +108,7 @@ class TowerDefenseController {
         }
 
         requestAnimationFrame(this.update)
+        this.view.endPerf()
     }
 
     applyUserInput = (event) => {
@@ -126,12 +129,10 @@ class TowerDefenseController {
 
     play = () => {
         this.model.loop = true
-        this.view.updateCurrentState(states.PLAY)
     }
 
     pause = () => {
         this.model.loop = false
-        this.view.updateCurrentState(states.PAUSE)
     }
 }
 

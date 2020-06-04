@@ -55,14 +55,24 @@ class TowerDefenseView extends Component {
    * @param {object} data Updated data regarding score, logic, entity placement
    */
   renderUpdate = (data) => {
-    this.stats.begin()
-
     //  Render the results of the game loop
     this.canvas.getContext('2d').clearRect(0, 0, this.state.width, this.state.height)
     data.forEach(entity => {
         entity.render(this.canvas.getContext('2d'))
     })
+  }
 
+  /**
+   * Debug
+   */
+  startPerf = () => {
+    this.stats.begin()
+  }
+
+  /**
+   * Debug
+   */
+  endPerf = () => {
     this.stats.end()
   }
 

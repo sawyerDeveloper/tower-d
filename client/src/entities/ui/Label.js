@@ -10,6 +10,12 @@ class Label extends UI{
         this.data.font = font
         this.data.size = size
         this.data.textAlign = textAlign
+
+        this.text = this.data.text
+    }
+
+    update(){
+        this.data.text = this.text
     }
 
     hitTest(x, y){
