@@ -58,6 +58,8 @@ class TowerDefenseController {
         //  Combine both lists of entities into 1 for allowing a better loop :)
         this.model.entities = this.model.enemies.concat(this.model.towers)
 
+        //  Go through entities and pull out any children and add them to the list.  
+        //  TODO deal with this being fully recursive
         this.model.entities.forEach((entity) => {
             if(entity.children.length > 0){
                 entity.init((entity) => {

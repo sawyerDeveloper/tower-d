@@ -4,6 +4,7 @@ export const shapes = {
     LINE: 'line',
     TEXT: 'text'
 }
+
 class RenderUtils {
 
     static loadImage = (src) => {
