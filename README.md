@@ -1,4 +1,6 @@
-tower-d
+Scan this to view latest build
+<br><img src="qr.png" alt=""/>
+
 This game is a project I decided to do to keep up my engineering chops.  And to have fun.  I wanted to make a game engine from scratch in Javascript and make a Tower Defense game with that engine.  
 
 The engine needs to:
