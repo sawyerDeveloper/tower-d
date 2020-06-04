@@ -1,14 +1,35 @@
 import Entity from "../Entity"
 
 class UI extends Entity {
-    constructor(x, y, width, height, shape, color, rotation, children = []){
+    constructor(x, y, width, height, shape, color, rotation, children = [], visible = true, hittable = false){
         super({
             body: {shape: shape, width: width, height: height},
             style: {color: color, type: 'shape'},
             position: {x: x, y: y, rotation: rotation},
             children: children,
+            state: {visible: visible, hittable: hittable},
             ui: true
         })
+    }
+
+    hit(){
+        super.hit()
+    }
+
+    unHit(){
+        super.unHit()
+    }
+
+    show(){
+        super.show()
+    }
+
+    hide(){
+        super.hide()
+    }
+
+    update(){
+        super.update()
     }
 
     hitTest(x, y){
