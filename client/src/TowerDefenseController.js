@@ -72,7 +72,7 @@ class TowerDefenseController {
             }
         })
 
-        this.proximitySystem.init(this.model.entities)
+        this.proximitySystem.init(this.model.enemies)
 
         this.proximitySystem.addSourceEntity(this.model.towers[0])
 
