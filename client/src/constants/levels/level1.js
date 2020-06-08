@@ -54,7 +54,7 @@ export const level1 = {
             position: { x: 20, y: 150, rotation: 0 },
             children: []
         },
-/*
+
         {
             body: { shape: 'rectangle', width: 20, height: 20 },
             style: { color: 'red', lineWidth: 1 },
@@ -119,6 +119,7 @@ export const level1 = {
             position: { x: 200, y: 250, rotation: 0 },
             children: []
         },
+        /*
         {
             body: { shape: 'rectangle', width: 20, height: 20 },
             style: { color: 'red', lineWidth: 1 },
