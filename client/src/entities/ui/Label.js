@@ -1,4 +1,4 @@
-import UI from "./UI"
+import UI from '../ui/UI'
 import { shapes } from '../../utils/RenderUtils'
 
 class Label extends UI{
@@ -10,7 +10,7 @@ class Label extends UI{
         this.data.font = font
         this.data.size = size
         this.data.textAlign = textAlign
-
+        this.style.type = shapes.TEXT
         this.text = this.data.text
     }
 
