@@ -1,5 +1,5 @@
 import RenderUtils from '../utils/RenderUtils'
-import Vector from '../utils/Vector'
+import Vector from '../types/Vector'
 import VectorCenterComponent from '../components/vector/VectorCenterComponent'
 import BodyHitTestComponent from '../components/body/BodyHitTestComponent'
 

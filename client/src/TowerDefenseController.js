@@ -1,9 +1,10 @@
 import Model from './TowerDefenseModel'
-import states from './TowerDefenseView'
 import Enemy from './entities/enemies/Enemy'
 
 import { level1 } from './constants/levels/level1'
 import Tower from './entities/towers/Tower'
+
+import ProximitySystem from '../src/systems/ProximitySystem'
 
 
 /**
@@ -14,11 +15,14 @@ class TowerDefenseController {
 
     /**
      * Takes view as a param and sets up the data model.
-     * @param {*} view TowerDefense in this case
+     * @param {*} view TowerDefenseView in this case
      */
     constructor(view) {
         this.view = view
         this.model = new Model()
+
+        //Temp until to move to GameEngine class
+        this.proximitySystem = new ProximitySystem()
     }
 
     /**
@@ -68,6 +72,10 @@ class TowerDefenseController {
             }
         })
 
+        this.proximitySystem.init(this.model.entities)
+
+        this.proximitySystem.addSourceEntity(this.model.towers[0])
+
         //temp for testing
         this.model.loop = true
 
@@ -78,11 +86,12 @@ class TowerDefenseController {
     /**
      * This is the pulse of the game. 
      * The main loop runs here and runs through every entity calling update, render etc.
-     * 
      */
     update = () => {
         this.view.startPerf()
         if (this.model.loop) {
+
+            this.proximitySystem.update()
 
             this.model.entities.forEach(entity => {
 
@@ -101,6 +110,7 @@ class TowerDefenseController {
                         entity.hit()
                     }
                 }
+                
             })
 
             //  Render the results
@@ -111,10 +121,17 @@ class TowerDefenseController {
         this.view.endPerf()
     }
 
+    /**
+     * Accepts an event from the view everytime there is a click or touch and converts it to x/y.
+     * @param {Event} event
+     */
     applyUserInput = (event) => {
         this.model.userInput = { x: event.pageX, y: event.pageY }
     }
 
+    /**
+     * Sets the value of the userInput to null when touches/clicks end.
+     */
     removeUserInput = () => {
         this.model.userInput = null
     }
