@@ -34,21 +34,26 @@ class ProximitySystem {
                 ) {
                     this.tempArray.push(entity)
                 }
+                entity.style.color = 'red'
             })
 
-            this.proximity(source, this.tempArray)
+            this.resultArray = this.tempArray.map((entity) => {
+                return { ...entity, distance: ProximityValueComponent(source, entity) }
+            }).sort((entity1, entity2) => {
+                return entity1.distance - entity2.distance
+            })
+            if (this.resultArray.length > 0) {
+                source.currentTarget.entity = this.resultArray[0]
+                source.currentTarget.entity.style.color = 'white'
+            }
+
             this.tempArray = []
         })
 
+
+
     }
 
-    proximity(source, entities) {
-        this.resultArray = entities.map((entity) => {
-            return {...entity, distance: ProximityValueComponent(source, entity)}
-        }).sort((entity1, entity2) => {
-            return entity1.distance - entity2.distance
-        })
-    }
 }
 
 export default ProximitySystem

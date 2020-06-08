@@ -32,6 +32,9 @@ class Enemy extends Entity{
         this.label.init(addEntity)
     }
 
+    center() {
+        return super.center()
+    }
     update(stage){
 
         if(this.state.health > 0){
