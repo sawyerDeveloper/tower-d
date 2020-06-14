@@ -65,7 +65,7 @@ class Entity {
                     RenderUtils.drawShape(ctx, this.data)
             }
 
-            //  TODO is this needed?
+            //  TODO Move to system
             if (this.data.children.length > 0) {
                 this.data.children.forEach(entity => {
                     entity.render(ctx)
@@ -95,9 +95,11 @@ class Entity {
 
     hide() {
         this.state.visible = false
-        
-        //Temp until moved to a system
-        this.children.forEach((entity) => {entity.hide()})
+        if(this.children){
+
+            //Temp until moved to a system
+            this.children.forEach((entity) => {entity.hide()})
+        }
     }
 
     hitTest(x, y) {

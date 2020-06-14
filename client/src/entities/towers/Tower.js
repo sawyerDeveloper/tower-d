@@ -1,10 +1,12 @@
 import RenderUtils from '../../utils/RenderUtils'
 import Entity from '../Entity'
 import Panel from '../ui/Panel'
+import Laser from '../global/Laser'
+import Vector from '../../types/Vector'
 
 const FIRE_TIMER = 60
 
-class Tower extends Entity{
+class Tower extends Entity {
 
     constructor(data) {
         super(data)
@@ -17,24 +19,40 @@ class Tower extends Entity{
 
         this.fireTimer = FIRE_TIMER
 
+        //  Make laser show for half a second
+        this.laser = new Laser({
+            body: { shape: 'line'},
+            style: { color: 'red', lineWidth: 2 },
+            state: { visible: false, time: 30, srcPosition: this.position, toPosition: {x: 0, y: 0, z: 0} },
+            position: { x: 0, y: 0, rotation: 0 }
+        })
+        this.children.push(this.laser)
+
     }
 
-    init(addEntity){
+    init(addEntity) {
         addEntity(this.panel)
+        addEntity(this.laser)
         this.panel.init(addEntity)
+
         this.state.hittable = true
     }
 
-    update(){
-        this.position.rotation = Math.atan2(this.currentTarget.entity.position.y - super.center().y, this.currentTarget.entity.position.x - super.center().x )
+    update() {
+        this.position.rotation = Math.atan2(this.currentTarget.entity.position.y - super.center().y, this.currentTarget.entity.position.x - super.center().x)
         this.fireTimer--
-        if(this.fireTimer <= 1){
+        if (this.fireTimer <= 1) {
             this.fireTimer = FIRE_TIMER
             this.fire()
         }
+
+        if (this.currentTarget) {
+            this.laser.state.toPosition = this.currentTarget.entity.position
+            this.laser.state.srcPosition = this.position
+        }
     }
 
-    menuInput(input){
+    menuInput(input) {
 
     }
 
@@ -51,6 +69,8 @@ class Tower extends Entity{
     }
 
     fire = () => {
+        this.laser.toPosition = this.currentTarget.position
+        this.laser.show()
         //Temp until moved to a system
         this.currentTarget.entity.state.health--
     }
@@ -63,7 +83,7 @@ class Tower extends Entity{
         this.closeMenu()
     }
 
-    hit(){
+    hit() {
         super.hit()
         this.openMenu()
     }
@@ -84,7 +104,7 @@ class Tower extends Entity{
     /**
      * @returns {boolean} If the point is over this object, return true, otherwise false
      */
-    hitTest(x, y){
+    hitTest(x, y) {
         return super.hitTest(x, y)
     }
 
@@ -92,7 +112,7 @@ class Tower extends Entity{
      * Renders the visual representation on each frame
      * @param {*} ctx Canvas context of the view
      */
-    render(ctx){
+    render(ctx) {
         super.render(ctx)
     }
 
