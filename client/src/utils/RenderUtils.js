@@ -41,8 +41,8 @@ class RenderUtils {
             case shapes.LINE:
                 ctx.strokeStyle = data.style.color
                 ctx.lineWidth = data.style.lineWidth
-                ctx.moveTo(data.position.x - 12, data.position.y - 12)
-                ctx.lineTo(data.toPosition.x + 10, data.toPosition.y + 10)
+                ctx.moveTo(data.state.srcPosition.x - 12, data.state.srcPosition.y - 12)
+                ctx.lineTo(data.state.toPosition.x + 10, data.state.toPosition.y + 10)
                 ctx.stroke()
                 break
             case shapes.TEXT:
