@@ -25,7 +25,7 @@ class TowerDefenseView extends Component {
   }
 
   /**
-   * Initialize the game engine when the dom is laoded.
+   * Initialize the game engine when the dom is loaded.
    */
   componentDidMount() {
     window.addEventListener('resize', this.updateDimensions)
@@ -57,6 +57,8 @@ class TowerDefenseView extends Component {
   renderUpdate = (data) => {
     //  Render the results of the game loop
     this.canvas.getContext('2d').clearRect(0, 0, this.state.width, this.state.height)
+
+    //  Pass the context to each entity to draw itself into.
     data.forEach(entity => {
         entity.render(this.canvas.getContext('2d'))
     })
@@ -81,8 +83,8 @@ class TowerDefenseView extends Component {
     return (
       <VBox width={this.state.width} height={this.state.height}>
         <HBox marginLeft={100} height={50}>
-          <button onClick={this.controller.play}>Play</button>
-          <button onClick={this.controller.pause}>Pause</button>
+          <button onPointerDown={this.controller.play}>Play</button>
+          <button onPointerDown={this.controller.pause}>Pause</button>
         </HBox>
         <canvas onPointerDown={this.controller.applyUserInput} 
                 onPointerUp={this.controller.removeUserInput} 

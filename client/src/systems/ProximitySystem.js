@@ -1,11 +1,12 @@
 import ProximityValueComponent from '../components/vector/ProximityValueComponent'
+
 class ProximitySystem {
+    
     constructor() {
         this.tempArray = []
         this.entitiesToAnalyze = []
         this.sourceEntities = []
         this.resultArray = []
-
     }
 
     init(entities) {
