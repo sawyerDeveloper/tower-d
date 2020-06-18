@@ -72,7 +72,7 @@ class Tower extends Entity {
         this.laser.toPosition = this.currentTarget.position
         this.laser.show()
         //Temp until moved to a system
-        this.currentTarget.entity.state.health--
+        //this.currentTarget.entity.state.health--
     }
 
     upgrade = () => {

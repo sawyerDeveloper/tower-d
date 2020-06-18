@@ -1,5 +1,6 @@
 import Entity from '../Entity'
 import Label from '../ui/Label'
+import ProximityValueComponent from '../../components/vector/ProximityValueComponent'
 
 class Enemy extends Entity{
     constructor(data) {
@@ -19,7 +20,6 @@ class Enemy extends Entity{
 
         this.children = data.children
 
-
         this.label = new Label(this.position.x , this.position.y + 15, 30, 30, 0, 'white', this.state.health, null, 18)
         this.children.push(this.label)
         if(this.path === 'random'){
@@ -35,10 +35,10 @@ class Enemy extends Entity{
     center() {
         return super.center()
     }
+
     update(stage){
 
         if(this.state.health > 0){
-
             
             this.position.y += (this.vector.y * this.vector.velocity)
             this.position.x += (this.vector.x * this.vector.velocity)
@@ -58,7 +58,6 @@ class Enemy extends Entity{
             
             this.label.position.x = this.position.x
             this.label.position.y = this.position.y + 15
-            //console.log(this.label.text)
             this.label.text = this.state.health
             
             this.updatePath()
@@ -97,6 +96,10 @@ class Enemy extends Entity{
                 this.vector.x = (Math.random() * 2) - 1
                 this.vector.y = (Math.random() * 2) - 1
             }
+        }else {
+            //console.log(this.position.x, this.position.y)
+            console.log(ProximityValueComponent(this.position, this.path[0]))
+            //console.log(this.path[0])
         }
     }
 
