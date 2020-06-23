@@ -1,7 +1,7 @@
 import Vector from "../../types/Vector"
 
 /**
- * Accepts two Entities and returns the distance between them.
+ * Accepts two Vectors and returns the distance between them.
  * @param {Vector} source 
  * @param {Vector} target 
  */

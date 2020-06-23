@@ -24,6 +24,8 @@ class Enemy extends Entity{
         this.children.push(this.label)
         if(this.path === 'random'){
             this.vectorTimer = (Math.random() * 60) + 10
+        }else {
+            this.pathFinder = {xGood:false, yGood: false, iterator: 0}
         }
     }
 
@@ -40,8 +42,8 @@ class Enemy extends Entity{
 
         if(this.state.health > 0){
             
-            this.position.y += (this.vector.y * this.vector.velocity)
-            this.position.x += (this.vector.x * this.vector.velocity)
+            this.position.y += this.vector.y
+            this.position.x += this.vector.x
             
             if (this.position.y > stage.height) {
                 this.position.y = -30
@@ -93,13 +95,34 @@ class Enemy extends Entity{
             if (this.vectorTimer <= 1) {
                 this.vectorTimer = (Math.random() * 60) + 10
                 this.vector.velocity = Math.random() * 3
-                this.vector.x = (Math.random() * 2) - 1
-                this.vector.y = (Math.random() * 2) - 1
+                this.vector.x = ((Math.random() * 2) - 1 ) * this.vector.velocity
+                this.vector.y = ((Math.random() * 2) - 1 ) * this.vector.velocity
             }
         }else {
-            //console.log(this.position.x, this.position.y)
-            console.log(ProximityValueComponent(this.position, this.path[0]))
+                if(Math.floor(this.position.x) == this.path[this.pathFinder.iterator].x){
+                    this.pathFinder.xGood = true
+                } else {
+
+                    this.pathFinder.xGood = false
+                }
+                if(Math.floor(this.position.y) == this.path[this.pathFinder.iterator].y){
+                    this.pathFinder.yGood = true
+                } else{
+                    this.pathFinder.yGood = false
+                }
+                //  X and Y are met - move on to the next point in the array
+                if(this.pathFinder.xGood && this.pathFinder.yGood){
+                    this.pathFinder.iterator++
+                }
+
+                console.log(this.angle(this.position.x, this.position.y, this.path[this.pathFinder.iterator].x, this.path[this.pathFinder.iterator].y))
+
+
+           
+            //console.log(ProximityValueComponent(this.position, this.path[0]))
             //console.log(this.path[0])
+            this.vector.x = .5
+            this.vector.y = 0
         }
     }
 

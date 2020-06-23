@@ -3,10 +3,10 @@ export const level1 = {
         [{
             body: { shape: 'rectangle', width: 20, height: 20 },
             style: { color: 'white', lineWidth: 2 },
-            vector: { velocity: .1, x: -5, y: 1 },
-            path: [{ x: 150, y: 130 } ],
+            vector: { velocity: 1, x: 0, y: 0 },
+            path: [{ x: 150, y: 130 }, { x: 150, y: 230 } ],
             state: { hit: false, visible: true, hittable: false, health: 10 },
-            position: { x: -100, y: 30, rotation: 0 },
+            position: { x: -100, y: 130, rotation: 0 },
             children: []
         },
         /*
