@@ -16,14 +16,18 @@ class RenderUtils {
 
     static drawImage = (ctx, img, position, body) => {
         ctx.save()
-        ctx.translate(position.x - 12, position.y - 12)
+        ctx.translate(position.x - (body.width / 2), position.y - (body.width / 2))
         ctx.rotate(position.rotation)
-        ctx.translate(-position.x - 12, -position.y - 12)
+        ctx.translate(-position.x - (body.width / 2), -position.y - (body.width / 2))
         ctx.drawImage(img, position.x, position.y, body.width, body.height)
         ctx.restore()
     }
 
     static drawShape = (ctx, data) => {
+        ctx.save()
+        ctx.translate(data.position.x - (data.body.width / 2), data.position.y - (data.body.width / 2))
+        ctx.rotate(data.position.rotation * Math.PI / 180)
+        ctx.translate(-data.position.x - (data.body.width / 2), -data.position.y - (data.body.width / 2))
         switch (data.body.shape) {
             case shapes.CIRCLE:
                 ctx.beginPath()
@@ -68,6 +72,7 @@ class RenderUtils {
             default:
                 console.error(this, 'drawShape', data.body.shape)
         }
+        ctx.restore()
     }
 }
 

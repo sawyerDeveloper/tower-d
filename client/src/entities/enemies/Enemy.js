@@ -105,7 +105,6 @@ class Enemy extends Entity {
             if (Math.floor(this.position.x) == this.path[this.pathFinder.iterator].x) {
                 this.pathFinder.xGood = true
             } else {
-
                 this.pathFinder.xGood = false
             }
             if (Math.floor(this.position.y) == this.path[this.pathFinder.iterator].y) {
@@ -113,26 +112,21 @@ class Enemy extends Entity {
             } else {
                 this.pathFinder.yGood = false
             }
+
             //  X and Y are met - move on to the next point in the array
             if (this.pathFinder.xGood && this.pathFinder.yGood) {
                 this.pathFinder.iterator++
-               
             }
 
             if(this.path.length == this.pathFinder.iterator){
                 this.hide()
             }else{
-                this.position.rotation = VectorAngleComponent(this.position, this.path[this.pathFinder.iterator])
+                this.position.rotation = VectorAngleComponent(this.position, this.path[this.pathFinder.iterator], this.position.rotation)
                 VectorDirectionComponent(this.position, this.vector)
-                
             }
-
         }
     }
 
-    render(ctx) {
-        super.render(ctx)
-    }
 }
 
 export default Enemy

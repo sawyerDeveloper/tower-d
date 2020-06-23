@@ -108,13 +108,6 @@ class Tower extends Entity {
         return super.hitTest(x, y)
     }
 
-    /**
-     * Renders the visual representation on each frame
-     * @param {*} ctx Canvas context of the view
-     */
-    render(ctx) {
-        super.render(ctx)
-    }
 
 }
 
