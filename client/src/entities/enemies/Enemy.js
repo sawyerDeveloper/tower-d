@@ -47,7 +47,7 @@ class Enemy extends Entity {
 
     update(stage) {
 
-        if (this.state.health > 0) {
+        if (this.state.health > 0 && this.state.visible) {
 
             this.position.y += this.vector.y
             this.position.x += this.vector.x
@@ -122,14 +122,20 @@ class Enemy extends Entity {
             //  X and Y are met - move on to the next point in the array
             if (this.pathFinder.xGood && this.pathFinder.yGood) {
                 this.pathFinder.iterator++
+               
             }
-            this.position.rotation = VectorAngleComponent(this.position, this.path[this.pathFinder.iterator])
-            console.log(VectorAngleComponent(this.position, this.path[this.pathFinder.iterator]))
+            if(this.path.length == this.pathFinder.iterator){
+                this.hide()
+            }else{
+                this.position.rotation = VectorAngleComponent(this.position, this.path[this.pathFinder.iterator])
+                console.log(VectorAngleComponent(this.position, this.path[this.pathFinder.iterator]))
+    
+                const factor = dir[this.position.rotation]
+    
+                this.vector.x = factor.x
+                this.vector.y = factor.y
+            }
 
-            const factor = dir[this.position.rotation]
-
-            this.vector.x = factor.x
-            this.vector.y = factor.y
         }
     }
 
