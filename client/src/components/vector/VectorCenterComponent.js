@@ -1,4 +1,3 @@
-import Box from "../../entities/ui/containers/Box"
 
 /**
  * Accepts two Vectors and returns the angle between them.
@@ -6,7 +5,7 @@ import Box from "../../entities/ui/containers/Box"
  * @param {Number} y 
  * @param {Number} width
  * @param {Number} height
- * @param {Box} result
+ * @param {Rectangle} result
  */
 const VectorCenterComponent = (x, y, width, height, result) => {
     result.x = x + (width / 2)

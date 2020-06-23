@@ -1,5 +1,6 @@
 export const shapes = {
     RECTANGLE: 'rectangle',
+    TRIANGLE: 'triangle',
     CIRCLE: 'circle',
     LINE: 'line',
     TEXT: 'text'
@@ -15,9 +16,9 @@ class RenderUtils {
 
     static drawImage = (ctx, img, position, body) => {
         ctx.save()
-        ctx.translate(position.x -12, position.y - 12)
+        ctx.translate(position.x - 12, position.y - 12)
         ctx.rotate(position.rotation)
-        ctx.translate(-position.x - 12, -position.y -12)
+        ctx.translate(-position.x - 12, -position.y - 12)
         ctx.drawImage(img, position.x, position.y, body.width, body.height)
         ctx.restore()
     }
@@ -38,6 +39,19 @@ class RenderUtils {
                 ctx.strokeRect(data.position.x, data.position.y, data.body.width, data.body.height)
                 ctx.stroke()
                 break
+            case shapes.TRIANGLE:
+                ctx.beginPath()
+                ctx.strokeStyle = data.style.color
+                ctx.lineWidth = data.style.lineWidth
+                ctx.beginPath()
+                ctx.moveTo(50, 50)
+                ctx.lineTo(100, 75)
+                ctx.lineTo(100, 25)
+                ctx.closePath()
+                ctx.stroke()
+                ctx.strokeRect(data.position.x, data.position.y, data.body.width, data.body.height)
+                ctx.stroke()
+                break
             case shapes.LINE:
                 ctx.strokeStyle = data.style.color
                 ctx.lineWidth = data.style.lineWidth
@@ -46,7 +60,7 @@ class RenderUtils {
                 ctx.stroke()
                 break
             case shapes.TEXT:
-                ctx.font = data.size+"px "+data.font
+                ctx.font = data.size + "px " + data.font
                 ctx.fillStyle = data.color
                 ctx.textAlign = data.textAlign
                 ctx.fillText(data.text, data.position.x, data.position.y)

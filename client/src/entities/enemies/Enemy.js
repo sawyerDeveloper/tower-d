@@ -1,8 +1,15 @@
 import Entity from '../Entity'
 import Label from '../ui/Label'
 import ProximityValueComponent from '../../components/vector/ProximityValueComponent'
+import VectorAngleComponent from '../../components/vector/VectorAngleComponent'
 
-class Enemy extends Entity{
+const dir = {
+    0: {x:.5, y:0},
+    90: {x:0, y:.5},
+    180: {x:-.5, y:0},
+    270: {x:0, y:-.5}
+}
+class Enemy extends Entity {
     constructor(data) {
         super(data)
         /** {shape: 'rectangle', width: 100, height: 40} */
@@ -20,16 +27,16 @@ class Enemy extends Entity{
 
         this.children = data.children
 
-        this.label = new Label(this.position.x , this.position.y + 15, 30, 30, 0, 'white', this.state.health, null, 18)
+        this.label = new Label(this.position.x, this.position.y + 15, 30, 30, 0, 'white', this.state.health, null, 18)
         this.children.push(this.label)
-        if(this.path === 'random'){
+        if (this.path === 'random') {
             this.vectorTimer = (Math.random() * 60) + 10
-        }else {
-            this.pathFinder = {xGood:false, yGood: false, iterator: 0}
+        } else {
+            this.pathFinder = { xGood: false, yGood: false, iterator: 0 }
         }
     }
 
-    init(addEntity){
+    init(addEntity) {
         addEntity(this.label)
         this.label.init(addEntity)
     }
@@ -38,38 +45,40 @@ class Enemy extends Entity{
         return super.center()
     }
 
-    update(stage){
+    update(stage) {
 
-        if(this.state.health > 0){
-            
+        if (this.state.health > 0) {
+
             this.position.y += this.vector.y
             this.position.x += this.vector.x
-            
-            if (this.position.y > stage.height) {
-                this.position.y = -30
+            if(this.path == 'random'){
+
+                if (this.position.y > stage.height) {
+                    this.position.y = -30
+                }
+                if (this.position.y < -30) {
+                    this.position.y = stage.height
+                }
+                if (this.position.x > stage.width) {
+                    this.position.x = -30
+                }
+                if (this.position.x < -30) {
+                    this.position.x = stage.width
+                }
             }
-            if (this.position.y < -30) {
-                this.position.y = stage.height
-            }
-            if (this.position.x > stage.width) {
-                this.position.x = -30
-            }
-            if (this.position.x < -30) {
-                this.position.x = stage.width
-            }
-            
+
             this.label.position.x = this.position.x
             this.label.position.y = this.position.y + 15
             this.label.text = this.state.health
-            
+
             this.updatePath()
-        }else{
+        } else {
             this.hide()
         }
-        
+
     }
 
-    damage(data){
+    damage(data) {
         this.state.health -= 1
     }
 
@@ -82,51 +91,49 @@ class Enemy extends Entity{
     /**
      * @returns {boolean} If the point is over this object, return true, otherwise false
      */
-    hitTest(x, y){
+    hitTest(x, y) {
         return super.hitTest(x, y)
     }
 
     /** 
      * Dynamically change the vectors based on the path configuration 
      */
-    updatePath(){
+    updatePath() {
         if (this.path === 'random') {
             this.vectorTimer--
             if (this.vectorTimer <= 1) {
                 this.vectorTimer = (Math.random() * 60) + 10
                 this.vector.velocity = Math.random() * 3
-                this.vector.x = ((Math.random() * 2) - 1 ) * this.vector.velocity
-                this.vector.y = ((Math.random() * 2) - 1 ) * this.vector.velocity
+                this.vector.x = ((Math.random() * 2) - 1) * this.vector.velocity
+                this.vector.y = ((Math.random() * 2) - 1) * this.vector.velocity
             }
-        }else {
-                if(Math.floor(this.position.x) == this.path[this.pathFinder.iterator].x){
-                    this.pathFinder.xGood = true
-                } else {
+        } else {
+            if (Math.floor(this.position.x) == this.path[this.pathFinder.iterator].x) {
+                this.pathFinder.xGood = true
+            } else {
 
-                    this.pathFinder.xGood = false
-                }
-                if(Math.floor(this.position.y) == this.path[this.pathFinder.iterator].y){
-                    this.pathFinder.yGood = true
-                } else{
-                    this.pathFinder.yGood = false
-                }
-                //  X and Y are met - move on to the next point in the array
-                if(this.pathFinder.xGood && this.pathFinder.yGood){
-                    this.pathFinder.iterator++
-                }
+                this.pathFinder.xGood = false
+            }
+            if (Math.floor(this.position.y) == this.path[this.pathFinder.iterator].y) {
+                this.pathFinder.yGood = true
+            } else {
+                this.pathFinder.yGood = false
+            }
+            //  X and Y are met - move on to the next point in the array
+            if (this.pathFinder.xGood && this.pathFinder.yGood) {
+                this.pathFinder.iterator++
+            }
+            this.position.rotation = VectorAngleComponent(this.position, this.path[this.pathFinder.iterator])
+            console.log(VectorAngleComponent(this.position, this.path[this.pathFinder.iterator]))
 
-                console.log(this.angle(this.position.x, this.position.y, this.path[this.pathFinder.iterator].x, this.path[this.pathFinder.iterator].y))
+            const factor = dir[this.position.rotation]
 
-
-           
-            //console.log(ProximityValueComponent(this.position, this.path[0]))
-            //console.log(this.path[0])
-            this.vector.x = .5
-            this.vector.y = 0
+            this.vector.x = factor.x
+            this.vector.y = factor.y
         }
     }
 
-    render(ctx){
+    render(ctx) {
         super.render(ctx)
     }
 }
