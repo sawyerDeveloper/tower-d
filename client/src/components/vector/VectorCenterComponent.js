@@ -1,4 +1,3 @@
-
 /**
  * Accepts two Vectors and returns the angle between them.
  * @param {Number} x 

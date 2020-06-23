@@ -1,7 +1,7 @@
 export const level1 = {
     waves: [
         [{
-            body: { shape: 'triangle', width: 20, height: 20 },
+            body: { shape: 'rectangle', width: 20, height: 20 },
             style: { color: 'white', lineWidth: 2 },
             vector: { velocity: 1, x: 0, y: 0 },
             path: [{ x: 150, y: 130 }, { x: 150, y: 230 }, { x: 250, y: 230 }, { x: 250, y: 430 }, { x: 400, y: 430 }, { x: 400, y: 450 },{ x: 600, y: 450 } ],

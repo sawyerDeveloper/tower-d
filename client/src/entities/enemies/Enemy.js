@@ -2,13 +2,7 @@ import Entity from '../Entity'
 import Label from '../ui/Label'
 import ProximityValueComponent from '../../components/vector/ProximityValueComponent'
 import VectorAngleComponent from '../../components/vector/VectorAngleComponent'
-
-const dir = {
-    0: {x:.5, y:0},
-    90: {x:0, y:.5},
-    180: {x:-.5, y:0},
-    270: {x:0, y:-.5}
-}
+import VectorDirectionComponent from '../../components/vector/VectorDirectionComponent'
 class Enemy extends Entity {
     constructor(data) {
         super(data)
@@ -124,16 +118,13 @@ class Enemy extends Entity {
                 this.pathFinder.iterator++
                
             }
+
             if(this.path.length == this.pathFinder.iterator){
                 this.hide()
             }else{
                 this.position.rotation = VectorAngleComponent(this.position, this.path[this.pathFinder.iterator])
-                console.log(VectorAngleComponent(this.position, this.path[this.pathFinder.iterator]))
-    
-                const factor = dir[this.position.rotation]
-    
-                this.vector.x = factor.x
-                this.vector.y = factor.y
+                VectorDirectionComponent(this.position, this.vector)
+                
             }
 
         }
