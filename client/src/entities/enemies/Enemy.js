@@ -21,7 +21,7 @@ class Enemy extends Entity {
 
         this.children = data.children
 
-        this.label = new Label(this.position.x, this.position.y + 15, 30, 30, 0, 'white', this.state.health, null, 18)
+        this.label = new Label(this.position.x + 10, this.position.y + 15, 30, 30, 0, 'white', this.state.health, null, 18)
         this.children.push(this.label)
         if (this.path === 'random') {
             this.vectorTimer = (Math.random() * 60) + 10
@@ -61,7 +61,7 @@ class Enemy extends Entity {
                 }
             }
 
-            this.label.position.x = this.position.x
+            this.label.position.x = this.position.x + 10
             this.label.position.y = this.position.y + 15
             this.label.text = this.state.health
 

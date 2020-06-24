@@ -25,9 +25,9 @@ class RenderUtils {
 
     static drawShape = (ctx, data) => {
         ctx.save()
-        ctx.translate(data.position.x - (data.body.width / 2), data.position.y - (data.body.width / 2))
+        ctx.translate(data.position.x + (data.body.width / 2), data.position.y + (data.body.width / 2))
         ctx.rotate(data.position.rotation * Math.PI / 180)
-        ctx.translate(-data.position.x - (data.body.width / 2), -data.position.y - (data.body.width / 2))
+        ctx.translate(-(data.position.x + (data.body.width / 2)), -(data.position.y + (data.body.width / 2)))
         switch (data.body.shape) {
             case shapes.CIRCLE:
                 ctx.beginPath()

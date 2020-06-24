@@ -101,14 +101,6 @@ class Tower extends Entity {
         this.state.hittable = false
     }
 
-    /**
-     * @returns {boolean} If the point is over this object, return true, otherwise false
-     */
-    hitTest(x, y) {
-        return super.hitTest(x, y)
-    }
-
-
 }
 
 export default Tower
