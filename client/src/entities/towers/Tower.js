@@ -39,6 +39,8 @@ class Tower extends Entity {
     }
 
     update() {
+
+        if (this.currentTarget.entity) {
         this.position.rotation = Math.atan2(this.currentTarget.entity.position.y - super.center().y, this.currentTarget.entity.position.x - super.center().x)
         this.fireTimer--
         if (this.fireTimer <= 1) {
@@ -46,7 +48,6 @@ class Tower extends Entity {
             this.fire()
         }
 
-        if (this.currentTarget) {
             this.laser.state.toPosition = this.currentTarget.entity.position
             this.laser.state.srcPosition = this.position
         }
@@ -72,7 +73,7 @@ class Tower extends Entity {
         this.laser.toPosition = this.currentTarget.position
         this.laser.show()
         //Temp until moved to a system
-        //this.currentTarget.entity.state.health--
+        this.currentTarget.entity.state.health--
     }
 
     upgrade = () => {
