@@ -22,6 +22,7 @@ class ProximitySystem {
     }
 
     update() {
+        
         this.sourceEntities.forEach((source) => {
 
             this.entitiesToAnalyze.forEach((entity) => {
@@ -44,7 +45,6 @@ class ProximitySystem {
             }).sort((entity1, entity2) => {
                 return entity1.distance - entity2.distance
             })
-            console.log(this.resultArray.length)
             if (this.resultArray.length > 0) {
                 source.currentTarget.entity = this.resultArray[0]
                 source.currentTarget.entity.style.color = 'white'

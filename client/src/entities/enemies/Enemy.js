@@ -3,6 +3,7 @@ import Label from '../ui/Label'
 import ProximityValueComponent from '../../components/vector/ProximityValueComponent'
 import VectorAngleComponent from '../../components/vector/VectorAngleComponent'
 import VectorDirectionComponent from '../../components/vector/VectorDirectionComponent'
+
 class Enemy extends Entity {
     constructor(data) {
         super(data)
