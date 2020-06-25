@@ -12,4 +12,4 @@ const VectorAngleComponent = (origin, target, result) => {
     if (result < 0) result += 360  
     return result
 }
- export default VectorAngleComponent
+export default VectorAngleComponent

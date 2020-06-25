@@ -5,8 +5,8 @@
  * @param {Vector} vector
  */
 const VectorDirectionComponent = (position, vector) => {
-    vector.x = dir[position.rotation].x
-    vector.y = dir[position.rotation].y
+    vector.x = dir[Math.ceil(position.rotation)].x
+    vector.y = dir[Math.ceil(position.rotation)].y
 }
 
 const dir = {

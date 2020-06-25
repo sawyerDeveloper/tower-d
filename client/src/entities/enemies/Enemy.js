@@ -18,11 +18,11 @@ class Enemy extends Entity {
         this.position = data.position
         /** 'random' or [[1,0],[1,1],[2,1]] */
         this.path = data.path
-
         this.children = data.children
 
         this.label = new Label(this.position.x + 10, this.position.y + 15, 30, 30, 0, 'white', this.state.health, null, 18)
         this.children.push(this.label)
+
         if (this.path === 'random') {
             this.vectorTimer = (Math.random() * 60) + 10
         } else {
@@ -41,37 +41,40 @@ class Enemy extends Entity {
 
     update(stage) {
 
-        if (this.state.health > 0 && this.state.visible) {
+            
+            if (this.state.health > 0 && this.state.visible) {
+                
 
-            this.position.y += this.vector.y
-            this.position.x += this.vector.x
-            if(this.path == 'random'){
-
-                if (this.position.y > stage.height) {
-                    this.position.y = -30
+                if(this.path == 'random'){
+                    
+                    if (this.position.y > stage.height) {
+                        this.position.y = -30
+                    }
+                    if (this.position.y < -30) {
+                        this.position.y = stage.height
+                    }
+                    if (this.position.x > stage.width) {
+                        this.position.x = -30
+                    }
+                    if (this.position.x < -30) {
+                        this.position.x = stage.width
+                    }
                 }
-                if (this.position.y < -30) {
-                    this.position.y = stage.height
-                }
-                if (this.position.x > stage.width) {
-                    this.position.x = -30
-                }
-                if (this.position.x < -30) {
-                    this.position.x = stage.width
-                }
+                
+                this.label.position.x = this.position.x + 10
+                this.label.position.y = this.position.y + 15
+                this.label.text = this.state.health
+                
+                this.updatePath()
+                this.position.y += this.vector.y
+                this.position.x += this.vector.x
+            } else {
+                this.hide()
             }
-
-            this.label.position.x = this.position.x + 10
-            this.label.position.y = this.position.y + 15
-            this.label.text = this.state.health
-
-            this.updatePath()
-        } else {
-            this.hide()
-        }
-
+            
+        
     }
-
+        
     damage(data) {
         this.state.health -= 1
     }
@@ -117,7 +120,6 @@ class Enemy extends Entity {
             if (this.pathFinder.xGood && this.pathFinder.yGood) {
                 this.pathFinder.iterator++
             }
-
             if(this.path.length == this.pathFinder.iterator){
                 this.hide()
             }else{
