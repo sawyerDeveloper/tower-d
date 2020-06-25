@@ -48,7 +48,7 @@ class TowerDefenseController {
                 style: { type: 'image', src: 'bb.png' },
                 state: { hit: false, visible: true, hittable: false },
                 position: { x: 300, y: 350, rotation: 0 },
-                currentTarget: { entity: this.model.enemies[0] },
+                currentTarget: { entity: null },
                 children: [],
                 ui: true
             }

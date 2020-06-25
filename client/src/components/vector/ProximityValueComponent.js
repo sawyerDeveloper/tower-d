@@ -1,11 +1,13 @@
+import Vector from "../../types/Vector"
+
 /**
- * Accepts two Entities and returns the distance between them.
- * @param {Entity} source 
- * @param {Entity} target 
+ * Accepts two Vectors and returns the distance between them.
+ * @param {Vector} source 
+ * @param {Vector} target 
  */
 const ProximityValueComponent = (source, target) => {
-    return Math.sqrt((source.center().x - target.center().x) * (source.center().x - target.center().x)
-                    + (source.center().y - target.center().y) * (source.center().y - target.center().y))
+    return Math.sqrt((source.x - target.x) * (source.x - target.x)
+                    + (source.y - target.y) * (source.y - target.y))
 }
 
 export default ProximityValueComponent

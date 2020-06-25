@@ -39,6 +39,8 @@ class Tower extends Entity {
     }
 
     update() {
+
+        if (this.currentTarget.entity) {
         this.position.rotation = Math.atan2(this.currentTarget.entity.position.y - super.center().y, this.currentTarget.entity.position.x - super.center().x)
         this.fireTimer--
         if (this.fireTimer <= 1) {
@@ -46,7 +48,6 @@ class Tower extends Entity {
             this.fire()
         }
 
-        if (this.currentTarget) {
             this.laser.state.toPosition = this.currentTarget.entity.position
             this.laser.state.srcPosition = this.position
         }
@@ -99,21 +100,6 @@ class Tower extends Entity {
         this.panel.show()
         this.state.open = true
         this.state.hittable = false
-    }
-
-    /**
-     * @returns {boolean} If the point is over this object, return true, otherwise false
-     */
-    hitTest(x, y) {
-        return super.hitTest(x, y)
-    }
-
-    /**
-     * Renders the visual representation on each frame
-     * @param {*} ctx Canvas context of the view
-     */
-    render(ctx) {
-        super.render(ctx)
     }
 
 }
