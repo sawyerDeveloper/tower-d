@@ -18,13 +18,6 @@ class Label extends UI{
         this.data.text = this.text
     }
 
-    hitTest(x, y){
-        return super.hitTest(x, y)
-    }
-
-    render(ctx){
-        super.render(ctx)
-    }
 }
 
 export default Label

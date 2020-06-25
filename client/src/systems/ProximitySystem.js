@@ -39,7 +39,7 @@ class ProximitySystem {
             })
 
             this.resultArray = this.tempArray.map((entity) => {
-                return { ...entity, distance: ProximityValueComponent(source, entity) }
+                return { ...entity, distance: ProximityValueComponent(source.position, entity.position) }
             }).sort((entity1, entity2) => {
                 return entity1.distance - entity2.distance
             })
