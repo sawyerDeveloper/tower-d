@@ -6,7 +6,6 @@ import Tower from './entities/towers/Tower'
 
 import ProximitySystem from '../src/systems/ProximitySystem'
 
-
 /**
  * Acts as the Controller in an MVC for the game wrapper.
  * This controls the game loop and coordinating between the view and model.
@@ -44,7 +43,7 @@ class TowerDefenseController {
         //  Temp for one tower.
         this.model.data.towers.push(
             {
-                body: { shape: 'circle', width: 25, height: 25 },
+                body: { shape: 'circle', width: 30, height: 30 },
                 style: { type: 'image', src: 'bb.png' },
                 state: { hit: false, visible: true, hittable: false },
                 position: { x: 300, y: 350, rotation: 0 },
@@ -65,7 +64,7 @@ class TowerDefenseController {
         //  Go through entities and pull out any children and add them to the list.  
         //  TODO deal with this being fully recursive
         this.model.entities.forEach((entity) => {
-            if(entity.children.length > 0){
+            if (entity.children.length > 0) {
                 entity.init((entity) => {
                     this.model.entities.push(entity)
                 })
@@ -100,25 +99,50 @@ class TowerDefenseController {
 
                 //  See if stuff got hit, including a human finger against a tower
                 if (this.model.userInput) {
+                    if (this.model.userInput.active) {
+                        if (entity.ui
+                            && entity.state.visible
+                            && entity.state.hittable
+                            && !entity.state.hit
+                            && entity.hitTest(this.model.userInput.x, this.model.userInput.y)) {
 
-                    if (entity.ui 
-                        && entity.state.visible 
-                        && entity.state.hittable 
-                        && !entity.state.hit 
-                        && entity.hitTest(this.model.userInput.x, this.model.userInput.y)) {
+                            entity.hit()
+                        }
+                    } else {
 
-                        entity.hit()
+                        let towerData = {
+                            body: { shape: 'circle', width: 30, height: 30 },
+                            style: { type: 'image', src: 'bb.png' },
+                            state: { hit: false, visible: true, hittable: false },
+                            position: { x: this.model.userInput.x, y: this.model.userInput.y, rotation: 0 },
+                            currentTarget: { entity: null },
+                            children: [],
+                            ui: true
+                        }
+                        const tower = new Tower(towerData)
+
+                        this.model.entities.push(
+                            tower
+                        )
+
+                        tower.init((entity) => {
+                            this.model.entities.push(entity)
+                        })
+                        this.proximitySystem.addSourceEntity(tower)
+                        this.model.userInput = null
                     }
                 }
-                
+
             })
 
             //  Render the results
             this.view.renderUpdate(this.model.entities)
+
         }
 
         requestAnimationFrame(this.update)
         this.view.endPerf()
+
     }
 
     /**
@@ -126,7 +150,15 @@ class TowerDefenseController {
      * @param {Event} event
      */
     applyUserInput = (event) => {
-        this.model.userInput = { x: event.pageX, y: event.pageY }
+        this.model.userInput = { x: event.pageX, y: event.pageY, active: true }
+    }
+
+    /**
+     * Accepts an event from the view everytime click or touch ends and converts it to x/y.
+     * @param {Event} event
+     */
+    applyUserInputRelease = (event) => {
+        this.model.userInput = { x: event.pageX, y: event.pageY, active: false }
     }
 
     /**
