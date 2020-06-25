@@ -55,6 +55,7 @@ class TowerDefenseView extends Component {
    * @param {object} data Updated data regarding score, logic, entity placement
    */
   renderUpdate = (data) => {
+    const p1 = performance.now()
     //  Render the results of the game loop
     this.canvas.getContext('2d').clearRect(0, 0, this.state.width, this.state.height)
 
@@ -62,6 +63,8 @@ class TowerDefenseView extends Component {
     data.forEach(entity => {
         entity.render(this.canvas.getContext('2d'))
     })
+    const p2 = performance.now()
+        //console.log('perf ', data.length)
   }
 
   /**
@@ -87,7 +90,7 @@ class TowerDefenseView extends Component {
           <button onPointerDown={this.controller.pause}>Pause</button>
         </HBox>
         <canvas onPointerDown={this.controller.applyUserInput} 
-                onPointerUp={this.controller.removeUserInput} 
+                onPointerUp={this.controller.applyUserInputRelease} 
                 onPointerOut={this.controller.removeUserInput} 
                 width={this.state.width} 
                 height={this.state.height} 
