@@ -91,6 +91,7 @@ class TowerDefenseView extends Component {
         </HBox>
         <canvas onPointerDown={this.controller.applyUserInput} 
                 onPointerUp={this.controller.applyUserInputRelease} 
+                onPointerLeave={this.controller.applyUserInputRelease}
                 onPointerOut={this.controller.removeUserInput} 
                 width={this.state.width} 
                 height={this.state.height} 
