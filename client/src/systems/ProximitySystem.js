@@ -37,7 +37,6 @@ class ProximitySystem {
                 ) {
                     this.tempArray.push(entity)
                 }
-                entity.style.color = 'red'
             })
 
             this.resultArray = this.tempArray.map((entity) => {
@@ -47,7 +46,6 @@ class ProximitySystem {
             })
             if (this.resultArray.length > 0) {
                 source.currentTarget.entity = this.resultArray[0]
-                source.currentTarget.entity.style.color = 'white'
             }else{
                 source.currentTarget.entity = null
             }

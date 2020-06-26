@@ -5,6 +5,7 @@ import { level1 } from './constants/levels/level1'
 import Tower from './entities/towers/Tower'
 
 import ProximitySystem from '../src/systems/ProximitySystem'
+import Image from './entities/ui/Image'
 
 /**
  * Acts as the Controller in an MVC for the game wrapper.
@@ -30,6 +31,8 @@ class TowerDefenseController {
      */
     init = () => {
 
+
+
         // Get level data into memory
         this.model.data.enemies = level1.waves[0].map(enemyData => {
             return enemyData
@@ -40,26 +43,19 @@ class TowerDefenseController {
             return new Enemy(enemyData)
         })
 
-        //  Temp for one tower.
-        this.model.data.towers.push(
-            {
-                body: { shape: 'circle', width: 30, height: 30 },
-                style: { type: 'image', src: 'bb.png' },
-                state: { hit: false, visible: true, hittable: false },
-                position: { x: 300, y: 350, rotation: 0 },
-                currentTarget: { entity: null },
-                children: [],
-                ui: true
-            }
-        )
-
-        // Get tower data into memory
-        this.model.towers = this.model.data.towers.map(towerData => {
-            return new Tower(towerData)
-        })
-
         //  Combine both lists of entities into 1 for allowing a better loop :)
         this.model.entities = this.model.enemies.concat(this.model.towers)
+
+
+        let bg = new Image({
+            body: { shape: 'circle', width: 600, height: 600 },
+            style: { type: 'image', src: 'bg.jpg' },
+            state: { hit: false, visible: true, hittable: false },
+            position: { x: 600, y: 600, rotation: 0 },
+            children: []
+        })
+
+        this.model.entities.push(bg)
 
         //  Go through entities and pull out any children and add them to the list.  
         //  TODO deal with this being fully recursive
@@ -73,10 +69,10 @@ class TowerDefenseController {
 
         this.proximitySystem.init(this.model.enemies)
 
-        this.proximitySystem.addSourceEntity(this.model.towers[0])
-
         //temp for testing
         this.model.loop = true
+
+        this.model.entities.reverse()
 
         //  Start the loop by asking for this.update to be called every frame.
         requestAnimationFrame(this.update)

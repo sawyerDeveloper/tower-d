@@ -29,7 +29,7 @@ class Entity {
         /** An entity most likely */
         this.currentTarget = data.currentTarget
         if (this.data.style.type === 'image') {
-            this.loaded = false
+
             this.img = RenderUtils.loadImage(this.data.style.src)
         }
 
