@@ -1,4 +1,7 @@
 export const level1 = {
+    config: {
+        background: "bg.jpg"
+    },
     waves: [
         [{
             body: { shape: 'rectangle', width: 30, height: 20 },
