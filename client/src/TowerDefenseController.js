@@ -59,8 +59,11 @@ class TowerDefenseController {
             children: []
         })
 
+        this.towerMenu.init((entity) => {
+            this.model.entities.push(entity)
+        })
         this.model.entities.push(this.towerMenu)
-        this.model.entities.push(bg)
+        //this.model.entities.push(bg)
         
         //  Go through entities and pull out any children and add them to the list.  
         //  TODO deal with this being fully recursive
@@ -127,8 +130,8 @@ class TowerDefenseController {
     }
 
     addTower(){
-        this.towerMenu.position.x = this.model.userInput.x
-        this.towerMenu.position.y = this.model.userInput.y
+        this.towerMenu.position.x = this.model.userInput.x - 5
+        this.towerMenu.position.y = this.model.userInput.y - 20
         this.towerMenu.show()
         /*
         let towerData = {

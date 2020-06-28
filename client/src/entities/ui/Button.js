@@ -5,12 +5,15 @@ class Button extends Box{
     constructor(x, y, width, height, color = 'white', rotation = 0, labelText, visible, callback){
         super(x, y, width, height, color, rotation, [], visible)
         this.callback = callback
-        const label = new Label(x + 5, y + 10, width, height, 0, 'white', labelText, 'sans-serif', 12, 'center')
-        this.children.push(label)
+        this.label = new Label(x + 5, y + 10, width, height, 0, 'white', labelText, 'sans-serif', 12, 'center', [], )
+        this.children.push(this.label)
     }
 
     update(){
         super.update()
+        this.label.position.x = this.position.x + 5
+        this.label.position.y = this.position.y + 10
+
     }
 
     show(){
