@@ -6,6 +6,7 @@ import Tower from './entities/towers/Tower'
 
 import ProximitySystem from '../src/systems/ProximitySystem'
 import Image from './entities/ui/Image'
+import Base from './entities/towers/Base'
 
 /**
  * Acts as the Controller in an MVC for the game wrapper.
@@ -31,8 +32,6 @@ class TowerDefenseController {
      */
     init = () => {
 
-
-
         // Get level data into memory
         this.model.data.enemies = level1.waves[0].map(enemyData => {
             return enemyData
@@ -45,7 +44,15 @@ class TowerDefenseController {
 
         //  Combine both lists of entities into 1 for allowing a better loop :)
         this.model.entities = this.model.enemies.concat(this.model.towers)
+        let base = new Base({
+            body: { shape: 'circle', width: 40, height: 40 },
+            style: { type: 'image', src: 'base.png' },
+            state: { hit: false, visible: true, hittable: false, health: 20 },
+            position: { x: 600, y: 475, rotation: 0 },
+            children: []
+        })
 
+        this.model.entities.push(base)
 
         let bg = new Image({
             body: { shape: 'circle', width: 600, height: 600 },
@@ -56,6 +63,8 @@ class TowerDefenseController {
         })
 
         this.model.entities.push(bg)
+
+
 
         //  Go through entities and pull out any children and add them to the list.  
         //  TODO deal with this being fully recursive
