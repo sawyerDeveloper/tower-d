@@ -6,19 +6,19 @@ class Panel extends Box{
     constructor(x, y, width, height, color = 'white', rotation = 0, children = [], labelText, visible = true, callback){
         super(x, y, width, height, color, rotation, children, visible)
         this.callback = callback
-        this.button = new Button(this.position.x + 5, this.position.y + 5, 10, 10, 'white', 0, "X", false, () => {this.hide()})
+        this.closeBtn = new Button(this.position.x + 5, this.position.y + 5, 10, 10, 'white', 0, "X", false, () => {this.hide()})
         const label = new Label(this.position.x + 50, this.position.y + 10, 100, 100, 0, 'white', labelText, 'sans-serif', 12, 'center')
-        this.children.push(label, this.button)
+        this.children.push(label, this.closeBtn)
     }
 
     init(addEntity){
         //  TODO Adds double the entities
-        addEntity(this.button)
+        addEntity(this.closeBtn)
     }
 
     show(){
         super.show()
-        this.button.show()
+        this.closeBtn.show()
     }
 
     update(){
@@ -27,7 +27,7 @@ class Panel extends Box{
 
     hide(){
         super.hide()
-        this.button.hide()
+        this.closeBtn.hide()
     }
 
     hitTest(x, y){

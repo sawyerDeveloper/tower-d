@@ -3,7 +3,7 @@ class TowerDefenseModel {
     constructor(data = null) {
 
         // Boolean if the game loop is running
-        this.loop = false
+        this.loop = true
 
         // The X and Y of a user's pointer/finger and active bool
         this.userInput = null

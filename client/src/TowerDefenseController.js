@@ -6,6 +6,7 @@ import Tower from './entities/towers/Tower'
 
 import ProximitySystem from '../src/systems/ProximitySystem'
 import Image from './entities/ui/Image'
+import Panel from './entities/ui/Panel'
 
 /**
  * Acts as the Controller in an MVC for the game wrapper.
@@ -23,6 +24,9 @@ class TowerDefenseController {
 
         //Temp until to move to GameEngine class
         this.proximitySystem = new ProximitySystem()
+
+        this.towerMenu = new Panel(0, 0, 100, 100, 'white', 0, [], "test", false, this.placeTower)
+
     }
 
     /**
@@ -46,7 +50,7 @@ class TowerDefenseController {
         //  Combine both lists of entities into 1 for allowing a better loop :)
         this.model.entities = this.model.enemies.concat(this.model.towers)
 
-
+        //this.model.entities.push(this.towerMenu)
         let bg = new Image({
             body: { shape: 'circle', width: 600, height: 600 },
             style: { type: 'image', src: 'bg.jpg' },
@@ -55,8 +59,9 @@ class TowerDefenseController {
             children: []
         })
 
+        this.model.entities.push(this.towerMenu)
         this.model.entities.push(bg)
-
+        
         //  Go through entities and pull out any children and add them to the list.  
         //  TODO deal with this being fully recursive
         this.model.entities.forEach((entity) => {
@@ -69,9 +74,7 @@ class TowerDefenseController {
 
         this.proximitySystem.init(this.model.enemies)
 
-        //temp for testing
-        this.model.loop = true
-
+        //  Temp zOrder fix
         this.model.entities.reverse()
 
         //  Start the loop by asking for this.update to be called every frame.
@@ -106,26 +109,8 @@ class TowerDefenseController {
                         }
                     } else {
 
-                        let towerData = {
-                            body: { shape: 'circle', width: 30, height: 30 },
-                            style: { type: 'image', src: 'bb.png' },
-                            state: { hit: false, visible: true, hittable: false },
-                            position: { x: this.model.userInput.x, y: this.model.userInput.y, rotation: 0 },
-                            currentTarget: { entity: null },
-                            children: [],
-                            ui: true
-                        }
-                        const tower = new Tower(towerData)
-
-                        this.model.entities.push(
-                            tower
-                        )
-
-                        tower.init((entity) => {
-                            this.model.entities.push(entity)
-                        })
-                        this.proximitySystem.addSourceEntity(tower)
-                        this.model.userInput = null
+                        this.addTower()
+                        
                     }
                 }
 
@@ -139,6 +124,34 @@ class TowerDefenseController {
         requestAnimationFrame(this.update)
         this.view.endPerf()
 
+    }
+
+    addTower(){
+        this.towerMenu.position.x = this.model.userInput.x
+        this.towerMenu.position.y = this.model.userInput.y
+        this.towerMenu.show()
+        /*
+        let towerData = {
+            body: { shape: 'circle', width: 30, height: 30 },
+            style: { type: 'image', src: 'bb.png' },
+            state: { hit: false, visible: true, hittable: false },
+            position: { x: this.model.userInput.x, y: this.model.userInput.y, rotation: 0 },
+            currentTarget: { entity: null },
+            children: [],
+            ui: true
+        }
+        const tower = new Tower(towerData)
+
+        this.model.entities.push(
+            tower
+        )
+
+        tower.init((entity) => {
+            this.model.entities.push(entity)
+        })
+        this.proximitySystem.addSourceEntity(tower)
+        this.model.userInput = null
+        */
     }
 
     /**
