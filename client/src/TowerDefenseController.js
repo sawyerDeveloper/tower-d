@@ -25,7 +25,7 @@ class TowerDefenseController {
         //Temp until to move to GameEngine class
         this.proximitySystem = new ProximitySystem()
 
-        this.towerMenu = new Panel(0, 0, 100, 100, 'white', 0, [], "test", false, this.placeTower)
+        this.towerMenu = new Panel(0, 0, 100, 100, 'white', 0, [], "test", false, () => {this.placeTower()})
 
     }
 
@@ -63,7 +63,7 @@ class TowerDefenseController {
             this.model.entities.push(entity)
         })
         this.model.entities.push(this.towerMenu)
-        //this.model.entities.push(bg)
+        this.model.entities.push(bg)
         
         //  Go through entities and pull out any children and add them to the list.  
         //  TODO deal with this being fully recursive
@@ -107,16 +107,13 @@ class TowerDefenseController {
                             && entity.state.hittable
                             && !entity.state.hit
                             && entity.hitTest(this.model.userInput.x, this.model.userInput.y)) {
-
+                                console.log(entity, 'hit')
                             entity.hit()
                         }
                     } else {
-
                         this.addTower()
-                        
                     }
                 }
-
             })
 
             //  Render the results
@@ -129,11 +126,8 @@ class TowerDefenseController {
 
     }
 
-    addTower(){
-        this.towerMenu.position.x = this.model.userInput.x - 5
-        this.towerMenu.position.y = this.model.userInput.y - 20
-        this.towerMenu.show()
-        /*
+    placeTower(){
+        
         let towerData = {
             body: { shape: 'circle', width: 30, height: 30 },
             style: { type: 'image', src: 'bb.png' },
@@ -154,7 +148,13 @@ class TowerDefenseController {
         })
         this.proximitySystem.addSourceEntity(tower)
         this.model.userInput = null
-        */
+        
+    }
+    addTower(){
+        this.towerMenu.position.x = this.model.userInput.x - 5
+        this.towerMenu.position.y = this.model.userInput.y - 20
+        this.towerMenu.show()
+        
     }
 
     /**

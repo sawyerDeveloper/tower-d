@@ -5,8 +5,10 @@ class Button extends Box{
     constructor(x, y, width, height, color = 'white', rotation = 0, labelText, visible, callback){
         super(x, y, width, height, color, rotation, [], visible)
         this.callback = callback
-        this.label = new Label(x + 5, y + 10, width, height, 0, 'white', labelText, 'sans-serif', 12, 'center', [], )
+        this.label = new Label(x + 5, y + 10, width, height, 0, 'white', labelText, 'sans-serif', 12, 'center', [], true)
         this.children.push(this.label)
+        //this.state.hittable = true
+        console.log(this.callback)
     }
 
     update(){
@@ -29,6 +31,7 @@ class Button extends Box{
 
     hit(){
         super.hit()
+        console.log(this.callback)
         this.callback()
     }
 

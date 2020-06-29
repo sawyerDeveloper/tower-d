@@ -1,7 +1,7 @@
 import Entity from "../Entity"
 
 class UI extends Entity {
-    constructor(x, y, width, height, shape, color, rotation, children = [], visible = true, hittable = false){
+    constructor(x, y, width, height, shape, color, rotation, children = [], visible = true, hittable = true){
         super({
             body: {shape: shape, width: width, height: height},
             style: {color: color, type: 'shape'},
