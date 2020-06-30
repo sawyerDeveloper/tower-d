@@ -1,21 +1,28 @@
-import Box from '../ui/containers/Box'
 import Label from './Label'
+import Entity from '../Entity'
+import { shapes } from '../../utils/RenderUtils'
 
-class Button extends Box{
-    constructor(x, y, width, height, color = 'white', rotation = 0, labelText, visible, callback){
-        super(x, y, width, height, color, rotation, [], visible)
+class Button extends Entity{
+    constructor(data, callback){
+        super(data)
         this.callback = callback
-        this.label = new Label(x + 5, y + 10, width, height, 0, 'white', labelText, 'sans-serif', 12, 'center', [], true)
+        this.label = new Label({
+            body: { shape: shapes.TEXT, width: this.body.width, height: this.body.height },
+            style: { type: 'shape', color: 'white', font: 'sans-serif', size: 12, textAlign: 'center' },
+            state: { visible: true, labelText : data.state.labelText },
+            position: { x: this.position.x, y: this.position.y, rotation: 0 }
+        })
         this.children.push(this.label)
-        //this.state.hittable = true
-        console.log(this.callback)
+    }
+
+    init(addEntity){
+        addEntity(this.label)
     }
 
     update(){
         super.update()
-        this.label.position.x = this.position.x + 5
-        this.label.position.y = this.position.y + 10
-
+        this.label.position.x = this.position.x + 17
+        this.label.position.y = this.position.y + 12
     }
 
     show(){
@@ -31,20 +38,11 @@ class Button extends Box{
 
     hit(){
         super.hit()
-        console.log(this.callback)
         this.callback()
     }
 
     unHit(){
         super.unHit()
-    }
-
-    hitTest(x, y){
-        return super.hitTest(x, y)
-    }
-
-    render(ctx){
-        super.render(ctx)
     }
 }
 

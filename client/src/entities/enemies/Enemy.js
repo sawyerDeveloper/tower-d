@@ -1,5 +1,8 @@
 import Entity from '../Entity'
 import Label from '../ui/Label'
+
+import { shapes } from '../../utils/RenderUtils'
+
 import ProximityValueComponent from '../../components/vector/ProximityValueComponent'
 import VectorAngleComponent from '../../components/vector/VectorAngleComponent'
 import VectorDirectionComponent from '../../components/vector/VectorDirectionComponent'
@@ -7,21 +10,12 @@ import VectorDirectionComponent from '../../components/vector/VectorDirectionCom
 class Enemy extends Entity {
     constructor(data) {
         super(data)
-        /** {shape: 'rectangle', width: 100, height: 40} */
-        this.body = data.body
-        /** {color: 'brown'} */
-        this.style = data.style
-        /** { velocity: 1, x: 0, y: 1} */
-        this.vector = data.vector
-        /** {hit: false} */
-        this.state = data.state
-        /** {x: 0, y: 20, rotation: 180}  */
-        this.position = data.position
-        /** 'random' or [[1,0],[1,1],[2,1]] */
-        this.path = data.path
-        this.children = data.children
-
-        this.label = new Label(this.position.x + 10, this.position.y + 15, 30, 30, 0, 'white', this.state.health, null, 18)
+        this.label = new Label({
+            body: { shape: shapes.TEXT, width: 30, height: 30 },
+            style: { type: shapes.TEXT, color: 'white', font: 'sans-serif', size: 18, textAlign: 'center' },
+            state: { visible: true, labelText : this.state.health },
+            position: { x: this.position.x + 10, y: this.position.y + 15, rotation: 0 }
+        })
         this.children.push(this.label)
 
         if (this.path === 'random') {

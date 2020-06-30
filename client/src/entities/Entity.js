@@ -18,10 +18,12 @@ class Entity {
         this.state = data.state
         /** {x: 0, y: 20, rotation: 180}  */
         this.position = data.position
+
+        this.vector = data.vector
         /** Boolean */
         this.ui = data.ui
         /** Array of Entities */
-        this.children = data.children
+        this.children = data.children ? data.children : []
 
         /** 'random' or [[1,0],[1,1],[2,1]] */
         this.path = data.path
@@ -65,8 +67,9 @@ class Entity {
                     RenderUtils.drawShape(ctx, this.data)
             }
 
+            
             //  TODO Move to system
-            if (this.data.children.length > 0) {
+            if (this.data.children) {
                 this.data.children.forEach(entity => {
                     entity.render(ctx)
                 });

@@ -8,6 +8,8 @@ import ProximitySystem from '../src/systems/ProximitySystem'
 import Image from './entities/ui/Image'
 import Panel from './entities/ui/Panel'
 
+import { shapes } from './utils/RenderUtils'
+
 /**
  * Acts as the Controller in an MVC for the game wrapper.
  * This controls the game loop and coordinating between the view and model.
@@ -24,9 +26,13 @@ class TowerDefenseController {
 
         //Temp until to move to GameEngine class
         this.proximitySystem = new ProximitySystem()
-
-        this.towerMenu = new Panel(0, 0, 100, 100, 'white', 0, [], "test", false, () => {this.placeTower()})
-
+        this.towerMenu = new Panel({
+            body: { shape: 'rectangle', width: 100, height: 100 },
+            style: { type: shapes.RECTANGLE, color: 'white'},
+            state: { visible: false, labelText : 'Select'},
+            position: { x: 0, y: 0, rotation: 0 },
+            children: []
+        }, () => {this.placeTower()})
     }
 
     /**
@@ -34,8 +40,6 @@ class TowerDefenseController {
      * prepare for more data in memory.
      */
     init = () => {
-
-
 
         // Get level data into memory
         this.model.data.enemies = level1.waves[0].map(enemyData => {
@@ -50,7 +54,6 @@ class TowerDefenseController {
         //  Combine both lists of entities into 1 for allowing a better loop :)
         this.model.entities = this.model.enemies.concat(this.model.towers)
 
-        //this.model.entities.push(this.towerMenu)
         let bg = new Image({
             body: { shape: 'circle', width: 600, height: 600 },
             style: { type: 'image', src: 'bg.jpg' },
@@ -102,6 +105,7 @@ class TowerDefenseController {
                 //  See if stuff got hit, including a human finger against a tower
                 if (this.model.userInput) {
                     if (this.model.userInput.active) {
+                        console.log(entity.hitTest(this.model.userInput.x, this.model.userInput.y), entity)
                         if (entity.ui
                             && entity.state.visible
                             && entity.state.hittable
