@@ -12,7 +12,8 @@ class Panel extends Entity{
             style: { type: 'shape', color: 'white'},
             state: { visible: false, labelText : 'X'},
             position: { x: this.position.x + 5, y: this.position.y + 5, rotation: 0 },
-            children: []
+            children: [],
+            ui: true
         }, () => {this.hide()})
         this.label = new Label({
             body: { shape: shapes.TEXT, width: 100, height: 100 },
@@ -26,18 +27,17 @@ class Panel extends Entity{
             style: { type: 'shape', color: 'white'},
             state: { visible: false, labelText : 'Tower'},
             position: { x: this.position.x, y: this.position.y + 25, rotation: 0 },
-            children: []
+            children: [],
+            ui: true
         }, callback)
 
         this.children.push(this.label, this.closeBtn, this.towerBtn)
     }
 
     init(addEntity){
-        //  TODO Adds double the entities
         addEntity(this.label)
         addEntity(this.closeBtn)
         addEntity(this.towerBtn)
-        //this.closeBtn.init(addEntity)
     }
 
     show(){

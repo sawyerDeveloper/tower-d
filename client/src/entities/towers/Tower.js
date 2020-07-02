@@ -14,9 +14,6 @@ class Tower extends Entity {
         /** Load image in the constructor.  The engine doesn't init until the dom is loaded. */
         this.img = RenderUtils.loadImage(this.style.src)
 
-        this.panel = new Panel(this.position.x, this.position.y, 100, 100, 'white', 0, [], "test", false, this.menuInput)
-        this.children.push(this.panel)
-
         this.fireTimer = FIRE_TIMER
 
         //  Make laser show for half a second
@@ -31,10 +28,7 @@ class Tower extends Entity {
     }
 
     init(addEntity) {
-        addEntity(this.panel)
         addEntity(this.laser)
-        this.panel.init(addEntity)
-
         this.state.hittable = true
     }
 
@@ -91,13 +85,11 @@ class Tower extends Entity {
 
     closeMenu = () => {
         super.unHit()
-        this.panel.hide()
         this.state.open = false
         this.state.hittable = true
     }
 
     openMenu = () => {
-        this.panel.show()
         this.state.open = true
         this.state.hittable = false
     }

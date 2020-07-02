@@ -64,10 +64,10 @@ class RenderUtils {
                 ctx.stroke()
                 break
             case shapes.TEXT:
-                ctx.font = data.size + "px " + data.font
-                ctx.fillStyle = data.color
-                ctx.textAlign = data.textAlign
-                ctx.fillText(data.text, data.position.x, data.position.y)
+                ctx.font = data.style.size + "px " + data.style.font
+                ctx.fillStyle = data.style.color
+                ctx.textAlign = data.style.textAlign
+                ctx.fillText(data.state.labelText, data.position.x, data.position.y)
                 break
             default:
                 console.error(this, 'drawShape', data.body.shape)
