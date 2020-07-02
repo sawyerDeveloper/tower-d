@@ -23,8 +23,7 @@ class Base extends Entity {
     }
 
     update() {
-
-
+        this.label.text = this.state.health
     }
 
 

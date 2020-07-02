@@ -39,12 +39,12 @@ class TowerDefenseController {
 
         // Convert that data into classes and store that list outside of the data object in the model
         this.model.enemies = this.model.data.enemies.map(enemyData => {
-            return new Enemy(enemyData)
+            return new Enemy(enemyData, this.baseAttack)
         })
 
         //  Combine both lists of entities into 1 for allowing a better loop :)
         this.model.entities = this.model.enemies.concat(this.model.towers)
-        let base = new Base({
+        this.base = new Base({
             body: { shape: 'circle', width: 40, height: 40 },
             style: { type: 'image', src: 'base.png' },
             state: { hit: false, visible: true, hittable: false, health: 20 },
@@ -52,7 +52,7 @@ class TowerDefenseController {
             children: []
         })
 
-        this.model.entities.push(base)
+        this.model.entities.push(this.base)
 
         let bg = new Image({
             body: { shape: 'circle', width: 600, height: 600 },
@@ -148,6 +148,11 @@ class TowerDefenseController {
         requestAnimationFrame(this.update)
         this.view.endPerf()
 
+    }
+
+
+    baseAttack = () => {
+        this.base.state.health--
     }
 
     /**
