@@ -5,7 +5,7 @@ import VectorAngleComponent from '../../components/vector/VectorAngleComponent'
 import VectorDirectionComponent from '../../components/vector/VectorDirectionComponent'
 
 class Enemy extends Entity {
-    constructor(data) {
+    constructor(data, baseCallback) {
         super(data)
         /** {shape: 'rectangle', width: 100, height: 40} */
         this.body = data.body
@@ -20,6 +20,8 @@ class Enemy extends Entity {
         /** 'random' or [[1,0],[1,1],[2,1]] */
         this.path = data.path
         this.children = data.children
+
+        this.baseCallback = baseCallback
 
         this.label = new Label(this.position.x + 10, this.position.y + 15, 30, 30, 0, 'white', this.state.health, null, 18)
         this.children.push(this.label)
@@ -122,6 +124,7 @@ class Enemy extends Entity {
                 this.pathFinder.iterator++
             }
             if(this.path.length == this.pathFinder.iterator){
+                this.baseCallback()
                 this.hide()
             }else{
                 this.position.rotation = VectorAngleComponent(this.position, this.path[this.pathFinder.iterator], this.position.rotation)
