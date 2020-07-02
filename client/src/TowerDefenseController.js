@@ -1,12 +1,14 @@
 import Model from './TowerDefenseModel'
 import Enemy from './entities/enemies/Enemy'
 
-import { level1 } from './constants/levels/level1'
+import { gameData } from './data/gameData'
 import Tower from './entities/towers/Tower'
 
 import ProximitySystem from '../src/systems/ProximitySystem'
 import Image from './entities/ui/Image'
+import Label from './entities/ui/Label'
 import Base from './entities/towers/Base'
+
 
 /**
  * Acts as the Controller in an MVC for the game wrapper.
@@ -24,6 +26,7 @@ class TowerDefenseController {
 
         //Temp until to move to GameEngine class
         this.proximitySystem = new ProximitySystem()
+
     }
 
     /**
@@ -33,17 +36,13 @@ class TowerDefenseController {
     init = () => {
 
         // Get level data into memory
-        this.model.data.enemies = level1.waves[0].map(enemyData => {
-            return enemyData
-        })
-
-        // Convert that data into classes and store that list outside of the data object in the model
-        this.model.enemies = this.model.data.enemies.map(enemyData => {
+        this.model.data.entities = gameData.levels[this.model.data.level].waves[this.model.data.wave].map(enemyData => {
             return new Enemy(enemyData, this.baseAttack)
         })
+        console.log(gameData.levels[this.model.data.level].waves[this.model.data.wave][0].class)
+        let en = new gameData.levels[this.model.data.level].waves[this.model.data.wave][0].class(gameData.levels[this.model.data.level].waves[this.model.data.wave][0])
+        console.log(en)
 
-        //  Combine both lists of entities into 1 for allowing a better loop :)
-        this.model.entities = this.model.enemies.concat(this.model.towers)
         this.base = new Base({
             body: { shape: 'circle', width: 40, height: 40 },
             style: { type: 'image', src: 'base.png' },
@@ -52,7 +51,11 @@ class TowerDefenseController {
             children: []
         })
 
-        this.model.entities.push(this.base)
+        this.model.data.entities.push(this.base)
+
+        this.levelLabel = new Label(150, 30, 100, 100, 0, 'blue', this.model.data.level + " " + this.model.data.wave, 'sans-serif', 24, 'center')
+
+        this.model.data.entities.push(this.levelLabel)
 
         let bg = new Image({
             body: { shape: 'circle', width: 600, height: 600 },
@@ -62,26 +65,23 @@ class TowerDefenseController {
             children: []
         })
 
-        this.model.entities.push(bg)
-
-
+        this.model.data.entities.push(bg)
 
         //  Go through entities and pull out any children and add them to the list.  
         //  TODO deal with this being fully recursive
-        this.model.entities.forEach((entity) => {
+        this.model.data.entities.forEach((entity) => {
             if (entity.children.length > 0) {
                 entity.init((entity) => {
-                    this.model.entities.push(entity)
+                    this.model.data.entities.push(entity)
                 })
             }
         })
-
-        this.proximitySystem.init(this.model.enemies)
+        this.proximitySystem.init(this.model.data.entities.filter(entity => entity.constructor.name === 'Enemy'))
 
         //temp for testing
         this.model.loop = true
 
-        this.model.entities.reverse()
+        this.model.data.entities.reverse()
 
         //  Start the loop by asking for this.update to be called every frame.
         requestAnimationFrame(this.update)
@@ -95,9 +95,11 @@ class TowerDefenseController {
         this.view.startPerf()
         if (this.model.loop) {
 
+            this.levelLabel.text = this.model.data.level + " " + this.model.data.wave
+
             this.proximitySystem.update()
 
-            this.model.entities.forEach(entity => {
+            this.model.data.entities.forEach(entity => {
 
                 //  Move Stuff
                 entity.update(this.model.stage)
@@ -126,12 +128,12 @@ class TowerDefenseController {
                         }
                         const tower = new Tower(towerData)
 
-                        this.model.entities.push(
+                        this.model.data.entities.push(
                             tower
                         )
 
                         tower.init((entity) => {
-                            this.model.entities.push(entity)
+                            this.model.data.entities.push(entity)
                         })
                         this.proximitySystem.addSourceEntity(tower)
                         this.model.userInput = null
@@ -141,7 +143,7 @@ class TowerDefenseController {
             })
 
             //  Render the results
-            this.view.renderUpdate(this.model.entities)
+            this.view.renderUpdate(this.model.data.entities)
 
         }
 
