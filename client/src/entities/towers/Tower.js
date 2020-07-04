@@ -8,9 +8,10 @@ const FIRE_TIMER = 60
 
 class Tower extends Entity {
 
-    constructor(data) {
+    constructor(data, addPoints) {
         super(data)
 
+        this.addPoints = addPoints
         /** Load image in the constructor.  The engine doesn't init until the dom is loaded. */
         this.img = RenderUtils.loadImage(this.style.src)
 
@@ -74,6 +75,7 @@ class Tower extends Entity {
         this.laser.show()
         //Temp until moved to a system
         this.currentTarget.entity.state.health--
+        this.addPoints(this.currentTarget.entity.constants.hitPoints)
     }
 
     upgrade = () => {

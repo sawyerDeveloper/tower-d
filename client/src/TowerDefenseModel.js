@@ -8,23 +8,20 @@ class TowerDefenseModel {
         // The X and Y of a user's pointer/finger and active bool
         this.userInput = null
 
+        //  TODO make the entities save their .data object in here but leave 
+        //  the references to the classes in memory outside of here
+        //  I wanted to flatten all data first.
         this.data = data ? data : {
             score: 0,
             wave: 0,
             level: 0,
-            enemies: [],
-            towers: [],
-            grid: []
+            money: 0,
+            entities: []
         }
 
         this.stage = {width: 600, height: 650}
 
-        // This lets the game loop go really fast on all data from all entities
         this.entities = []
-
-        //  For tracking views we have arrays in here directly but outside of the this.data object.
-        this.enemies = []
-        this.towers = []
         
     }
 
