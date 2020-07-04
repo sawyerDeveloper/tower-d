@@ -68,7 +68,6 @@ class Enemy extends Entity {
                 this.label.position.x = this.position.x + 10
                 this.label.position.y = this.position.y + 15
                 this.label.text = this.state.health
-                console.log('h',this.state.health, '  v',this.state.visible)
                 this.updatePath()
                 this.position.y += this.vector.y
                 this.position.x += this.vector.x

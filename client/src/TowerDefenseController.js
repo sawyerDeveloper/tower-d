@@ -52,7 +52,7 @@ class TowerDefenseController {
 
         this.model.data.entities.push(this.base)
 
-        this.levelLabel = new Label(150, 30, 150, 100, 0, 'blue', 3 + " " + wave + " " + this.model.data.score, 'sans-serif', 24, 'center')
+        this.levelLabel = new Label(300, 30, 150, 100, 0, 'blue', level + " " + wave + " " + this.model.data.score, 'sans-serif', 24, 'center')
 
         this.model.data.entities.push(this.levelLabel)
 
@@ -75,9 +75,7 @@ class TowerDefenseController {
                 })
             }
         })
-        const enemies = this.model.data.entities.filter(entity => entity instanceof Enemy)
-        this.proximitySystem.init(enemies)
-        this.countdownSystem.init(this.countdownCallback, enemies.length)
+
 
         //temp for testing
         this.model.loop = true
@@ -99,6 +97,9 @@ class TowerDefenseController {
             enemyData.path = gameData.config.paths[enemyData.path]
             return new Enemy(enemyData, this.baseAttack, this.enemyKill)
         })
+        const enemies = this.model.data.entities.filter(entity => entity instanceof Enemy)
+        this.proximitySystem.init(enemies)
+        this.countdownSystem.init(this.countdownCallback, enemies.length)
     }
         /**
          * This is the pulse of the game. 
@@ -108,9 +109,14 @@ class TowerDefenseController {
         this.view.startPerf()
         if (this.model.loop) {
 
-            this.levelLabel.text = this.model.data.level + " " + this.model.data.wave + " " + this.model.data.score + " " + this.model.data.money
+            this.levelLabel.text = "Level: " + this.model.data.level + " " +
+                                   "Wave: " + this.model.data.wave + " " +
+                                   "Score: " + this.model.data.score + " " +
+                                   "Money: " + this.model.data.money
 
             this.proximitySystem.update()
+
+            this.countdownSystem.update()
 
             this.model.data.entities.forEach(entity => {
 
@@ -165,7 +171,7 @@ class TowerDefenseController {
     countdownCallback = () => {
         console.log('countdownCallback')
         //this.addEnemies()
-        //this.model.data.wave++
+        this.model.data.wave++
     }
 
     baseAttack = () => {
