@@ -8,7 +8,7 @@ import ProximitySystem from '../src/systems/ProximitySystem'
 import Image from './entities/ui/Image'
 import Label from './entities/ui/Label'
 import Base from './entities/towers/Base'
-
+import CountdownSystem from './systems/CountdownSystem'
 
 /**
  * Acts as the Controller in an MVC for the game wrapper.
@@ -26,22 +26,21 @@ class TowerDefenseController {
 
         //Temp until to move to GameEngine class
         this.proximitySystem = new ProximitySystem()
+        this.countdownSystem = new CountdownSystem()
 
     }
 
     /**
      * Initializes the game by telling the model to get data and 
      * prepare for more data in memory.
+     * Can be called multiple times in a game.
      */
     init = () => {
 
-        // Get level data into memory
-        this.model.data.entities = gameData.levels[this.model.data.level].waves[this.model.data.wave].map(enemyData => {
-            return new Enemy(enemyData, this.baseAttack)
-        })
-        console.log(gameData.levels[this.model.data.level].waves[this.model.data.wave][0].class)
-        let en = new gameData.levels[this.model.data.level].waves[this.model.data.wave][0].class(gameData.levels[this.model.data.level].waves[this.model.data.wave][0])
-        console.log(en)
+        const level = this.model.data.level
+        const wave = this.model.data.wave
+
+        this.addEnemies()
 
         this.base = new Base({
             body: { shape: 'circle', width: 40, height: 40 },
@@ -53,13 +52,13 @@ class TowerDefenseController {
 
         this.model.data.entities.push(this.base)
 
-        this.levelLabel = new Label(150, 30, 100, 100, 0, 'blue', this.model.data.level + " " + this.model.data.wave, 'sans-serif', 24, 'center')
+        this.levelLabel = new Label(150, 30, 150, 100, 0, 'blue', 3 + " " + wave + " " + this.model.data.score, 'sans-serif', 24, 'center')
 
         this.model.data.entities.push(this.levelLabel)
 
         let bg = new Image({
             body: { shape: 'circle', width: 600, height: 600 },
-            style: { type: 'image', src: 'bg.jpg' },
+            style: { type: 'image', src: gameData.levels[level].backgroundImage },
             state: { hit: false, visible: true, hittable: false },
             position: { x: 600, y: 600, rotation: 0 },
             children: []
@@ -76,7 +75,9 @@ class TowerDefenseController {
                 })
             }
         })
-        this.proximitySystem.init(this.model.data.entities.filter(entity => entity.constructor.name === 'Enemy'))
+        const enemies = this.model.data.entities.filter(entity => entity instanceof Enemy)
+        this.proximitySystem.init(enemies)
+        this.countdownSystem.init(this.countdownCallback, enemies.length)
 
         //temp for testing
         this.model.loop = true
@@ -87,15 +88,27 @@ class TowerDefenseController {
         requestAnimationFrame(this.update)
     }
 
-    /**
-     * This is the pulse of the game. 
-     * The main loop runs here and runs through every entity calling update, render etc.
-     */
-    update = () => {
+    addEnemies = () => {
+
+        const level = this.model.data.level
+        const wave = this.model.data.wave
+        
+        // Get level data into memory
+        this.model.data.entities = gameData.levels[level].waves[wave].map(enemyData => {
+            //  Crazy looking, but reassigning the path array based on referencing the path array index in the initial data
+            enemyData.path = gameData.config.paths[enemyData.path]
+            return new Enemy(enemyData, this.baseAttack, this.enemyKill)
+        })
+    }
+        /**
+         * This is the pulse of the game. 
+         * The main loop runs here and runs through every entity calling update, render etc.
+         */
+        update = () => {
         this.view.startPerf()
         if (this.model.loop) {
 
-            this.levelLabel.text = this.model.data.level + " " + this.model.data.wave
+            this.levelLabel.text = this.model.data.level + " " + this.model.data.wave + " " + this.model.data.score + " " + this.model.data.money
 
             this.proximitySystem.update()
 
@@ -104,7 +117,7 @@ class TowerDefenseController {
                 //  Move Stuff
                 entity.update(this.model.stage)
 
-                //  See if stuff got hit, including a human finger against a tower
+                //  See if stuff got hit, including a human finger against a tower/button
                 if (this.model.userInput) {
                     if (this.model.userInput.active) {
                         if (entity.ui
@@ -116,7 +129,7 @@ class TowerDefenseController {
                             entity.hit()
                         }
                     } else {
-
+                        //  Place a tower
                         let towerData = {
                             body: { shape: 'circle', width: 30, height: 30 },
                             style: { type: 'image', src: 'bb.png' },
@@ -126,20 +139,18 @@ class TowerDefenseController {
                             children: [],
                             ui: true
                         }
-                        const tower = new Tower(towerData)
+                        const tower = new Tower(towerData, this.addPoints)
 
-                        this.model.data.entities.push(
-                            tower
-                        )
+                        this.model.data.entities.push(tower)
 
                         tower.init((entity) => {
                             this.model.data.entities.push(entity)
                         })
+
                         this.proximitySystem.addSourceEntity(tower)
                         this.model.userInput = null
                     }
                 }
-
             })
 
             //  Render the results
@@ -149,12 +160,25 @@ class TowerDefenseController {
 
         requestAnimationFrame(this.update)
         this.view.endPerf()
-
     }
 
+    countdownCallback = () => {
+        console.log('countdownCallback')
+        //this.addEnemies()
+        //this.model.data.wave++
+    }
 
     baseAttack = () => {
         this.base.state.health--
+    }
+
+    addPoints = (points) => {
+        this.model.data.score += points
+    }
+
+    enemyKill = (money) => {
+        this.model.data.money += money
+        this.countdownSystem.tick()
     }
 
     /**

@@ -5,7 +5,7 @@ import VectorAngleComponent from '../../components/vector/VectorAngleComponent'
 import VectorDirectionComponent from '../../components/vector/VectorDirectionComponent'
 
 class Enemy extends Entity {
-    constructor(data, baseCallback) {
+    constructor(data, baseCallback, kill) {
         super(data)
         /** {shape: 'rectangle', width: 100, height: 40} */
         this.body = data.body
@@ -22,6 +22,7 @@ class Enemy extends Entity {
         this.children = data.children
 
         this.baseCallback = baseCallback
+        this.kill = kill
 
         this.label = new Label(this.position.x + 10, this.position.y + 15, 30, 30, 0, 'white', this.state.health, null, 18)
         this.children.push(this.label)
@@ -43,7 +44,7 @@ class Enemy extends Entity {
     }
 
     update(stage) {
-
+        
             
             if (this.state.health > 0 && this.state.visible) {
                 
@@ -67,7 +68,7 @@ class Enemy extends Entity {
                 this.label.position.x = this.position.x + 10
                 this.label.position.y = this.position.y + 15
                 this.label.text = this.state.health
-                
+                console.log('h',this.state.health, '  v',this.state.visible)
                 this.updatePath()
                 this.position.y += this.vector.y
                 this.position.x += this.vector.x
@@ -93,6 +94,14 @@ class Enemy extends Entity {
      */
     hitTest(x, y) {
         return super.hitTest(x, y)
+    }
+
+    hide(){
+        if(this.state.visible){
+            this.kill(this.constants.killBounty)
+        }
+        super.hide()
+        
     }
 
     /** 

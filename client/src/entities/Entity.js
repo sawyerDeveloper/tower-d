@@ -23,11 +23,15 @@ class Entity {
         /** Array of Entities */
         this.children = data.children
 
+        /** { hitPoints: 10, bounty: 20 } */
+        this.constants = data.constants
+
         /** 'random' or [[1,0],[1,1],[2,1]] */
         this.path = data.path
 
         /** An entity most likely */
         this.currentTarget = data.currentTarget
+        
         if (this.data.style.type === 'image') {
 
             this.img = RenderUtils.loadImage(this.data.style.src)
