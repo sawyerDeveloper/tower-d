@@ -54,7 +54,7 @@ class TowerDefenseController {
         this.model.data.entities.push(this.base)
 
         this.levelLabel = new Label({
-            body: { shape: 'circle', width: 150, height: 100 },
+            body: { shape: shapes.TEXT, width: 150, height: 100 },
             style: { type: shapes.TEXT, color: 'white', size: 24, font: 'sans-serif', textAlign: 'center' },
             state: { hit: false, visible: true, hittable: false, labelText: 'test' },
             position: { x: 300, y: 30, rotation: 0 },
