@@ -5,8 +5,8 @@ class Button extends Box{
     constructor(x, y, width, height, color = 'white', rotation = 0, labelText, visible, callback){
         super(x, y, width, height, color, rotation, [], visible)
         this.callback = callback
-        const label = new Label(x + 5, y + 10, width, height, 0, 'white', labelText, 'sans-serif', 12, 'center')
-        this.children.push(label)
+        //const label = new Label(x + 5, y + 10, width, height, 0, 'white', labelText, 'sans-serif', 12, 'center')
+        //this.children.push(label)
     }
 
     update(){

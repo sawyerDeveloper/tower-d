@@ -9,6 +9,7 @@ import Image from './entities/ui/Image'
 import Label from './entities/ui/Label'
 import Base from './entities/towers/Base'
 import CountdownSystem from './systems/CountdownSystem'
+import { shapes } from './utils/RenderUtils'
 
 /**
  * Acts as the Controller in an MVC for the game wrapper.
@@ -52,7 +53,15 @@ class TowerDefenseController {
 
         this.model.data.entities.push(this.base)
 
-        this.levelLabel = new Label(300, 30, 150, 100, 0, 'blue', level + " " + wave + " " + this.model.data.score, 'sans-serif', 24, 'center')
+        this.levelLabel = new Label({
+            body: { shape: 'circle', width: 150, height: 100 },
+            style: { type: shapes.TEXT, color: 'white', size: 24, font: 'sans-serif', textAlign: 'center' },
+            state: { hit: false, visible: true, hittable: false, labelText: 'test' },
+            position: { x: 300, y: 30, rotation: 0 },
+            children: []
+        })
+
+        //this.levelLabel = new Label(300, 30, 150, 100, 0, 'blue', level + " " + wave + " " + this.model.data.score, 'sans-serif', 24, 'center')
 
         this.model.data.entities.push(this.levelLabel)
 
@@ -90,7 +99,7 @@ class TowerDefenseController {
 
         const level = this.model.data.level
         const wave = this.model.data.wave
-        
+
         // Get level data into memory
         this.model.data.entities = gameData.levels[level].waves[wave].map(enemyData => {
             //  Crazy looking, but reassigning the path array based on referencing the path array index in the initial data
@@ -101,18 +110,18 @@ class TowerDefenseController {
         this.proximitySystem.init(enemies)
         this.countdownSystem.init(this.countdownCallback, enemies.length)
     }
-        /**
-         * This is the pulse of the game. 
-         * The main loop runs here and runs through every entity calling update, render etc.
-         */
-        update = () => {
+    /**
+     * This is the pulse of the game. 
+     * The main loop runs here and runs through every entity calling update, render etc.
+     */
+    update = () => {
         this.view.startPerf()
         if (this.model.loop) {
-
+            console.log(this.levelLabel)
             this.levelLabel.text = "Level: " + this.model.data.level + " " +
-                                   "Wave: " + this.model.data.wave + " " +
-                                   "Score: " + this.model.data.score + " " +
-                                   "Money: " + this.model.data.money
+                "Wave: " + this.model.data.wave + " " +
+                "Score: " + this.model.data.score + " " +
+                "Money: " + this.model.data.money
 
             this.proximitySystem.update()
 

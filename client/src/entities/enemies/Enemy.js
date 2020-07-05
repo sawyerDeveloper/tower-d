@@ -24,8 +24,8 @@ class Enemy extends Entity {
         this.baseCallback = baseCallback
         this.kill = kill
 
-        this.label = new Label(this.position.x + 10, this.position.y + 15, 30, 30, 0, 'white', this.state.health, null, 18)
-        this.children.push(this.label)
+        //this.label = new Label(this.position.x + 10, this.position.y + 15, 30, 30, 0, 'white', this.state.health, null, 18)
+        //this.children.push(this.label)
 
         if (this.path === 'random') {
             this.vectorTimer = (Math.random() * 60) + 10
@@ -35,8 +35,8 @@ class Enemy extends Entity {
     }
 
     init(addEntity) {
-        addEntity(this.label)
-        this.label.init(addEntity)
+        //addEntity(this.label)
+        //this.label.init(addEntity)
     }
 
     center() {
@@ -44,40 +44,38 @@ class Enemy extends Entity {
     }
 
     update(stage) {
-        
-            
-            if (this.state.health > 0 && this.state.visible) {
-                
 
-                if(this.path == 'random'){
-                    
-                    if (this.position.y > stage.height) {
-                        this.position.y = -30
-                    }
-                    if (this.position.y < -30) {
-                        this.position.y = stage.height
-                    }
-                    if (this.position.x > stage.width) {
-                        this.position.x = -30
-                    }
-                    if (this.position.x < -30) {
-                        this.position.x = stage.width
-                    }
+        if (this.state.health > 0 && this.state.visible) {
+
+            if (this.path == 'random') {
+
+                if (this.position.y > stage.height) {
+                    this.position.y = -30
                 }
-                
-                this.label.position.x = this.position.x + 10
-                this.label.position.y = this.position.y + 15
-                this.label.text = this.state.health
-                this.updatePath()
-                this.position.y += this.vector.y
-                this.position.x += this.vector.x
-            } else {
-                this.hide()
+                if (this.position.y < -30) {
+                    this.position.y = stage.height
+                }
+                if (this.position.x > stage.width) {
+                    this.position.x = -30
+                }
+                if (this.position.x < -30) {
+                    this.position.x = stage.width
+                }
             }
-            
-        
+
+            //this.label.position.x = this.position.x + 10
+            //this.label.position.y = this.position.y + 15
+            //this.label.text = this.state.health
+            this.updatePath()
+            this.position.y += this.vector.y
+            this.position.x += this.vector.x
+        } else {
+            this.hide()
+        }
+
+
     }
-        
+
     damage(data) {
         this.state.health -= 1
     }
@@ -95,12 +93,12 @@ class Enemy extends Entity {
         return super.hitTest(x, y)
     }
 
-    hide(){
-        if(this.state.visible){
+    hide() {
+        if (this.state.visible) {
             this.kill(this.constants.killBounty)
         }
         super.hide()
-        
+
     }
 
     /** 
@@ -131,10 +129,10 @@ class Enemy extends Entity {
             if (this.pathFinder.xGood && this.pathFinder.yGood) {
                 this.pathFinder.iterator++
             }
-            if(this.path.length == this.pathFinder.iterator){
+            if (this.path.length == this.pathFinder.iterator) {
                 this.baseCallback()
                 this.hide()
-            }else{
+            } else {
                 this.position.rotation = VectorAngleComponent(this.position, this.path[this.pathFinder.iterator], this.position.rotation)
                 VectorDirectionComponent(this.position, this.vector)
             }
