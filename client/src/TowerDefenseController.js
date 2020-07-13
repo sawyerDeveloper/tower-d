@@ -54,14 +54,12 @@ class TowerDefenseController {
         this.model.data.entities.push(this.base)
 
         this.levelLabel = new Label({
-            body: { shape: 'circle', width: 150, height: 100 },
+            body: { shape: shapes.TEXT, width: 150, height: 100 },
             style: { type: shapes.TEXT, color: 'white', size: 24, font: 'sans-serif', textAlign: 'center' },
             state: { hit: false, visible: true, hittable: false, labelText: 'test' },
             position: { x: 300, y: 30, rotation: 0 },
             children: []
         })
-
-        //this.levelLabel = new Label(300, 30, 150, 100, 0, 'blue', level + " " + wave + " " + this.model.data.score, 'sans-serif', 24, 'center')
 
         this.model.data.entities.push(this.levelLabel)
 
@@ -84,7 +82,6 @@ class TowerDefenseController {
                 })
             }
         })
-
 
         //temp for testing
         this.model.loop = true
@@ -117,7 +114,6 @@ class TowerDefenseController {
     update = () => {
         this.view.startPerf()
         if (this.model.loop) {
-            console.log(this.levelLabel)
             this.levelLabel.text = "Level: " + this.model.data.level + " " +
                 "Wave: " + this.model.data.wave + " " +
                 "Score: " + this.model.data.score + " " +

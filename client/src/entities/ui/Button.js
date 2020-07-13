@@ -1,3 +1,4 @@
+import { shapes } from '../../utils/RenderUtils'
 import Box from '../ui/containers/Box'
 import Label from './Label'
 
@@ -5,8 +6,14 @@ class Button extends Box{
     constructor(x, y, width, height, color = 'white', rotation = 0, labelText, visible, callback){
         super(x, y, width, height, color, rotation, [], visible)
         this.callback = callback
-        //const label = new Label(x + 5, y + 10, width, height, 0, 'white', labelText, 'sans-serif', 12, 'center')
-        //this.children.push(label)
+        this.label = new Label({
+            body: { shape: shapes.TEXT, width: width, height: height },
+            style: { type: shapes.TEXT, color: 'white', size: 12, font: 'sans-serif', textAlign: 'center' },
+            state: { hit: false, visible: true, hittable: false, labelText: labelText },
+            position: { x: x + 5, y: y + 10, rotation: 0 },
+            children: []
+        })
+        this.children.push(this.label)
     }
 
     update(){

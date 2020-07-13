@@ -1,6 +1,6 @@
 import Entity from '../Entity'
 import Label from '../ui/Label'
-import ProximityValueComponent from '../../components/vector/ProximityValueComponent'
+import { shapes } from '../../utils/RenderUtils'
 import VectorAngleComponent from '../../components/vector/VectorAngleComponent'
 import VectorDirectionComponent from '../../components/vector/VectorDirectionComponent'
 
@@ -24,8 +24,14 @@ class Enemy extends Entity {
         this.baseCallback = baseCallback
         this.kill = kill
 
-        //this.label = new Label(this.position.x + 10, this.position.y + 15, 30, 30, 0, 'white', this.state.health, null, 18)
-        //this.children.push(this.label)
+        this.label = new Label({
+            body: { shape: shapes.TEXT, width: 150, height: 100 },
+            style: { type: shapes.TEXT, color: 'white', size: 18, font: 'sans-serif', textAlign: 'center' },
+            state: { hit: false, visible: true, hittable: false, labelText: this.state.health },
+            position: { x: this.position.x + 10, y: this.position.y + 15, rotation: 0 },
+            children: []
+        })
+        this.children.push(this.label)
 
         if (this.path === 'random') {
             this.vectorTimer = (Math.random() * 60) + 10
@@ -35,8 +41,8 @@ class Enemy extends Entity {
     }
 
     init(addEntity) {
-        //addEntity(this.label)
-        //this.label.init(addEntity)
+        addEntity(this.label)
+        this.label.init(addEntity)
     }
 
     center() {
@@ -63,17 +69,15 @@ class Enemy extends Entity {
                 }
             }
 
-            //this.label.position.x = this.position.x + 10
-            //this.label.position.y = this.position.y + 15
-            //this.label.text = this.state.health
+            this.label.position.x = this.position.x + 10
+            this.label.position.y = this.position.y + 15
+            this.label.text = this.state.health
             this.updatePath()
             this.position.y += this.vector.y
             this.position.x += this.vector.x
         } else {
             this.hide()
         }
-
-
     }
 
     damage(data) {

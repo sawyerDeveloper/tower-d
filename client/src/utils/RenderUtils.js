@@ -67,6 +67,7 @@ class RenderUtils {
                 ctx.font = data.style.size + "px " + data.style.font
                 ctx.fillStyle = data.style.color
                 ctx.textAlign = data.style.textAlign
+                console.log(data.state.labelText)
                 ctx.fillText(data.state.labelText, data.position.x, data.position.y)
                 break
             default:

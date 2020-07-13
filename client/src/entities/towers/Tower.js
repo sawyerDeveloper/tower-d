@@ -1,8 +1,6 @@
-import RenderUtils from '../../utils/RenderUtils'
 import Entity from '../Entity'
 import Panel from '../ui/Panel'
 import Laser from '../global/Laser'
-import Vector from '../../types/Vector'
 
 const FIRE_TIMER = 60
 
@@ -12,8 +10,6 @@ class Tower extends Entity {
         super(data)
 
         this.addPoints = addPoints
-        /** Load image in the constructor.  The engine doesn't init until the dom is loaded. */
-        this.img = RenderUtils.loadImage(this.style.src)
 
         this.panel = new Panel(this.position.x, this.position.y, 100, 100, 'white', 0, [], "test", false, this.menuInput)
         this.children.push(this.panel)
