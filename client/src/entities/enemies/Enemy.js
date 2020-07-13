@@ -23,12 +23,11 @@ class Enemy extends Entity {
 
         this.baseCallback = baseCallback
         this.kill = kill
-
         this.label = new Label({
             body: { shape: shapes.TEXT, width: 150, height: 100 },
             style: { type: shapes.TEXT, color: 'white', size: 18, font: 'sans-serif', textAlign: 'center' },
-            state: { hit: false, visible: true, hittable: false, labelText: this.state.health },
-            position: { x: this.position.x + 10, y: this.position.y + 15, rotation: 0 },
+            state: { hit: false, visible: true, hittable: false, labelText: 'test' },
+            position: { x: this.position.x + 18, y: this.position.y + 15, rotation: 0 },
             children: []
         })
         this.children.push(this.label)

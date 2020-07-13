@@ -1,6 +1,7 @@
 import { shapes } from '../../utils/RenderUtils'
 import Box from '../ui/containers/Box'
 import Label from './Label'
+import { shapes } from '../../utils/RenderUtils'
 
 class Button extends Box{
     constructor(x, y, width, height, color = 'white', rotation = 0, labelText, visible, callback){
