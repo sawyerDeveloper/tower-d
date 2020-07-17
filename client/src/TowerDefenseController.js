@@ -39,7 +39,6 @@ class TowerDefenseController {
     init = () => {
 
         const level = this.model.data.level
-        const wave = this.model.data.wave
 
         this.addEnemies()
 
@@ -174,7 +173,6 @@ class TowerDefenseController {
     }
 
     countdownCallback = () => {
-        console.log('countdownCallback')
         //this.addEnemies()
         this.model.data.wave++
     }

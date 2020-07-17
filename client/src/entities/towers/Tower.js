@@ -1,4 +1,5 @@
 import Entity from '../Entity'
+import { shapes } from '../../utils/RenderUtils'
 import Panel from '../ui/Panel'
 import Laser from '../global/Laser'
 
@@ -10,8 +11,13 @@ class Tower extends Entity {
         super(data)
 
         this.addPoints = addPoints
-
-        this.panel = new Panel(this.position.x, this.position.y, 100, 100, 'white', 0, [], "test", false, this.menuInput)
+        this.panel = new Panel({
+            body: { shape: shapes.RECTANGLE, width: 100, height: 100 },
+            style: { type: shapes.RECTANGLE, color: 'white' },
+            state: { hit: false, visible: false, hittable: false, labelText: "Tower" },
+            position: { x: this.position.x + 50, y: this.position.y + 10, rotation: 0 },
+            children: []
+        }, this.menuInput)
         this.children.push(this.panel)
 
         this.fireTimer = FIRE_TIMER

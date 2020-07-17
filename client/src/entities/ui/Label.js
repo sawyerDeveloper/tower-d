@@ -10,6 +10,7 @@ class Label extends Entity{
         this.data.state.labelText = this.text
     }
 
+
 }
 
 export default Label

@@ -1,16 +1,16 @@
 import { shapes } from '../../utils/RenderUtils'
-import Box from '../ui/containers/Box'
 import Label from './Label'
+import Entity from '../Entity'
 
-class Button extends Box{
-    constructor(x, y, width, height, color = 'white', rotation = 0, labelText, visible, callback){
-        super(x, y, width, height, color, rotation, [], visible)
+class Button extends Entity{
+    constructor(data, callback){
+        super(data)
         this.callback = callback
         this.label = new Label({
-            body: { shape: shapes.TEXT, width: width, height: height },
+            body: { shape: shapes.TEXT, width: this.body.width, height: this.body.height },
             style: { type: shapes.TEXT, color: 'white', size: 12, font: 'sans-serif', textAlign: 'center' },
-            state: { hit: false, visible: true, hittable: false, labelText: labelText },
-            position: { x: x + 5, y: y + 10, rotation: 0 },
+            state: { hit: false, visible: true, hittable: false, labelText: this.state.labelText },
+            position: { x: this.position.x + 5, y: this.position.y + 10, rotation: 0 },
             children: []
         })
         this.children.push(this.label)

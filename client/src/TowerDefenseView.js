@@ -85,7 +85,7 @@ class TowerDefenseView extends Component {
 
     return (
       <VBox width={this.state.width} height={this.state.height}>
-        <HBox marginLeft={100} height={50}>
+        <HBox marginLeft={100} height={30}>
           <button onPointerDown={this.controller.play}>Play</button>
           <button onPointerDown={this.controller.pause}>Pause</button>
         </HBox>

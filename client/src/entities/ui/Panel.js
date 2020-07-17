@@ -1,43 +1,55 @@
-import Box from "./containers/Box"
+import Entity from '../Entity'
 import Button from './Button'
 import Label from './Label'
+import { shapes } from '../../utils/RenderUtils'
 
-class Panel extends Box{
-    constructor(x, y, width, height, color = 'white', rotation = 0, children = [], labelText, visible = true, callback){
-        super(x, y, width, height, color, rotation, children, visible)
+class Panel extends Entity{
+    constructor(data, callback){
+        super(data)
         this.callback = callback
-        this.button = new Button(this.position.x + 5, this.position.y + 5, 10, 10, 'white', 0, "X", false, () => {this.hide()})
-        
-        //const label = new Label(this.position.x + 50, this.position.y + 10, 100, 100, 0, 'white', labelText, 'sans-serif', 12, 'center')
-        //this.children.push(label, this.button)
+        this.button = new Button({
+            body: { shape: shapes.RECTANGLE, width: 10, height: 10 },
+            style: { type: shapes.RECTANGLE, color: 'white' },
+            state: { hit: false, visible: this.state.visible, hittable: false, labelText: "X" },
+            position: { x: this.position.x + 5, y: this.position.y + 5, rotation: 0 },
+            children: []
+        }, () => {this.hide()})
+        this.label = new Label({
+            body: { shape: shapes.TEXT, width: 100, height: 100 },
+            style: { type: shapes.TEXT, color: 'white', size: 12, font: 'sans-serif', textAlign: 'center' },
+            state: { hit: false, visible: this.state.visible, hittable: false, labelText: this.state.labelText },
+            position: { x: this.position.x + 50, y: this.position.y + 10, rotation: 0 },
+            children: []
+        })
+        this.children.push(this.label, this.button)
+    }
+
+    update(){
+        super.update()
+        this.label.text = this.state.labelText
     }
 
     init(addEntity){
-        //  TODO Adds double the entities
         addEntity(this.button)
+        addEntity(this.label)
     }
 
     show(){
         super.show()
         this.button.show()
-    }
-
-    update(){
-        super.update()
+        this.label.show()
     }
 
     hide(){
         super.hide()
         this.button.hide()
+        this.label.hide()
     }
 
     hitTest(x, y){
         return super.hitTest(x, y)
     }
 
-    render(ctx){
-        super.render(ctx)
-    }
 }
 
 export default Panel
