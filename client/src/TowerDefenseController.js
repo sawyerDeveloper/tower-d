@@ -111,6 +111,7 @@ class TowerDefenseController {
      * The main loop runs here and runs through every entity calling update, render etc.
      */
     update = () => {
+        const p1 = performance.now()
         this.view.startPerf()
         if (this.model.loop) {
             this.levelLabel.text = "Level: " + this.model.data.level + " " +
@@ -122,8 +123,9 @@ class TowerDefenseController {
 
             this.countdownSystem.update()
 
-            this.model.data.entities.forEach(entity => {
-
+            var entities = this.model.data.entities
+            for(var i = 0 ; i < entities.length ; i++){
+                var entity = entities[i]
                 //  Move Stuff
                 entity.update(this.model.stage)
 
@@ -139,6 +141,7 @@ class TowerDefenseController {
                             entity.hit()
                         }
                     } else {
+                        console.log('yo')
                         //  Place a tower
                         let towerData = {
                             body: { shape: 'circle', width: 30, height: 30 },
@@ -161,7 +164,7 @@ class TowerDefenseController {
                         this.model.userInput = null
                     }
                 }
-            })
+            }
 
             //  Render the results
             this.view.renderUpdate(this.model.data.entities)
@@ -170,6 +173,8 @@ class TowerDefenseController {
 
         requestAnimationFrame(this.update)
         this.view.endPerf()
+        const p2 = performance.now()
+        console.log('perf ', p2 - p1)
     }
 
     countdownCallback = () => {

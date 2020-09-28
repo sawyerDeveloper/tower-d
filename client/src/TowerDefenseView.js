@@ -55,16 +55,14 @@ class TowerDefenseView extends Component {
    * @param {object} data Updated data regarding score, logic, entity placement
    */
   renderUpdate = (data) => {
-    //const p1 = performance.now()
+    
     //  Render the results of the game loop
     this.canvas.getContext('2d').clearRect(0, 0, this.state.width, this.state.height)
 
     //  Pass the context to each entity to draw itself into.
-    data.forEach(entity => {
-        entity.render(this.canvas.getContext('2d'))
-    })
-    //const p2 = performance.now()
-    //console.log('perf ', data.length)
+    for(var i = 0 ; i < data.length ; i++){
+      data[i].render(this.canvas.getContext('2d'))
+    }
   }
 
   /**
