@@ -93,8 +93,7 @@ class TowerDefenseController {
 
     addEnemies = () => {
 
-        const level = this.model.data.level
-        const wave = this.model.data.wave
+        const { level, wave } = this.model.data
 
         // Get level data into memory
         this.model.data.entities = gameData.levels[level].waves[wave].map(enemyData => {
@@ -111,6 +110,7 @@ class TowerDefenseController {
      * The main loop runs here and runs through every entity calling update, render etc.
      */
     update = () => {
+
         const p1 = performance.now()
         this.view.startPerf()
         if (this.model.loop) {
@@ -141,7 +141,6 @@ class TowerDefenseController {
                             entity.hit()
                         }
                     } else {
-                        console.log('yo')
                         //  Place a tower
                         let towerData = {
                             body: { shape: 'circle', width: 30, height: 30 },
