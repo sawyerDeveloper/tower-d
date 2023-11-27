@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/tower-d/static/css/main.aa0c6007.css",
+    "main.js": "/tower-d/static/js/main.ade438cf.js",
+    "index.html": "/tower-d/index.html",
+    "main.aa0c6007.css.map": "/tower-d/static/css/main.aa0c6007.css.map",
+    "main.ade438cf.js.map": "/tower-d/static/js/main.ade438cf.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.aa0c6007.css",
+    "static/js/main.ade438cf.js"
+  ]
+}
