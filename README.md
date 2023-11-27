@@ -1,5 +1,7 @@
-Scan this to view latest build
-<br><img src="qr.png" alt=""/>
+Scan this to view latest build on mobile:
+<br><img width="200" src="qr.png" alt=""/>
+<br>
+Or [Click Here](https://sawyerdeveloper.github.io/tower-d/) to see it on desktop.
 
 This game is a project I decided to do to keep up my engineering chops.  And to have fun.  I wanted to make a game engine from scratch in Javascript and make a Tower Defense game with that engine.  
 
